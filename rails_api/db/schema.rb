@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_235031) do
+ActiveRecord::Schema.define(version: 2018_06_01_195923) do
 
   create_table "chatrooms", force: :cascade do |t|
-    t.boolean "is_private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "events", force: :cascade do |t|
@@ -37,9 +37,10 @@ ActiveRecord::Schema.define(version: 2018_05_31_235031) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.boolean "is_private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chatroom_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -57,6 +58,11 @@ ActiveRecord::Schema.define(version: 2018_05_31_235031) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "trips_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "trip_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -65,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_235031) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_creator"
   end
 
 end
