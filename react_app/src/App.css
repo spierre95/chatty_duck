@@ -4,6 +4,17 @@ body {
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
       margin: 70px 0;
+      left: 14em;
+    }
+
+    .sidebar {
+      background: dimgrey;
+      border-left: 1px solid black;
+      bottom: 63px;
+      top: 61px;
+      display: flex;
+      left: 0;
+      position: fixed;
     }
 
     .chatbar {

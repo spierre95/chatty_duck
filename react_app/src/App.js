@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChatBar from './ChatBar.js';
-import MessageList from './MessageList.js'
+import MessageList from './MessageList.js';
+import SideBar from './SideBar.js';
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: {name: "John"},
-      messages: ["Wow look at me", "No way jose"]
+      messages: ["Wow look at me", "No way jose"],
+      users: ['James','Devon','Yasu','Stephen']
     };
   }
 
@@ -27,10 +29,13 @@ class App extends Component {
       <div>
 
         <nav className="navbar">
+          Stien
         </nav>
 
         <MessageList messages={ this.state.messages } />
-        <ChatBar addMessage={ this.addMessage} />
+        <ChatBar addMessage={ this.addMessage} user={this.state.currentUser} />
+
+        <SideBar users={ this.state.users } />
 
       </div>
     );
