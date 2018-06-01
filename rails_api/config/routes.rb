@@ -1,3 +1,4 @@
+# on vagrant run bin/rails s -b 0.0.0.0 to start server
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: :index
 end
