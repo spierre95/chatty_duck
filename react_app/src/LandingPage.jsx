@@ -4,6 +4,8 @@ import Main from './lp/Main.jsx';
 import Footer from './lp/Footer.jsx';
 import Signup from './forms/Signup.jsx';
 import Login from './forms/Login.jsx';
+import SelectTrip from './forms/SelectTrip.jsx';
+
 
 class LandingPage extends Component {
   render(){
@@ -13,6 +15,7 @@ class LandingPage extends Component {
           <Main />
           <Signup />
           <Login />
+          <SelectTrip />
           <Footer />
         </div>
       );
