@@ -4,6 +4,9 @@ class SideBar extends React.Component {
 
   render() {
 
+    const usersComponent = this.props.users.map((user, index) => {
+      return <div>{ user }</div>
+    });
 
     return (
 
@@ -11,13 +14,10 @@ class SideBar extends React.Component {
           <div className='userlist'>
             <h1>Italy Trip</h1>
             <ul>
-             <li>{ this.props.users[0] }</li>
-             <li>{ this.props.users[1] }</li>
-             <li>{ this.props.users[2] }</li>
-             <li>{ this.props.users[3] }</li>
+              { usersComponent }
             </ul>
           </div>
-        </main>
+      </main>
     )
   };
 }

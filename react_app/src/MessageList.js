@@ -5,14 +5,15 @@ class MessageList extends React.Component {
   render() {
 
     const messageComponent = this.props.messages.map((message, index) => {
-        return <li>message</li>;
+        return <div>{ message }</div>;
     });
+
     return (
 
       <main className='messages'>
-        <ol>
+        <ul>
           { messageComponent }
-        </ol>
+        </ul>
       </main>
     );
 
