@@ -1,0 +1,257 @@
+$font_title:    "Sofia", cursive;
+$font_serif:    'Crimson Text', osaka, serif;
+$font_sansserif: "Lato", sans-serif;
+
+$color_grey:        #f4f5f4;
+$color_blue:        #1cd2d0;
+$color_blue_darker: #10cfcc;
+$color_black:       #3d3d3d;
+$color_footer_bg:   #3d3d3d;
+$color_brown:       #603813;
+
+$device_mobile:             '(max-width: 767px)';
+$device_tablet:             '(min-width: 768px) and (max-width: 991px)';
+$device_tablet_and_up:      '(min-width: 768px)';
+$device_desktop_md:         '(min-width: 992px) and (max-width: 1199px)';
+$device_desktop_md_and_up:  '(min-width: 992px)';
+$device_desktop_lg:         '(min-width: 1200px)';
+
+@mixin border-radius($p) {
+    border-radius: $p;
+    -moz-border-radius: $p;
+    -webkit-border-radius: $p;
+}
+
+@mixin box-shadow($v) {
+    box-shadow: $v;
+    -moz-box-shadow: $v;
+    -webkit-box-shadow: $v;
+}
+
+@mixin box-sizing($b) {
+    box-sizing: $b;
+    -moz-box-sizing: $b;
+    -webkit-box-sizing: $b;
+}
+
+@mixin placeholder-color($c) {
+    ::-webkit-input-placeholder {color: $c;}
+    :-moz-placeholder {color: $c;}
+    ::-moz-placeholder {color: $c;}
+    :-ms-input-placeholder {color: $c;}
+}
+
+@mixin transition($t) {
+    transition: $t;
+    -moz-transition: $t;
+    -webkit-transition: $t;
+    -o-transition: $t;
+    -ms-transition: $t;
+}
+
+@mixin transform($r) {
+    transform: $r;
+    -ms-transform: $r;
+    -moz-transform: $r;
+    -webkit-transform: $r;
+}
+//how to use
+//@include border-radius(0);
+//@include box-shadow(none);
+//
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+@include keyframes(fadeIn) {
+    0% { display: none; opacity: 0; }
+    1% { display: block; opacity: 0; }
+    100% { display: block; opacity: 1; }
+}
+@include keyframes(fadeOut) {
+    0% { display: block; opacity: 1; }
+    80% { display: block; opacity: 0; }
+    100% { display: none; opacity: 0; }
+}
+
+
+/* General Settings */
+body {
+    background-color: #fff;
+    font-family: $font_sansserif;
+}
+
+/* for firefox */
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: 0;
+    outline : 0;
+}
+
+//font size setting
+html { }
+body { }
+h1   {  }
+h2, h3 { }
+
+@media screen and #{$device_mobile} {
+    body { }
+    i.fa { }
+}
+
+//font family, font weight and other setting
+h1 { }
+h2 { }
+strong { font-family: $font_sansserif; font-weight: bold; }
+
+span { line-height: 100%; vertical-align: baseline; }
+img { border: none; }
+
+p {
+    line-height: 150%;  /* 170% for en sentenses */
+    text-align: center;
+}
+ul, ol { list-style: none; margin: 0; padding: 0; }
+
+i {
+    display: inline-block;
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 100%;
+    position: relative;
+}
+
+a {
+    color: $color_blue;
+    display: inline-block;
+    text-decoration: none;
+    @include transition(all 0.4s ease-in-out);
+    &:hover {
+        opacity: 0.4; filter: alpha(opacity=40);
+        @media screen and #{$device_mobile} {
+            opacity: 1; filter: alpha(opacity=100);
+        }
+        @media screen and #{$device_tablet} {
+            opacity: 1; filter: alpha(opacity=100);
+        }
+    }
+    &:active, &:hover, &:link {
+        text-decoration: none !important;
+    }
+
+    &:active, &:focus {outline: 0;}
+
+    &.active {
+    }
+    img {
+        border: none;
+        outline: none;
+    }
+}
+
+/* bootstrap bugs for xs offset (?) this is to fix */
+.col-xs-offset-1 {
+    @media screen and #{$device_tablet_and_up} { margin-left: 0; }
+}
+
+/* header  */
+header {
+    height: 100px;
+    img {
+        float: left;
+    }
+    h1 {
+        color: $color_blue;
+        font-family: $font_serif;
+        float: left;
+        text-align: left;
+        font-family: $font-serif;
+        font-size: 3em;
+        // @media screen and #{$device_device_mobile} { width: 100%; }
+    }
+    a {
+        display: block;
+        float: right;
+        &.logo {
+            float: left;
+        }
+        &.btn {
+            margin: 30px 10px;
+            &.btn-primary {
+                background-color: $color_blue;
+                border-color: $color_blue_darker;
+            }
+        }
+    }
+}
+
+main {
+    padding-bottom: 30px;
+    .banner {
+        padding-right: 0;
+        padding-left: 0;
+        img {
+            max-width: 100%;
+        }
+    }
+    .title {
+        font-size: 1.2em;
+        padding-top: 4em;
+        padding-bottom: 4em;
+    }
+    .card-wrapper {
+        background-color: $color_grey;
+        @include border-radius(10px);
+        padding: 50px;
+        i {
+            color: $color_blue;
+            font-size: 100px;
+        }
+    }
+    .note {
+        padding-top: 30px;
+        padding-bottom: 15px;
+    }
+
+    // bxslider
+    .bx-controls {
+        display: none;
+    }
+
+
+}
+
+footer {
+    background: url("../images/footer.png") 0 0 no-repeat;
+    background-size: contain;
+    background-color: $color_footer_bg;
+    height: 0;
+    /* display height ÷ width of the image × 100 */
+    padding-top: 25%;
+    position: relative;
+    .row {
+        background-color: $color_footer_bg;
+        p {
+            color: #fff;
+            &.copyright {
+                text-align: center;
+                width: 100%;
+            }
+            padding-bottom: 10px;
+        }
+    }
+}
