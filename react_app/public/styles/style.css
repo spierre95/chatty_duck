@@ -1,0 +1,206 @@
+@charset "UTF-8";
+@-webkit-keyframes $animation-name {
+  0% {
+    display: none;
+    opacity: 0; }
+  1% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: block;
+    opacity: 1; } }
+@-moz-keyframes $animation-name {
+  0% {
+    display: none;
+    opacity: 0; }
+  1% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: block;
+    opacity: 1; } }
+@keyframes $animation-name {
+  0% {
+    display: none;
+    opacity: 0; }
+  1% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: block;
+    opacity: 1; } }
+@-webkit-keyframes $animation-name {
+  0% {
+    display: block;
+    opacity: 1; }
+  80% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: none;
+    opacity: 0; } }
+@-moz-keyframes $animation-name {
+  0% {
+    display: block;
+    opacity: 1; }
+  80% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: none;
+    opacity: 0; } }
+@keyframes $animation-name {
+  0% {
+    display: block;
+    opacity: 1; }
+  80% {
+    display: block;
+    opacity: 0; }
+  100% {
+    display: none;
+    opacity: 0; } }
+/* General Settings */
+body {
+  background-color: #fff;
+  font-family: "Lato", sans-serif; }
+
+/* for firefox */
+a:focus, a:active,
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+select::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+  border: 0;
+  outline: 0; }
+
+strong {
+  font-family: "Lato", sans-serif;
+  font-weight: bold; }
+
+span {
+  line-height: 100%;
+  vertical-align: baseline; }
+
+img {
+  border: none; }
+
+p {
+  line-height: 150%;
+  /* 170% for en sentenses */
+  text-align: center; }
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+i {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 100%;
+  position: relative; }
+
+a {
+  color: #1cd2d0;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out; }
+  a:hover {
+    opacity: 0.4;
+    filter: alpha(opacity=40); }
+    @media screen and (max-width: 767px) {
+      a:hover {
+        opacity: 1;
+        filter: alpha(opacity=100); } }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      a:hover {
+        opacity: 1;
+        filter: alpha(opacity=100); } }
+  a:active, a:hover, a:link {
+    text-decoration: none !important; }
+  a:active, a:focus {
+    outline: 0; }
+  a img {
+    border: none;
+    outline: none; }
+
+/* bootstrap bugs for xs offset (?) this is to fix */
+@media screen and (min-width: 768px) {
+  .col-xs-offset-1 {
+    margin-left: 0; } }
+
+/* header  */
+header {
+  height: 100px; }
+  header img {
+    float: left; }
+  header h1 {
+    color: #1cd2d0;
+    font-family: "Crimson Text", osaka, serif;
+    float: left;
+    text-align: left;
+    font-family: "Crimson Text", osaka, serif;
+    font-size: 3em; }
+  header a {
+    display: block;
+    float: right; }
+    header a.logo {
+      float: left; }
+    header a.btn {
+      margin: 30px 10px; }
+      header a.btn.btn-primary {
+        background-color: #1cd2d0;
+        border-color: #10cfcc; }
+
+main {
+  padding-bottom: 30px; }
+  main .banner {
+    padding-right: 0;
+    padding-left: 0; }
+    main .banner img {
+      max-width: 100%; }
+  main .title {
+    font-size: 1.2em;
+    padding-top: 4em;
+    padding-bottom: 4em; }
+  main .card-wrapper {
+    background-color: #f4f5f4;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 50px; }
+    main .card-wrapper i {
+      color: #1cd2d0;
+      font-size: 100px; }
+  main .note {
+    padding-top: 30px;
+    padding-bottom: 15px; }
+  main .bx-controls {
+    display: none; }
+
+footer {
+  background: url("../images/footer.png") 0 0 no-repeat;
+  background-size: contain;
+  background-color: #3d3d3d;
+  height: 0;
+  /* display height ÷ width of the image × 100 */
+  padding-top: 25%;
+  position: relative; }
+  footer .row {
+    background-color: #3d3d3d; }
+    footer .row p {
+      color: #fff;
+      padding-bottom: 10px; }
+      footer .row p.copyright {
+        text-align: center;
+        width: 100%; }
+
+/*# sourceMappingURL=style.css.map */
