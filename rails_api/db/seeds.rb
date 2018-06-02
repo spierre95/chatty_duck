@@ -26,7 +26,7 @@ is_creator:true
 
 
 12.times do Message.create!({
-chatroom_id:1,
+chatroom_id: 1,
 content:Faker::Hipster.sentence(4)
 })
 end
