@@ -31,10 +31,10 @@ class App extends Component {
         </nav>
 
 
-{
-        // <MessageList messages={ this.state.messages } />
-        // <ChatBar addMessage={ this.addMessage} user={this.state.currentUser} />
-}
+
+         <MessageList  />
+         <ChatBar  />
+
         <SideBar />
       </div>
     );

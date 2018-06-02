@@ -29,7 +29,7 @@ class SideBar extends React.Component {
           <div className='userlist'>
             <h1>Italy Trip</h1>
             <ul>
-              { this.state.users.map(user => <li>{user.first_name}</li>)}
+              { this.state.users.map(user => <li key={user.id}>{user.first_name}</li>)}
             </ul>
           </div>
         </main>
