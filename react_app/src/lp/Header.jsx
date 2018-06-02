@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Header extends Component {
   render(){
@@ -9,7 +10,8 @@ class Header extends Component {
           <a className="logo" href=""><img src="/images/logo.png" alt="logo" /></a>
           <h1>Travel Chat App</h1>
           <a className="btn btn-primary" href="">Login</a>
-          <a className="btn btn-primary" href="">Create Trip</a>
+          <Link className="btn btn-primary" to="/user/:username/create">Create Trip</Link>
+
         </div>
       </div>
     );

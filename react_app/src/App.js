@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import LandingPage from './LandingPage.jsx';
-import SelectTrip from './SelectTrip.jsx';
-import CreateTrip from './CreateTrip.jsx';
+import SelectTrip from './forms/SelectTrip.jsx';
+import CreateTrip from './forms/CreateTrip.jsx';
 import UserInvite from './UserInvite.jsx';
 import ChatRoom from './ChatRoom.jsx';
 
