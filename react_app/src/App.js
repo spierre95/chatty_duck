@@ -6,13 +6,9 @@ import './App.css';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentUser: {name: "John"},
-      messages: ["Wow look at me", "No way jose"],
-      users: ['James','Devon','Yasu','Stephen']
-    };
+  constructor() {
+    super();
+
   }
 
   addMessage = message => {
@@ -24,6 +20,8 @@ class App extends Component {
 }
 
 
+
+
   render() {
     return (
       <div>
@@ -32,11 +30,12 @@ class App extends Component {
           Stien
         </nav>
 
-        <MessageList messages={ this.state.messages } />
-        <ChatBar addMessage={ this.addMessage} user={this.state.currentUser} />
 
-        <SideBar users={ this.state.users } />
-
+{
+        // <MessageList messages={ this.state.messages } />
+        // <ChatBar addMessage={ this.addMessage} user={this.state.currentUser} />
+}
+        <SideBar />
       </div>
     );
   }
