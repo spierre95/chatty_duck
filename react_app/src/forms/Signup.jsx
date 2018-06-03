@@ -10,8 +10,9 @@ class Signup extends Component {
       last_name:"",
       username:"",
       email:"",
-      password_digest:null,
-      is_creator:false,
+      password:"",
+      password_confirmation:"",
+      is_creator:false
 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,8 +34,9 @@ class Signup extends Component {
       last_name: this.state.last_name,
       username: this.state.username,
       email:this.state.email,
-      password_digest:null,
-      is_creator:false,
+      password:this.state.password,
+      password_confirmation:this.state.password_confirmation,
+      is_creator:this.state.is_creator
     };
 
 
@@ -69,11 +71,11 @@ class Signup extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" className="form-control" id="password" placeholder="Password" />
+            <input type="password" name="password" className="form-control" id="password" placeholder="Password" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor="password confirmation">Password Confirmation</label>
-            <input type="password" name="confirm_password" className="form-control" id="password-confirmation" placeholder="Confirm Password" />
+            <input type="password" name="password_confirmation" className="form-control" id="password-confirmation" placeholder="Confirm Password" onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           <span>MEMO: image uploader will be somewhere in the page too.</span>
