@@ -14,15 +14,16 @@ class Signup extends Component {
       is_creator:false,
 
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+
+
   handleChange = event => {
-    this.setState({ first_name: event.target.value });
-    this.setState({ last_name: event.target.value });
-    this.setState({ username: event.target.value });
-    this.setState({ email: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
+
 
   handleSubmit = event => {
     event.preventDefault();
@@ -31,8 +32,12 @@ class Signup extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       username: this.state.username,
-      email:this.state.email
+      email:this.state.email,
+      password_digest:null,
+      is_creator:false,
     };
+
+
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
       .then(res => {
@@ -44,23 +49,23 @@ class Signup extends Component {
 
   render(){
     let form = (
-        <form action="/" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="first name">First Name</label>
-            <input type="text" name="first_name" className="form-control" id="first-name" placeholder="Enter First Name" />
+            <input type="text" name="first_name" className="form-control" id="first-name" placeholder="Enter First Name" onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="last name">Last Name</label>
-            <input type="text" name="last_name"className="form-control" id="last-name" placeholder="Enter Last Name" />
+            <input type="text" name="last_name"className="form-control" id="last-name" placeholder="Enter Last Name" onChange={this.handleChange}  />
           </div>
           <div className="form-group">
             <label htmlFor="username">User Name</label>
-            <input type="text" name="username" className="form-control" id="username" placeholder="Enter Username" />
+            <input type="text" name="username" className="form-control" id="username" placeholder="Enter Username" onChange={this.handleChange}  />
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" />
+            <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange} />
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
