@@ -350,17 +350,17 @@ footer {
 .form-page header h1 + a, .form-page header a + a {
   display: none; }
 
-aside form {
+aside form, section form {
   margin: 0 auto;
   width: 500px; }
-  aside form input {
+  aside form input, section form input {
     margin-top: 5px; }
-  aside form a {
+  aside form a, section form a {
     display: block;
     float: right;
     padding-top: 15px;
     padding-bottom: 15px; }
-aside select {
+aside select, section select {
   width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
