@@ -7,4 +7,5 @@ Rails.application.routes.draw do
       resources :chatrooms, only: [:index,:create]
     end
   end
+  post 'authenticate', to: 'authentication#authenticate'
 end
