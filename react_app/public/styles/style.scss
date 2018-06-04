@@ -2,12 +2,16 @@ $font_title:    "Sofia", cursive;
 $font_serif:    'Crimson Text', osaka, serif;
 $font_sansserif: "Lato", sans-serif;
 
-$color_grey:        #f4f5f4;
+$color_black:       #3d3d3d;
 $color_blue:        #1cd2d0;
 $color_blue_darker: #10cfcc;
-$color_black:       #3d3d3d;
-$color_footer_bg:   #3d3d3d;
+$color_blue_solid:  #1a8db6;
 $color_brown:       #603813;
+$color_footer_bg:   #3d3d3d;
+$color_grey:        #f4f5f4;
+$color_grey_base:   #eeeeee;
+$color_grey_dark:   #a5a5a5;
+
 
 $device_mobile:             '(max-width: 767px)';
 $device_tablet:             '(min-width: 768px) and (max-width: 991px)';
@@ -34,12 +38,6 @@ $device_desktop_lg:         '(min-width: 1200px)';
     -webkit-box-sizing: $b;
 }
 
-@mixin placeholder-color($c) {
-    ::-webkit-input-placeholder {color: $c;}
-    :-moz-placeholder {color: $c;}
-    ::-moz-placeholder {color: $c;}
-    :-ms-input-placeholder {color: $c;}
-}
 
 @mixin transition($t) {
     transition: $t;
@@ -59,6 +57,28 @@ $device_desktop_lg:         '(min-width: 1200px)';
 //@include border-radius(0);
 //@include box-shadow(none);
 //
+
+
+@mixin placeholder-color($color) {
+    &:placeholder-shown {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color:$color;
+    }
+    &:-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &::-moz-placeholder {
+        color:$color;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder {
+        color:$color;
+    }
+}
+
 @mixin keyframes($animation-name) {
   @-webkit-keyframes $animation-name {
     @content;
@@ -265,75 +285,185 @@ footer {
 }
 
 
-/* chatroom */
+
+/* ============================== chatroom ============================== */
 
 #chat-wrapper {
     //background-color: #ecf8f4;
-    margin: 0 auto;
-    height: 800px;
-    width: 1200px;
-    p.copyright {
-        width: 100%;
-    }
+    display: flex;
+    min-height: 100vh;
 }
 #channel {
-    background-color: #1a8db6;
+    background-color: $color_blue_solid;
     color: #fff;
-    float: left;
-    width: 20%;
-    height: 700px;
-    left: 0;
-    top: 0;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 25%;
+    & > div {
+        padding: 10px 20px;
+    }
+    .group-name {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    .members {
+        flex: 1;
+        ul {
+            li {
+                padding: 5px;
+            }
+        }
+    }
+    p.copyright {
+        font-size: 0.8em;
+        line-height: 200%;
+    }
 }
 #chat {
-    float: left;
-    width: 75%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     header {
-        padding: 10px;
+        padding: 10px 20px;
         p.title {
+            float: left;
+            font-size: 1.2em;
             font-weight: bold;
+        }
+        ul {
+            display: flex;
+            flex-direction: row;
+            float: right;
+            li {
+                a {
+                    color: $color_blue_solid;
+                    font-size: 1.5em;
+                    padding-right: 10px;
+                    padding-left: 10px;
+                }
+            }
+        }
+        .trip-details {
+            border-top: 1px solid $color_grey;
+            clear: both;
+            padding: 5px 10px;
+            .schedule {
+                float: left;
+                ul {
+                    li {
+                        text-align: center;
+                    }
+                }
+                & + div {
+                    float: right;
+                    p {
+                        font-size: 0.9em;
+                        line-height: 120%;
+                        margin-bottom: 0;
+                        text-align: right;
+                        &:last-child {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
         }
     }
     main {
         background-color: #eee;
-        width: 100%;
-        height: 500px;
-        padding: 10px;
+        flex: 1;
+        padding: 5px;
 
         ul {
             &.message-wrapper {
-                clear: both;
-                float: left;
+                display: flex;
+                margin-top: 10px;
+                padding: 15px;
+                @include transition(all 0.4s ease-in-out);
+                &:hover {
+                    background-color: #fff;
+                    border-radius: 5px;
+                    color: $color_blue_solid;
+                    li.thumb i { opacity: 1; }
+                }
                 li {
                     &.thumb {
-                        float: left;
+                        padding: 5px 10px 5px 5px;
+                        position: relative;
                         img {
                             border: 1px solid #eee;
                             @include border-radius(50%);
                             height: 50px;
                             width: 50px;
                         }
+                        i {
+                            @include transition(all 0.4s ease-in-out);
+                            color: $color_blue_solid;
+                            font-size: 0.8em;
+                            opacity: 0;
+                            position: absolute; top: 5px; right: 5px;
+                        }
                     }
                     &.message {
-                        float: left;
-                        padding-left: 10px;
+                        padding: 5px 10px;
                         text-align: left;
-                        width: 80%;
+                        width: 100%;
+                        span.user {
+                            display: inline-block;
+                            font-weight: bold;
+                            width: 100%;
+                            span {
+                                display: inline-block;
+                                float: right;
+                                font-weight: normal;
+                                font-size: 0.8em;
+                                opacity: 0.5;
+                                text-align: right;
+                            }
+                        }
                     }
                 }
             }
         }
     }
     footer {
-        background: none;
-        padding-top: 10px;
+        height: auto;
+        padding-top: 0;
         #comment {
+            @include placeholder-color($color_grey_dark);
+            height: 50px;
+            padding: 10px;
             width: 100%;
         }
     }
 }
-p.copyright {
-    clear: both;
-    width: 100%;
+
+
+
+/* ============================== form ============================== */
+.form-page {
+    header {
+        h1 + a, a + a {
+            display: none;
+        }
+    }
+}
+aside, section {
+    form {
+        margin: 0 auto;
+        width: 500px;
+        input {
+            margin-top: 5px;
+        }
+        a {
+            display: block;
+            float: right;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+    select {
+        width: 100%;
+    }
 }
