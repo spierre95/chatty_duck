@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
 import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
+import { API_WS_ROOT } from '../constants';
 import ChatBar from './ChatBar.jsx';
 import axios from 'axios';
 
 class MessageList extends Component{
 
   constructor() {
-    super()
+    super();
     this.state = {
-      messages: []
-    }
+      messages: [],
+      chatroom_id: 1
+    };
   }
 
-  handleRecievedMessage = response => {
+  handleReceivedMessage = response => {
     const { message } = response;
+    console.log('Triggered')
     this.setState ({
       messages: [...this.state.messages, message]
     })
   }
 
- axios.get('http://localhost:3001/api/v1/messages.json')
+  componentDidMount() {
+  axios.get('http://localhost:3000/api/v1/messages')
     .then(res => {
       const messages = res.data;
       this.setState({ messages });
@@ -28,15 +32,22 @@ class MessageList extends Component{
   }
 
 
+
   render(){
+
+   const messageComponent = this.state.messages.map((message, index) => {
+      return <li key={message.id}>{ message.content }</li>
+   })
+
     const main = (
             <div>
+            <ActionCable channel={{ channel: 'MessagesChannel'}} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
                 <li className="thumb">
                   <img src="/images/lhl-duck.png" />
                 </li>
                 <li className="message">
-                  { orderedMessages(messages) }
+                  { messageComponent }
                 </li>
               </ul>
             </div>
@@ -53,11 +64,11 @@ export default MessageList;
 
 //helpers
 
-const orderedMessages = messages => {
-  const sortedMessages = messages.sort(
-    (a, b) => new Date(a.created_at) - new Date(b.created_at)
-  );
-  return sortedMessages.map(message => {
-    return <li key={message.id}>{message.text}</li>;
-  });
-};
+// const orderedMessages = messages => {
+//   const sortedMessages = messages.sort(
+//     (a, b) => new Date(a.created_at) - new Date(b.created_at)
+//   );
+//   return sortedMessages.map(message => {
+//     return <li key={message.id}>{message.text}</li>;
+//   });
+// };
