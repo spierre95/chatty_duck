@@ -5,7 +5,7 @@ module Api::V1
     def index
       @users = User.all
       render json: @users
-      UserInviteMailer.user_invite.deliver_now
+      # UserInviteMailer.user_invite.deliver_now
     end
 
 

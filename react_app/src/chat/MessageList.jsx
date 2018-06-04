@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import { ActionCable } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 import ChatBar from './ChatBar.jsx';
+import axios from 'axios';
 
 class MessageList extends Component{
 
   constructor() {
     super()
-    state = {
+    this.state = {
       messages: []
     }
   }
@@ -19,11 +20,12 @@ class MessageList extends Component{
     })
   }
 
-  componentDidMount = () => {
-    fetch(`${API_ROOT}/messages`)
-      .then(res => res.json())
-      .then(messages => this.setState({ messages }));
-  };
+ axios.get('http://localhost:3001/api/v1/messages.json')
+    .then(res => {
+      const messages = res.data;
+      this.setState({ messages });
+    });
+  }
 
 
   render(){
