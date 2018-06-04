@@ -9,4 +9,4 @@ ReactDOM.render(
     <App />
   </ActionCableProvider>,
   document.getElementById('root'));
-);
+

@@ -1,23 +1,40 @@
 import React, {Component} from 'react';
+import { ActionCable } from 'react-actioncable-provider';
+import { API_ROOT } from '../constants';
+import ChatBar from './ChatBar.jsx';
 
 class MessageList extends Component{
+
+  constructor() {
+    super()
+    state = {
+      messages: []
+    }
+  }
+
+  handleRecievedMessage = response => {
+    const { message } = response;
+    this.setState ({
+      messages: [...this.state.messages, message]
+    })
+  }
+
+  componentDidMount = () => {
+    fetch(`${API_ROOT}/messages`)
+      .then(res => res.json())
+      .then(messages => this.setState({ messages }));
+  };
+
+
   render(){
     const main = (
             <div>
-              <ul class="message-wrapper">
-                <li class="thumb">
+              <ul className="message-wrapper">
+                <li className="thumb">
                   <img src="/images/lhl-duck.png" />
                 </li>
-                <li class="message">
-                  Message here. the left image thumb is just a placeholder (if we have time to implement the feature.) Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis minus minima similique adipisci sint.
-                </li>
-              </ul>
-              <ul class="message-wrapper">
-                <li class="thumb">
-                  <img src="/images/lhl-duck.png" />
-                </li>
-                <li class="message">
-                  Message here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis minus minima similique adipisci sint.
+                <li className="message">
+                  { orderedMessages(messages) }
                 </li>
               </ul>
             </div>
@@ -31,3 +48,14 @@ class MessageList extends Component{
 }
 
 export default MessageList;
+
+//helpers
+
+const orderedMessages = messages => {
+  const sortedMessages = messages.sort(
+    (a, b) => new Date(a.created_at) - new Date(b.created_at)
+  );
+  return sortedMessages.map(message => {
+    return <li key={message.id}>{message.text}</li>;
+  });
+};
