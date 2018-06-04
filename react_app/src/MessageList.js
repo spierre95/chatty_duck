@@ -14,7 +14,7 @@ class MessageList extends React.Component {
 
   componentDidMount() {
 
-    axios.get('http://localhost:3001/api/v1/messages.json')
+    axios.get('http://localhost:3000/api/v1/messages.json')
     .then(res => {
       const messages = res.data;
       this.setState({ messages });
