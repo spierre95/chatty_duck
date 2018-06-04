@@ -29,6 +29,13 @@ class Signup extends Component {
     this.validate= this.validate.bind(this);
   }
 
+  login () {
+  axios.post(`http://localhost:3000/authenticate`, { user })
+    .then(res => {
+
+    })
+  }
+
 
 
   handleChange = event => {
@@ -169,9 +176,7 @@ validate = () => {
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
       .then(res => {
-        if(res.status == 204){
-          this.setState({redirect:`/user/id/create`})
-        }
+        console.log(res.data)
       })
     }
   }
