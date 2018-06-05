@@ -30,6 +30,8 @@ gem 'faker'
 gem 'figaro'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt'
+gem 'jwt'
+gem 'simple_command'
 
 
 group :development, :test do

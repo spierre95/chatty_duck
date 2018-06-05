@@ -8,4 +8,5 @@ Rails.application.routes.draw do
       mount ActionCable.server => '/cable'
     end
   end
+  post 'authenticate', to: 'authentication#authenticate'
 end
