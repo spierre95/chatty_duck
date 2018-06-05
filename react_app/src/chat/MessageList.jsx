@@ -41,7 +41,7 @@ class MessageList extends Component{
 
     const main = (
             <div>
-            <ActionCable channel={{ channel: 'MessagesChannel'}} onReceived={this.handleReceivedMessage} />
+            <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
                 <li className="thumb">
                   <img src="/images/lhl-duck.png" />
