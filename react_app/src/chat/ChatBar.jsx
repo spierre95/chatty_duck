@@ -34,6 +34,7 @@ class ChatBar extends Component{
         <div class="message">
           <form onSubmit={this.handleSubmit}>
             <input
+              id="comment"
               type="text"
               value={this.state.content}
               onChange={this.handleChange}

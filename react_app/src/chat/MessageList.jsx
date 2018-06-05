@@ -34,19 +34,19 @@ class MessageList extends Component{
 
 
   render(){
-
    const messageComponent = this.state.messages.map((message, index) => {
       return <li key={message.id}>{ message.content }</li>
    })
-
     const main = (
             <div>
             <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
                 <li className="thumb">
                   <img src="/images/lhl-duck.png" />
+                  <i className="fa fa-commenting-o"></i>
                 </li>
                 <li className="message">
+                  <span className="user">Monica<span>12:50pm</span></span>
                   { messageComponent }
                 </li>
               </ul>
