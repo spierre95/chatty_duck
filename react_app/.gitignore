@@ -22,3 +22,4 @@ yarn-error.log*
 
 # sass cache
 public/styles/.sass-cache/
+public/.sass-cache/
