@@ -353,18 +353,65 @@ footer {
 /* ============================== form ============================== */
 .form-page header h1 + a, .form-page header a + a {
   display: none; }
-
-aside form, section form {
+.form-page footer {
+  clear: both; }
+.form-page aside form, .form-page section form {
   margin: 0 auto;
   width: 500px; }
-  aside form input, section form input {
+  .form-page aside form input, .form-page section form input {
     margin-top: 5px; }
-  aside form a, section form a {
+  .form-page aside form a, .form-page section form a {
     display: block;
     float: right;
     padding-top: 15px;
     padding-bottom: 15px; }
-aside select, section select {
+.form-page aside select, .form-page section select {
   width: 100%; }
+.form-page aside ul.thumbs, .form-page section ul.thumbs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 25px auto;
+  padding: 10px;
+  width: 500px; }
+  .form-page aside ul.thumbs li, .form-page section ul.thumbs li {
+    height: 100px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 150px; }
+    .form-page aside ul.thumbs li .trip-details, .form-page section ul.thumbs li .trip-details {
+      background-color: #fff;
+      color: #3d3d3d;
+      height: 100%;
+      opacity: 0.8;
+      padding: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      -ms-transition: all 0.4s ease-in-out; }
+      .form-page aside ul.thumbs li .trip-details span, .form-page section ul.thumbs li .trip-details span {
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%; }
+        .form-page aside ul.thumbs li .trip-details span.title, .form-page section ul.thumbs li .trip-details span.title {
+          font-weight: bold; }
+    .form-page aside ul.thumbs li img, .form-page section ul.thumbs li img {
+      border: 1px solid #f4f5f4;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      height: auto;
+      width: 150px; }
+    .form-page aside ul.thumbs li:hover a, .form-page section ul.thumbs li:hover a {
+      opacity: 1; }
+      .form-page aside ul.thumbs li:hover a .trip-details, .form-page section ul.thumbs li:hover a .trip-details {
+        background-color: none;
+        opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */
