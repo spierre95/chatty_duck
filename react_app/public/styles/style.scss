@@ -296,19 +296,19 @@ footer {
 #channel {
     background-color: $color_blue_solid;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 25%;
+    width: 20%;
     & > div {
         padding: 10px 20px;
     }
     .group-name {
         font-size: 1.2em;
         font-weight: bold;
+        position: fixed;
     }
     .members {
         flex: 1;
+        position: fixed;
+        top: 50px;
         ul {
             li {
                 padding: 5px;
@@ -316,16 +316,24 @@ footer {
         }
     }
     p.copyright {
+        background-color: $color_blue_solid;
         font-size: 0.8em;
+        margin-bottom: 0;
+        padding: 10px;
+        position: fixed; bottom: 0;
         line-height: 200%;
+        width: 20%;
     }
 }
 #chat {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    width: 80%;
     header {
+        background-color: #fff;
         padding: 10px 20px;
+        position: fixed; top: 0; right: 0;
+        width: 80%;
+        z-index: 10;
         p.title {
             float: left;
             font-size: 1.2em;
@@ -374,7 +382,8 @@ footer {
         background-color: #eee;
         flex: 1;
         overflow: scroll;
-        padding: 5px;
+        padding: 100px 5px 50px 5px;
+        width: 100%;
 
         ul {
             &.message-wrapper {
@@ -429,6 +438,7 @@ footer {
         }
     }
     footer {
+        background: none;
         height: auto;
         padding-top: 0;
         position: fixed;

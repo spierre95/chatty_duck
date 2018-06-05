@@ -217,29 +217,40 @@ footer {
 #channel {
   background-color: #1a8db6;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 25%; }
+  width: 20%; }
   #channel > div {
     padding: 10px 20px; }
   #channel .group-name {
     font-size: 1.2em;
-    font-weight: bold; }
+    font-weight: bold;
+    position: fixed; }
   #channel .members {
-    flex: 1; }
+    flex: 1;
+    position: fixed;
+    top: 50px; }
     #channel .members ul li {
       padding: 5px; }
   #channel p.copyright {
+    background-color: #1a8db6;
     font-size: 0.8em;
-    line-height: 200%; }
+    margin-bottom: 0;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    line-height: 200%;
+    width: 20%; }
 
 #chat {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; }
+  width: 80%; }
   #chat header {
-    padding: 10px 20px; }
+    background-color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    z-index: 10; }
     #chat header p.title {
       float: left;
       font-size: 1.2em;
@@ -274,7 +285,8 @@ footer {
     background-color: #eee;
     flex: 1;
     overflow: scroll;
-    padding: 5px; }
+    padding: 100px 5px 50px 5px;
+    width: 100%; }
     #chat main ul.message-wrapper {
       display: flex;
       margin-top: 10px;
@@ -328,6 +340,7 @@ footer {
             opacity: 0.5;
             text-align: right; }
   #chat footer {
+    background: none;
     height: auto;
     padding-top: 0;
     position: fixed;
