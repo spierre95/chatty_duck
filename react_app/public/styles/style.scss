@@ -373,6 +373,7 @@ footer {
     main {
         background-color: #eee;
         flex: 1;
+        overflow: scroll;
         padding: 5px;
 
         ul {
@@ -430,6 +431,9 @@ footer {
     footer {
         height: auto;
         padding-top: 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
         #comment {
             @include placeholder-color($color_grey_dark);
             height: 50px;
