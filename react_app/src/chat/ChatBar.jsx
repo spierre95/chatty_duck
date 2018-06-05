@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class ChatBar extends Component{
   render(){
     const chatbar = (
-        <div class="message">
+        <div className="message">
           <input id="comment" placeholder="Type a message and hit ENTER" />
         </div>
     );
