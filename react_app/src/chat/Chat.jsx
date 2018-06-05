@@ -5,6 +5,7 @@ import ChatBar from './ChatBar.jsx';
 
 
 class Chat extends Component{
+
   render(){
     return(
       <div id="chat">

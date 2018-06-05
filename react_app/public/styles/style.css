@@ -273,6 +273,7 @@ footer {
   #chat main {
     background-color: #eee;
     flex: 1;
+    overflow: scroll;
     padding: 5px; }
     #chat main ul.message-wrapper {
       display: flex;
@@ -328,7 +329,10 @@ footer {
             text-align: right; }
   #chat footer {
     height: auto;
-    padding-top: 0; }
+    padding-top: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%; }
     #chat footer #comment {
       height: 50px;
       padding: 10px;
