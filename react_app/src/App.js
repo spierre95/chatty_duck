@@ -12,11 +12,11 @@ class App extends Component {
     return (
    <Router>
     <div>
-      <Route path="/user/invite" exact strict component={UserInvite}/>
-      <Route path="/" exact strict component={LandingPage}/>
-      <Route path="/user/:username/trips" exact strict component={SelectTrip}/>
-      <Route path="/user/:username/create" exact strict component={CreateTrip}/>
-      <Route path="/user/:username/trips/:trip" exact strict component={ChatRoom}/>
+      <Route path="/user/invite" push exact strict component={UserInvite}/>
+      <Route path="/" push exact strict component={LandingPage}/>
+      <Route path="/user/:username/trips" push exact strict component={SelectTrip}/>
+      <Route path="/user/:username/create" push exact strict component={CreateTrip}/>
+      <Route path="/user/:username/trips/:trip" push exact strict component={ChatRoom}/>
     </div>
   </Router>
   );

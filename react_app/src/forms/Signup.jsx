@@ -29,15 +29,6 @@ class Signup extends Component {
     this.validate= this.validate.bind(this);
   }
 
-  login () {
-  axios.post(`http://localhost:3000/authenticate`, { user })
-    .then(res => {
-
-    })
-  }
-
-
-
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
     console.log(this.state.email)
