@@ -6,6 +6,7 @@ import SelectTrip from './forms/SelectTrip.jsx';
 import CreateTrip from './forms/CreateTrip.jsx';
 import UserInvite from './UserInvite.jsx';
 import ChatRoom from './ChatRoom.jsx';
+import CreateGroup from './forms/CreateGroup.jsx'
 
 class App extends Component {
   render() {
@@ -15,7 +16,8 @@ class App extends Component {
       <Route path="/user/invite" exact strict component={UserInvite}/>
       <Route path="/" exact strict component={LandingPage}/>
       <Route path="/user/:username/trips" exact strict component={SelectTrip}/>
-      <Route path="/user/:username/create" exact strict component={CreateTrip}/>
+      <Route path="/user/:username/create/trip" exact strict component={CreateTrip}/>
+      <Route path="/user/:username/create/group" exact strict component={CreateGroup}/>
       <Route path="/user/:username/trips/:trip" exact strict component={ChatRoom}/>
     </div>
   </Router>

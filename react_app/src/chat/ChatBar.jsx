@@ -18,7 +18,6 @@ class ChatBar extends Component{
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Submitting")
     const that = this;
     axios.post(`${API_ROOT}/api/v1/messages`, that.state )
       .then(res => {
