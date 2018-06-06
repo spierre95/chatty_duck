@@ -13,7 +13,7 @@ class LandingPage extends Component {
         <div>
           <Header />
           <Main />
-          <Login />
+          <Signup/>
           <SelectTrip />
           <Footer />
         </div>

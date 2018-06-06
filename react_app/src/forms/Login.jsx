@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
+import {Redirect} from 'react-router-dom';
 
-const Logout = new AuthService();
+const DeleteToken = new AuthService();
 
 class Login extends Component {
 
@@ -11,9 +12,10 @@ constructor(props){
     super(props)
     this.state = {
       password:"",
-      email:"",
       passwordError:"",
-      emailError:""
+      error:"",
+      showError:false,
+      redirect:null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -23,14 +25,11 @@ constructor(props){
 
  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state.email)
+    console.log(this.state)
   }
 
  handleLogout(){
-    Logout.logout()
-    console.log(this.props)
-    console.log(this.props.history)
-    this.props.history.replace('/');
+    DeleteToken.logout()
  }
 
 handleSubmit = (e) =>{
@@ -38,17 +37,20 @@ e.preventDefault()
 
  this.Auth.login(this.state.email,this.state.password)
   .then(res =>{
-    console.log(res)
-    this.props.history.replace('/user/id/create');
+    this.setState({redirect: "/user/:username/trips"})
   })
   .catch(err =>{
-  alert(err);
+    this.setState({showError:true,error:"email or password is incorrect"})
   })
 }
 
   render(){
-    const form = (
+     if(this.state.redirect){
+    return (<Redirect push to={this.state.redirect}/>)
+   }
+    let form = (
         <form onSubmit={this.handleSubmit}>
+         <p>{this.state.showError ? this.state.error : null }</p>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange}/>
@@ -64,6 +66,7 @@ e.preventDefault()
       <aside>
       <button type="button" className="form-submit" onClick={this.handleLogout}>Logout</button>
         {form}
+        {Redirect}
       </aside>
     );
   }

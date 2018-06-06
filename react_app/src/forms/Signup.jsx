@@ -21,8 +21,8 @@ class Signup extends Component {
       passfordConfirmError:"",
       is_creator:false,
       data:[],
-      url:null,
-      showError:false
+      showError:false,
+      redirect:null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -167,8 +167,15 @@ validate = () => {
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
       .then(res => {
-        console.log(res.data)
-      })
+        this.Auth.login(this.state.email,this.state.password)
+          .then(res =>{
+              this.setState({redirect: "/user/:username/trips"})
+            }).catch(err =>{
+              console.log(err);
+              })
+      }).catch(err =>{
+              console.log(err);
+              })
     }
   }
 
