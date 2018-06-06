@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_195923) do
+ActiveRecord::Schema.define(version: 2018_06_06_185013) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_195923) do
     t.datetime "arrival"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "trip_id"
+    t.index ["trip_id"], name: "index_locations_on_trip_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -72,6 +74,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_195923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_creator"
+    t.integer "chatroom_id"
+    t.index ["chatroom_id"], name: "index_users_on_chatroom_id"
   end
 
 end
