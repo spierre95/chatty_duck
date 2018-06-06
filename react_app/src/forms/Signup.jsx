@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import AuthService from './AuthService';
+import withAuth from './withAuth'
 
 class Signup extends Component {
 
@@ -27,6 +29,7 @@ class Signup extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validate= this.validate.bind(this);
+    this.Auth = new AuthService();
   }
 
   handleChange = event => {
@@ -138,22 +141,6 @@ validate = () => {
     const err = this.validate();
 
     if (!err){
-
-    this.setState({
-      first_name:"",
-      firstNameError:"",
-      last_name:"",
-      lastNameError:"",
-      username:"",
-      usernameError:"",
-      email:"",
-      emailError:"",
-      password:"",
-      passwordError:"",
-      password_confirmation:"",
-      passfordConfirmError:"",
-      showError:false
-    })
 
     const user = {
       first_name: this.state.first_name,

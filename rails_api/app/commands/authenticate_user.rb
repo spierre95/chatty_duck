@@ -7,7 +7,6 @@ class AuthenticateUser
   end
 
   def call
-  binding.pry
     JsonWebToken.encode(user_id: user.id) if user()
   end
 
@@ -16,7 +15,6 @@ class AuthenticateUser
   attr_accessor :email, :password
 
   def user
-     binding.pry
     user = User.find_by_email(email)
     return user if user && user.authenticate(password)
     errors.add :user_authentication, 'invalid credentials'
