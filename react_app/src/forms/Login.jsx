@@ -37,7 +37,7 @@ e.preventDefault()
 
  this.Auth.login(this.state.email,this.state.password)
   .then(res =>{
-    this.setState({redirect: "/user/:username/trips"})
+    this.setState({redirect: "/user/:username/profile"})
   })
   .catch(err =>{
     this.setState({showError:true,error:"email or password is incorrect"})

@@ -156,7 +156,7 @@ validate = () => {
       .then(res => {
         this.Auth.login(this.state.email,this.state.password)
           .then(res =>{
-              this.setState({redirect: "/user/:username/trips"})
+              this.setState({redirect: "/user/:username/profile"})
             }).catch(err =>{
               console.log(err);
               })
