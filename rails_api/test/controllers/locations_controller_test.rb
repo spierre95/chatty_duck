@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TripControllerTest < ActionDispatch::IntegrationTest
+class LocationsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

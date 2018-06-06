@@ -1,9 +1,9 @@
 module Api::V1
-  class TripController < ApplicationController
+  class TripsController < ActionController::API
 
     def index
-      @chatrooms = Chatroom.all
-      render json: @chatrooms
+      @trips = Trip.all
+      render json: @trips
     end
 
     def create

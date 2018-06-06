@@ -2,9 +2,10 @@ class User < ApplicationRecord
 
 has_secure_password
 
-has_and_belongs_to_many :trips
-has_many :chatroom, through: :trips
-has_many :photos
+has_many :trips_users
+has_many :trips, through: :trips_users
+
+has_many :chatrooms, through: :trips
 has_many :events
 
 def self.authenticate_with_credentials(email,password)
