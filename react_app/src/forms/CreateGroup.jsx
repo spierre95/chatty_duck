@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Header from '../lp/Header.jsx';
 import Footer from '../lp/Footer.jsx';
-// import EmailInput from 'AddAdress.jsx';
 import axios from 'axios';
 import { API_ROOT } from '../constants';
 
@@ -11,11 +10,14 @@ class CreateGroup extends Component{
     super(props);
     this.state = {
       email: ["james@gmail.com", "lost@yahoo.com"],
-      notEmail: ''
+      notEmail: '',
+      url: null,
+      data: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -34,11 +36,38 @@ class CreateGroup extends Component{
   }
 
 
-  // handleSubmit = e => {
-  //   const trip = user.trip_id
+  componentDidMount() {
+    axios.get(`${API_ROOT}/api/v1/users`)
+      .then(res => {
+        const data = res.data
+        this.setState({ data: data })
+      })
+  }
 
-  //   axios.post(`${API_ROOT}/api/v1/users`, { trip } )
-  // }
+
+
+
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+
+    const invite = this.state.email.map((email, index) => {
+      return email;
+    console.log("second ", email)
+
+    if (invite.email === this.state.data) {
+      console.log("Match")
+    }
+  })
+
+  //   axios.post(`${API_ROOT}/api/v1/invites`, { invite } )
+  //     .then(res => {
+  //       if (res.status === 200) {
+  //         this.setState({ url:  })
+  //       }
+  //     })
+   }
 
 
   render() {
@@ -57,11 +86,12 @@ class CreateGroup extends Component{
           </div>
             <button type="submit" className="btn btn-primary">Add</button>
         </form>
+        <form onSubmit={this.handleSubmit}>
           <div className="list">
             { emailList }
           </div>
-          <button type="submit" className="btn btn-primary">Send</button>
-
+          <button type="submit" className="btn btn-primary" >Send</button>
+        </form>
       </div>
     );
   }
