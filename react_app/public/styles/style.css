@@ -81,6 +81,21 @@ input.fontawesome {
   font-weight: normal;
   text-decoration: inherit; }
 
+.btn.btn-primary {
+  background-color: #1cd2d0;
+  border: 1px solid #10cfcc;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out; }
+  .btn.btn-primary:hover {
+    background-color: #10cfcc; }
+
+h1, h2 {
+  color: #a5a5a5;
+  font-family: "Crimson Text", osaka, serif; }
+
 strong {
   font-family: "Lato", sans-serif;
   font-weight: bold; }
@@ -155,14 +170,14 @@ header {
     text-align: left;
     font-family: "Crimson Text", osaka, serif;
     font-size: 3em; }
-  header a {
+  header a, header button {
     display: block;
     float: right; }
-    header a.logo {
+    header a.logo, header button.logo {
       float: left; }
-    header a.btn {
+    header a.btn, header button.btn {
       margin: 30px 10px; }
-      header a.btn.btn-primary {
+      header a.btn.btn-primary, header button.btn.btn-primary {
         background-color: #1cd2d0;
         border-color: #10cfcc; }
 
@@ -217,29 +232,40 @@ footer {
 #channel {
   background-color: #1a8db6;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 25%; }
+  width: 20%; }
   #channel > div {
     padding: 10px 20px; }
   #channel .group-name {
     font-size: 1.2em;
-    font-weight: bold; }
+    font-weight: bold;
+    position: fixed; }
   #channel .members {
-    flex: 1; }
+    flex: 1;
+    position: fixed;
+    top: 50px; }
     #channel .members ul li {
       padding: 5px; }
   #channel p.copyright {
+    background-color: #1a8db6;
     font-size: 0.8em;
-    line-height: 200%; }
+    margin-bottom: 0;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    line-height: 200%;
+    width: 20%; }
 
 #chat {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; }
+  width: 80%; }
   #chat header {
-    padding: 10px 20px; }
+    background-color: #fff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    z-index: 10; }
     #chat header p.title {
       float: left;
       font-size: 1.2em;
@@ -274,7 +300,8 @@ footer {
     background-color: #eee;
     flex: 1;
     overflow: scroll;
-    padding: 5px; }
+    padding: 100px 5px 50px 5px;
+    width: 100%; }
     #chat main ul.message-wrapper {
       display: flex;
       margin-top: 10px;
@@ -328,6 +355,7 @@ footer {
             opacity: 0.5;
             text-align: right; }
   #chat footer {
+    background: none;
     height: auto;
     padding-top: 0;
     position: fixed;
@@ -350,21 +378,85 @@ footer {
       #chat footer #comment:-ms-input-placeholder {
         color: #a5a5a5; }
 
+/* ============================== modal ============================== */
+.modal-body {
+  padding: 50px 15px 15px 15px; }
+
 /* ============================== form ============================== */
 .form-page header h1 + a, .form-page header a + a {
   display: none; }
-
-aside form, section form {
+.form-page footer {
+  clear: both; }
+.form-page aside form, .form-page section form {
   margin: 0 auto;
   width: 500px; }
-  aside form input, section form input {
+  .form-page aside form input, .form-page section form input {
     margin-top: 5px; }
-  aside form a, section form a {
+  .form-page aside form a, .form-page section form a {
     display: block;
     float: right;
     padding-top: 15px;
     padding-bottom: 15px; }
-aside select, section select {
+.form-page aside select, .form-page section select {
   width: 100%; }
+
+/* ============================== profile page ============================== */
+.profile .container .row {
+  padding-bottom: 25px; }
+.profile h2 {
+  float: left; }
+  .profile h2 + a {
+    color: #10cfcc;
+    float: right;
+    font-size: 1.2em;
+    margin-top: 25px;
+    margin-bottom: 25px; }
+.profile ul {
+  clear: both; }
+  .profile ul li {
+    font-size: 1.5em; }
+  .profile ul.thumbs {
+    padding: 10px; }
+    .profile ul.thumbs li {
+      margin-bottom: 10px;
+      position: relative; }
+      .profile ul.thumbs li a {
+        display: block;
+        margin: 0 auto; }
+        .profile ul.thumbs li a .trip-details {
+          color: #fff;
+          height: 100%;
+          opacity: 0.8;
+          padding: 50px 30px 30px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: center;
+          width: 100%;
+          transition: all 0.4s ease-in-out;
+          -moz-transition: all 0.4s ease-in-out;
+          -webkit-transition: all 0.4s ease-in-out;
+          -o-transition: all 0.4s ease-in-out;
+          -ms-transition: all 0.4s ease-in-out; }
+          .profile ul.thumbs li a .trip-details span {
+            text-shadow: 2px 2px 2px #3d3d3d;
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 100%; }
+            .profile ul.thumbs li a .trip-details span.title {
+              font-weight: bold; }
+        .profile ul.thumbs li a img {
+          border: 1px solid #f4f5f4;
+          border-radius: 5px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          display: block;
+          height: auto;
+          width: 100%; }
+      .profile ul.thumbs li:hover a {
+        opacity: 1; }
+        .profile ul.thumbs li:hover a img {
+          scale: 1.2; }
 
 /*# sourceMappingURL=style.css.map */

@@ -129,6 +129,17 @@ input.fontawesome {
     text-decoration: inherit;
 }
 
+// replace styling for bootstrap primary btn
+.btn.btn-primary {
+    background-color: $color_blue;
+    border: 1px solid $color_blue_darker;
+    @include transition(all 0.4s ease-in-out);
+    &:hover {
+
+        background-color: $color_blue_darker;
+    }
+}
+
 //font size setting
 html { }
 body { }
@@ -141,8 +152,7 @@ h2, h3 { }
 }
 
 //font family, font weight and other setting
-h1 { }
-h2 { }
+h1, h2 { color: $color_grey_dark; font-family: $font_serif; }
 strong { font-family: $font_sansserif; font-weight: bold; }
 
 span { line-height: 100%; vertical-align: baseline; }
@@ -211,7 +221,7 @@ header {
         font-size: 3em;
         // @media screen and #{$device_device_mobile} { width: 100%; }
     }
-    a {
+    a, button {
         display: block;
         float: right;
         &.logo {
@@ -296,19 +306,19 @@ footer {
 #channel {
     background-color: $color_blue_solid;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 25%;
+    width: 20%;
     & > div {
         padding: 10px 20px;
     }
     .group-name {
         font-size: 1.2em;
         font-weight: bold;
+        position: fixed;
     }
     .members {
         flex: 1;
+        position: fixed;
+        top: 50px;
         ul {
             li {
                 padding: 5px;
@@ -316,16 +326,24 @@ footer {
         }
     }
     p.copyright {
+        background-color: $color_blue_solid;
         font-size: 0.8em;
+        margin-bottom: 0;
+        padding: 10px;
+        position: fixed; bottom: 0;
         line-height: 200%;
+        width: 20%;
     }
 }
 #chat {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    width: 80%;
     header {
+        background-color: #fff;
         padding: 10px 20px;
+        position: fixed; top: 0; right: 0;
+        width: 80%;
+        z-index: 10;
         p.title {
             float: left;
             font-size: 1.2em;
@@ -374,7 +392,8 @@ footer {
         background-color: #eee;
         flex: 1;
         overflow: scroll;
-        padding: 5px;
+        padding: 100px 5px 50px 5px;
+        width: 100%;
 
         ul {
             &.message-wrapper {
@@ -429,6 +448,7 @@ footer {
         }
     }
     footer {
+        background: none;
         height: auto;
         padding-top: 0;
         position: fixed;
@@ -444,6 +464,10 @@ footer {
 }
 
 
+/* ============================== modal ============================== */
+.modal-body {
+    padding: 50px 15px 15px 15px;
+}
 
 /* ============================== form ============================== */
 .form-page {
@@ -452,22 +476,105 @@ footer {
             display: none;
         }
     }
-}
-aside, section {
-    form {
-        margin: 0 auto;
-        width: 500px;
-        input {
-            margin-top: 5px;
-        }
-        a {
-            display: block;
-            float: right;
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
+    footer {
+        clear: both;
     }
-    select {
-        width: 100%;
+
+    aside, section {
+        form {
+            margin: 0 auto;
+            width: 500px;
+            input {
+                margin-top: 5px;
+            }
+            a {
+                display: block;
+                float: right;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        }
+        select {
+            width: 100%;
+        }
+
     }
+
 }
+
+
+
+/* ============================== profile page ============================== */
+.profile {
+        .container .row { padding-bottom: 25px; }
+        h2 {
+            float: left;
+            // create button
+            & + a {
+                color: $color_blue_darker;
+                float: right;
+                font-size: 1.2em;
+                margin-top: 25px;
+                margin-bottom: 25px;
+            }
+        }
+        ul {
+            clear: both;
+            li {
+                font-size: 1.5em;
+            }
+            &.thumbs {
+                padding: 10px;
+                li {
+                    margin-bottom: 10px;
+                    position: relative;
+                    a {
+                        display: block;
+                        margin: 0 auto;
+                        .trip-details {
+                            color: #fff ;
+                            height: 100%;
+                            opacity: 0.8;
+                            padding: 50px 30px 30px;
+                            position: absolute;
+                            top: 0; left: 0;
+                            text-align: center;
+                            width: 100%;
+                            @include transition(all 0.4s ease-in-out);
+                            span {
+                                text-shadow: 2px 2px 2px $color_black;
+                                display: block;
+                                margin-top: 5px;
+                                margin-bottom: 5px;
+                                width: 100%;
+                                &.title {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                        // .overlay {
+                        //     background-color: $color_black;
+                        //     height: 100%;
+                        //     width: 300px;
+                        // }
+                        img {
+                            border: 1px solid $color_grey;
+                            @include border-radius(5px);
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                        }
+                    }
+                    &:hover {
+                        a {
+                            opacity: 1;
+                            .trip-details {
+                            }
+                            img { scale: 1.2; }
+                        }
+                    }
+                }
+            }
+        }
+
+    }

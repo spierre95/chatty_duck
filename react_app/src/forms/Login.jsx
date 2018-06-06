@@ -60,6 +60,7 @@ e.preventDefault()
             <input type="password" name="password"className="form-control" id="password" placeholder="Password" onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
     );
     return (

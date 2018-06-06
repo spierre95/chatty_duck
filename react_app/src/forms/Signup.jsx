@@ -211,7 +211,7 @@ validate = () => {
              <p>{ this.state.showError ? this.state.passwordConfirmError : null }</p>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
-          <span>MEMO: image uploader will be somewhere in the page too.</span>
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
     );
     return (
