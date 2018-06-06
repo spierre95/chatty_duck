@@ -7,6 +7,7 @@ class CreateTrip extends Component {
   render(){
     let form = (
         <form>
+          <p>Create a new trip.</p>
           <div className="form-group">
             <label htmlFor="trip name">TripName</label>
             <input type="text" className="form-control" id="trip-name" placeholder="Enter trip name" />

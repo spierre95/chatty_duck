@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Header from '../lp/Header.jsx';
-import Footer from '../lp/Footer.jsx';
 import {Link} from 'react-router-dom';
 
 class SelectTrip extends Component{
@@ -49,32 +47,34 @@ class SelectTrip extends Component{
   // };
 
   render(){
-    const {options, value} = this.state;
+    const {options} = this.state;
     let thumbs = (
-        <ul className="thumbs">
-          {options.map(item => (
-            <li>
-              <Link to={item.link}>
-                <div className="trip-details">
-                  <span className="title">{item.name}</span>
-                  <span className="date-start">{item.date}</span>
-                  <span>{item.duration} weeks</span>
-                </div>
-                <img src={item.imgUrl} alt={item.name} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="container">
+          <div className="row">
+              <h2>Select your trip</h2>
+              <Link to="/user/:username/create"><i className="fa fa-plus"></i>&nbsp;&nbsp;Create Trip</Link>
+              <ul className="thumbs row">
+                {options.map(item => (
+                  <li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <Link to={item.link}>
+                      <div className="trip-details">
+                        <span className="title">{item.name}</span>
+                        <span className="date-start">{item.date}</span>
+                        <span>{item.duration} weeks</span>
+                      </div>
+                      <div className="overlay"></div>
+                      <img src={item.imgUrl} alt={item.name} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+          </div>
+        </div>
       );
     return (
-      <div className="form-page">
-        <Header />
         <section>
-          <p>Select your trip</p>
           {thumbs}
         </section>
-        <Footer />
-      </div>
     );
   }
 }
