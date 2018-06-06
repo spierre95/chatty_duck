@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import AuthService from './AuthService';
+import withAuth from './withAuth'
 
 class Signup extends Component {
 
@@ -20,15 +23,14 @@ class Signup extends Component {
       passfordConfirmError:"",
       is_creator:false,
       data:[],
-      url:"http://localhost:3002/",
-      showResults:false
+      showError:false,
+      redirect:null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validate= this.validate.bind(this);
+    this.Auth = new AuthService();
   }
-
-
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -69,7 +71,7 @@ validate = () => {
       emailError:"",
       passwordError:"",
       passfordConfirmError:"",
-      showResults:true
+      showError:true
     }
 
     //firstname
@@ -140,22 +142,6 @@ validate = () => {
 
     if (!err){
 
-    this.setState({
-      first_name:"",
-      firstNameError:"",
-      last_name:"",
-      lastNameError:"",
-      username:"",
-      usernameError:"",
-      email:"",
-      emailError:"",
-      password:"",
-      passwordError:"",
-      password_confirmation:"",
-      passfordConfirmError:"",
-      showResults:false
-    })
-
     const user = {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
@@ -168,8 +154,15 @@ validate = () => {
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
       .then(res => {
-        // set redirect to correct url
-      })
+        this.Auth.login(this.state.email,this.state.password)
+          .then(res =>{
+              this.setState({redirect: "/user/:username/profile"})
+            }).catch(err =>{
+              console.log(err);
+              })
+      }).catch(err =>{
+              console.log(err);
+              })
     }
   }
 
@@ -177,43 +170,45 @@ validate = () => {
     axios.get(`http://localhost:3000/api/v1/users`)
       .then(res => {
         const data = res.data;
-        this.setState({ data });
-        console.log(this.state.data)
+        this.setState({ data })
       })
   }
   render(){
+   if(this.state.redirect){
+    return (<Redirect push to={this.state.redirect}/>)
+   }
     let form = (
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="first name">First Name</label>
             <input type="text" name="first_name" className="form-control" id="first-name" placeholder="Enter First Name" onChange={this.handleChange}/>
-            <p>{ this.state.showResults ? this.state.firstNameError : null }</p>
+            <p>{ this.state.showError ? this.state.firstNameError : null }</p>
           </div>
           <div className="form-group">
             <label htmlFor="last name">Last Name</label>
             <input type="text" name="last_name"className="form-control" id="last-name" placeholder="Enter Last Name" onChange={this.handleChange}  />
-             <p>{ this.state.showResults ? this.state.lastNameError : null }</p>
+             <p>{ this.state.showError ? this.state.lastNameError : null }</p>
           </div>
           <div className="form-group">
             <label htmlFor="username">User Name</label>
             <input type="text" name="username" className="form-control" id="username" placeholder="Enter Username" onChange={this.handleChange}  />
-             <p>{ this.state.showResults ? this.state.usernameError : null }</p>
+             <p>{ this.state.showError ? this.state.usernameError : null }</p>
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange} />
-            <p>{ this.state.showResults ? this.state.emailError : null }</p>
+            <p>{ this.state.showError ? this.state.emailError : null }</p>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input type="password" name="password" className="form-control" id="password" placeholder="Password" onChange={this.handleChange} />
-            <p>{ this.state.showResults ? this.state.passwordError : null }</p>
+            <p>{ this.state.showError ? this.state.passwordError : null }</p>
           </div>
           <div className="form-group">
             <label htmlFor="password confirmation">Password Confirmation</label>
             <input type="password" name="password_confirmation" className="form-control" id="password-confirmation" placeholder="Confirm Password" onChange={this.handleChange}/>
-             <p>{ this.state.showResults ? this.state.passwordConfirmError : null }</p>
+             <p>{ this.state.showError ? this.state.passwordConfirmError : null }</p>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -222,6 +217,7 @@ validate = () => {
     return (
       <aside>
         {form}
+        {Redirect}
       </aside>
     );
   }

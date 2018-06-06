@@ -1,17 +1,63 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import AuthService from './AuthService';
+import withAuth from './withAuth'
+import {Redirect} from 'react-router-dom';
+
+const DeleteToken = new AuthService();
 
 class Login extends Component {
+
+constructor(props){
+    super(props)
+    this.state = {
+      password:"",
+      passwordError:"",
+      error:"",
+      showError:false,
+      redirect:null
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLogout.bind(this)
+    this.Auth = new AuthService();
+  }
+
+ handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+    console.log(this.state)
+  }
+
+ handleLogout(){
+    DeleteToken.logout()
+ }
+
+handleSubmit = (e) =>{
+e.preventDefault()
+
+ this.Auth.login(this.state.email,this.state.password)
+  .then(res =>{
+    this.setState({redirect: "/user/:username/profile"})
+  })
+  .catch(err =>{
+    this.setState({showError:true,error:"email or password is incorrect"})
+  })
+}
+
   render(){
-    let form = '';
-    form = (
-        <form action="/">
+     if(this.state.redirect){
+    return (<Redirect push to={this.state.redirect}/>)
+   }
+    let form = (
+        <form onSubmit={this.handleSubmit}>
+         <p>{this.state.showError ? this.state.error : null }</p>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input type="email" className="form-control" id="email" placeholder="Enter Email" />
+            <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" />
+            <input type="password" name="password"className="form-control" id="password" placeholder="Password" onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -19,7 +65,9 @@ class Login extends Component {
     );
     return (
       <aside>
+      <button type="button" className="form-submit" onClick={this.handleLogout}>Logout</button>
         {form}
+        {Redirect}
       </aside>
     );
   }

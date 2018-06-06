@@ -1,5 +1,5 @@
 module Api::V1
-  class ChatroomsController < ApplicationController
+  class ChatroomsController < ActionController::API
     def index
       @chatrooms = Chatroom.all
       render json: @chatrooms

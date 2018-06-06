@@ -1,7 +1,7 @@
 require 'resolv-replace.rb'
 
 module Api::V1
-  class UsersController < ApplicationController
+  class UsersController < ActionController::API
     def create
       @user = User.new(user_params)
       @user.save
