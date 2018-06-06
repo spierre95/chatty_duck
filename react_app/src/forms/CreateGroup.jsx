@@ -9,7 +9,7 @@ class CreateGroup extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      email: ["james@gmail.com", "lost@yahoo.com"],
+      email: [], // going to just do all validations while checking email if we add group?
       notEmail: '',
       url: null,
       data: []
@@ -44,22 +44,29 @@ class CreateGroup extends Component{
       })
   }
 
-
-
-
+validateEmail = () => {
+  let res = null
+  for (var data of this.state.data) {
+      console.log('data' , data);
+    this.state.email.forEach((email)=>{
+      console.log('email ', email)
+      if (data.email == email){
+       this.setState({ addUser: email })
+       console.log('USER', this.state.addUser)
+      }
+    })
+  }
+}
 
   handleSubmit = e => {
     e.preventDefault()
 
+ this.validateEmail()
 
-    const invite = this.state.email.map((email, index) => {
-      return email;
-    console.log("second ", email)
+    // if (this.findEmail() === this.findData()) {
+    //   console.log("Match")
+    // }
 
-    if (invite.email === this.state.data) {
-      console.log("Match")
-    }
-  })
 
   //   axios.post(`${API_ROOT}/api/v1/invites`, { invite } )
   //     .then(res => {
@@ -73,7 +80,6 @@ class CreateGroup extends Component{
   render() {
 
     const emailList = this.state.email.map((email, index) => {
-      console.log(this.state)
              return <p>{ email }</p>
           })
 
