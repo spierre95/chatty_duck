@@ -14,6 +14,7 @@ class Login extends Component {
             <input type="password" className="form-control" id="password" placeholder="Password" />
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
     );
     return (

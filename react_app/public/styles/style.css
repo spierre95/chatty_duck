@@ -81,6 +81,21 @@ input.fontawesome {
   font-weight: normal;
   text-decoration: inherit; }
 
+.btn.btn-primary {
+  background-color: #1cd2d0;
+  border: 1px solid #10cfcc;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out; }
+  .btn.btn-primary:hover {
+    background-color: #10cfcc; }
+
+h1, h2 {
+  color: #a5a5a5;
+  font-family: "Crimson Text", osaka, serif; }
+
 strong {
   font-family: "Lato", sans-serif;
   font-weight: bold; }
@@ -155,14 +170,14 @@ header {
     text-align: left;
     font-family: "Crimson Text", osaka, serif;
     font-size: 3em; }
-  header a {
+  header a, header button {
     display: block;
     float: right; }
-    header a.logo {
+    header a.logo, header button.logo {
       float: left; }
-    header a.btn {
+    header a.btn, header button.btn {
       margin: 30px 10px; }
-      header a.btn.btn-primary {
+      header a.btn.btn-primary, header button.btn.btn-primary {
         background-color: #1cd2d0;
         border-color: #10cfcc; }
 
@@ -363,6 +378,10 @@ footer {
       #chat footer #comment:-ms-input-placeholder {
         color: #a5a5a5; }
 
+/* ============================== modal ============================== */
+.modal-body {
+  padding: 50px 15px 15px 15px; }
+
 /* ============================== form ============================== */
 .form-page header h1 + a, .form-page header a + a {
   display: none; }
@@ -380,51 +399,64 @@ footer {
     padding-bottom: 15px; }
 .form-page aside select, .form-page section select {
   width: 100%; }
-.form-page aside ul.thumbs, .form-page section ul.thumbs {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  margin: 25px auto;
-  padding: 10px;
-  width: 500px; }
-  .form-page aside ul.thumbs li, .form-page section ul.thumbs li {
-    height: 100px;
-    margin-bottom: 10px;
-    position: relative;
-    width: 150px; }
-    .form-page aside ul.thumbs li .trip-details, .form-page section ul.thumbs li .trip-details {
-      background-color: #fff;
-      color: #3d3d3d;
-      height: 100%;
-      opacity: 0.8;
-      padding: 15px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      transition: all 0.4s ease-in-out;
-      -moz-transition: all 0.4s ease-in-out;
-      -webkit-transition: all 0.4s ease-in-out;
-      -o-transition: all 0.4s ease-in-out;
-      -ms-transition: all 0.4s ease-in-out; }
-      .form-page aside ul.thumbs li .trip-details span, .form-page section ul.thumbs li .trip-details span {
+
+/* ============================== profile page ============================== */
+.profile .container .row {
+  padding-bottom: 25px; }
+.profile h2 {
+  float: left; }
+  .profile h2 + a {
+    color: #10cfcc;
+    float: right;
+    font-size: 1.2em;
+    margin-top: 25px;
+    margin-bottom: 25px; }
+.profile ul {
+  clear: both; }
+  .profile ul li {
+    font-size: 1.5em; }
+  .profile ul.thumbs {
+    padding: 10px; }
+    .profile ul.thumbs li {
+      margin-bottom: 10px;
+      position: relative; }
+      .profile ul.thumbs li a {
         display: block;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        width: 100%; }
-        .form-page aside ul.thumbs li .trip-details span.title, .form-page section ul.thumbs li .trip-details span.title {
-          font-weight: bold; }
-    .form-page aside ul.thumbs li img, .form-page section ul.thumbs li img {
-      border: 1px solid #f4f5f4;
-      border-radius: 5px;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      height: auto;
-      width: 150px; }
-    .form-page aside ul.thumbs li:hover a, .form-page section ul.thumbs li:hover a {
-      opacity: 1; }
-      .form-page aside ul.thumbs li:hover a .trip-details, .form-page section ul.thumbs li:hover a .trip-details {
-        background-color: none;
-        opacity: 0; }
+        margin: 0 auto; }
+        .profile ul.thumbs li a .trip-details {
+          color: #fff;
+          height: 100%;
+          opacity: 0.8;
+          padding: 50px 30px 30px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: center;
+          width: 100%;
+          transition: all 0.4s ease-in-out;
+          -moz-transition: all 0.4s ease-in-out;
+          -webkit-transition: all 0.4s ease-in-out;
+          -o-transition: all 0.4s ease-in-out;
+          -ms-transition: all 0.4s ease-in-out; }
+          .profile ul.thumbs li a .trip-details span {
+            text-shadow: 2px 2px 2px #3d3d3d;
+            display: block;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 100%; }
+            .profile ul.thumbs li a .trip-details span.title {
+              font-weight: bold; }
+        .profile ul.thumbs li a img {
+          border: 1px solid #f4f5f4;
+          border-radius: 5px;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          display: block;
+          height: auto;
+          width: 100%; }
+      .profile ul.thumbs li:hover a {
+        opacity: 1; }
+        .profile ul.thumbs li:hover a img {
+          scale: 1.2; }
 
 /*# sourceMappingURL=style.css.map */

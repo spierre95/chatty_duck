@@ -129,6 +129,17 @@ input.fontawesome {
     text-decoration: inherit;
 }
 
+// replace styling for bootstrap primary btn
+.btn.btn-primary {
+    background-color: $color_blue;
+    border: 1px solid $color_blue_darker;
+    @include transition(all 0.4s ease-in-out);
+    &:hover {
+
+        background-color: $color_blue_darker;
+    }
+}
+
 //font size setting
 html { }
 body { }
@@ -141,8 +152,7 @@ h2, h3 { }
 }
 
 //font family, font weight and other setting
-h1 { }
-h2 { }
+h1, h2 { color: $color_grey_dark; font-family: $font_serif; }
 strong { font-family: $font_sansserif; font-weight: bold; }
 
 span { line-height: 100%; vertical-align: baseline; }
@@ -211,7 +221,7 @@ header {
         font-size: 3em;
         // @media screen and #{$device_device_mobile} { width: 100%; }
     }
-    a {
+    a, button {
         display: block;
         float: right;
         &.logo {
@@ -454,6 +464,10 @@ footer {
 }
 
 
+/* ============================== modal ============================== */
+.modal-body {
+    padding: 50px 15px 15px 15px;
+}
 
 /* ============================== form ============================== */
 .form-page {
@@ -483,58 +497,84 @@ footer {
         select {
             width: 100%;
         }
-        ul {
-            &.thumbs {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-around;
 
-                margin: 25px auto;
+    }
+
+}
+
+
+
+/* ============================== profile page ============================== */
+.profile {
+        .container .row { padding-bottom: 25px; }
+        h2 {
+            float: left;
+            // create button
+            & + a {
+                color: $color_blue_darker;
+                float: right;
+                font-size: 1.2em;
+                margin-top: 25px;
+                margin-bottom: 25px;
+            }
+        }
+        ul {
+            clear: both;
+            li {
+                font-size: 1.5em;
+            }
+            &.thumbs {
                 padding: 10px;
-                width: 500px;
                 li {
-                    height: 100px;
                     margin-bottom: 10px;
                     position: relative;
-                    width: 150px;
-                    .trip-details {
-                        background-color: #fff;
-                        color: $color_black;
-                        height: 100%;
-                        opacity: 0.8;
-                        padding: 15px;
-                        position: absolute;
-                        top: 0; left: 0;
-                        width: 100%;
-                        @include transition(all 0.4s ease-in-out);
-                        span {
-                            display: block;
-                            margin-top: 5px;
-                            margin-bottom: 5px;
+                    a {
+                        display: block;
+                        margin: 0 auto;
+                        .trip-details {
+                            color: #fff ;
+                            height: 100%;
+                            opacity: 0.8;
+                            padding: 50px 30px 30px;
+                            position: absolute;
+                            top: 0; left: 0;
+                            text-align: center;
                             width: 100%;
-                            &.title {
-                                font-weight: bold;
+                            @include transition(all 0.4s ease-in-out);
+                            span {
+                                text-shadow: 2px 2px 2px $color_black;
+                                display: block;
+                                margin-top: 5px;
+                                margin-bottom: 5px;
+                                width: 100%;
+                                &.title {
+                                    font-weight: bold;
+                                }
                             }
                         }
-                    }
-                    img {
-                        border: 1px solid $color_grey;
-                        @include border-radius(5px);
-                        height: auto;
-                        width: 150px;
+                        // .overlay {
+                        //     background-color: $color_black;
+                        //     height: 100%;
+                        //     width: 300px;
+                        // }
+                        img {
+                            border: 1px solid $color_grey;
+                            @include border-radius(5px);
+                            display: block;
+                            height: auto;
+                            width: 100%;
+                        }
                     }
                     &:hover {
                         a {
                             opacity: 1;
                             .trip-details {
-                                background-color: none;
-                                opacity: 0;
                             }
+                            img { scale: 1.2; }
                         }
                     }
                 }
             }
         }
-    }
 
-}
+    }
