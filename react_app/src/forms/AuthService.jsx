@@ -91,6 +91,7 @@ export default class AuthService {
             return response
         } else {
             var error = new Error(response.statusText)
+            console.log(error)
             error.response = response
             throw error
         }

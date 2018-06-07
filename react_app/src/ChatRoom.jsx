@@ -4,8 +4,6 @@ import Chat from './chat/Chat.jsx';
 
 class ChatRoom extends Component{
 
-
-
   render(){
     return(
         <body>

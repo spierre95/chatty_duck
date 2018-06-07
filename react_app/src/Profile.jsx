@@ -2,33 +2,16 @@ import React, {Component} from 'react';
 import Header from './lp/Header.jsx';
 import Footer from './lp/Footer.jsx';
 import SelectTrip from './forms/SelectTrip.jsx'
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import AuthService from './forms/AuthService';
 import withAuth from './forms/withAuth'
 import axios from 'axios';
 
 class Profile extends Component{
- constructor(){
-  super()
-  this.state = {
-    currentUser:""
-  }
-  this.Auth = new AuthService();
- }
-
- componentWillMount(){
-   this.Auth.getCurrentUser()
-   .then((res)=>{
-      const currentUser = res.data
-      this.setState({currentUser})
-      console.log(this.state.Currentuser)
-   })
-   .catch((err)=>{
-    console.log(err)
-   })
-}
   render(){
-    const {data} = this.state;
+      if(this.props.redirect){
+    return (<Redirect push to={this.props.redirect}/>)
+   }
     let detail = (
         <div className="container">
           <div className="row">
@@ -38,9 +21,9 @@ class Profile extends Component{
               </div>
               <div className="col-xs-10 col-sm-10 col-md-9 col-ls-9">
                 <ul>
-                  <li>Name: {this.state.currentUser.first_name} </li>
-                  <li>Username: {this.state.currentUser.username}</li>
-                  <li>Email: {this.state.currentUser.email}</li>
+                  <li>Name: {this.props.currentUser.first_name} </li>
+                  <li>Username: {this.props.currentUser.username}</li>
+                  <li>Email: {this.props.currentUser.email}</li>
                 </ul>
               </div>
           </div>
@@ -48,7 +31,7 @@ class Profile extends Component{
       );
     return (
       <div className="profile">
-        <Header />
+        <Header currentUser={this.props.currentUser} handleLogout={this.props.handleLogout} redirect={this.props.redirect}/>
         <section>
           {detail}
         </section>

@@ -5,8 +5,6 @@ import AuthService from './AuthService';
 import withAuth from './withAuth'
 import {Redirect} from 'react-router-dom';
 
-const DeleteToken = new AuthService();
-
 class Login extends Component {
 
 constructor(props){
@@ -20,7 +18,6 @@ constructor(props){
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogout.bind(this)
     this.Auth = new AuthService();
   }
 
@@ -29,9 +26,6 @@ constructor(props){
     console.log(this.state)
   }
 
- handleLogout(){
-    DeleteToken.logout()
- }
 
 handleSubmit = (e) =>{
 e.preventDefault()
@@ -67,7 +61,6 @@ e.preventDefault()
     );
     return (
       <aside>
-      <button type="button" className="form-submit" onClick={this.handleLogout}>Logout</button>
         {form}
         {Redirect}
       </aside>

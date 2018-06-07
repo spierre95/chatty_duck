@@ -16,7 +16,6 @@ export default function withAuth(AuthService){
       componentWillMount(){
         if(!Auth.loggedIn()){
           this.setState({redirect: "/"})
-          console.log(this.state)
         }else{
             try {
               const profile = Auth.getProfile()
