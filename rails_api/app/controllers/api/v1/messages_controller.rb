@@ -5,6 +5,11 @@ module Api::V1
       render json: @messages
     end
 
+    def show
+      @messages_id = Message.all.find(params[:id])
+      render json: @messages_id
+    end
+
     def create
       message = Message.new(message_params)
       chatroom = Chatroom.find(message_params[:chatroom_id])

@@ -5,6 +5,11 @@ module Api::V1
       render json: @chatrooms
     end
 
+    def show
+      @chatrooms_id = Chatroom.all.find(params[:id])
+      render json: @chatrooms_id
+    end
+
     def create
       chatroom = Chatroom.new(chatroom_params)
       if chatroom.save

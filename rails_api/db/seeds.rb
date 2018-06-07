@@ -5,18 +5,26 @@ Trip.destroy_all
 Location.destroy_all
 TripsUser.destroy_all
 
+
+
+puts 'Creating trips'
+3.times do Trip.create!({
+  name:Faker::StarWars.planet,
+  departure:Faker::Date.between(Date.today, 5.days.from_now),
+  arrival:Faker::Date.forward(22),
+  image_url:Faker::Avatar.image
+})
+end
+
+trips = Trip.all
+
 puts "Creating chatrooms"
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
+trips.each do |trip|
+  trip.chatrooms.create!({
+    name:trip.name
+  })
+end
 
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
-
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
 
 
 puts "Creating users not creator"
@@ -32,9 +40,12 @@ is_creator:false
 })
 end
 
+chatrooms=Chatroom.all
+
 puts "Creating chatrooms_users"
 5.times do
-  ChatroomsUsers.create!({
+    puts Chatroom.all
+  ChatroomsUser.create!({
     user_id:Faker::Number.between(User.first.id, User.last.id),
     chatroom_id:Faker::Number.between(Chatroom.first.id, Chatroom.last.id)
   })
@@ -61,14 +72,6 @@ chatrooms.each do |chatroom|
   end
 end
 
-puts 'Creating trips'
-3.times do Trip.create!({
-  name:Faker::StarWars.planet,
-  departure:Faker::Date.between(Date.today, 5.days.from_now),
-  arrival:Faker::Date.forward(22),
-  image_url:Faker::Avatar.image
-})
-end
 
 trips = Trip.all
 users = User.all

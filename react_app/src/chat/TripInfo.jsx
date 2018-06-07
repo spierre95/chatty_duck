@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
+import Countdown from './Countdown.jsx';
 
 class TripInfo extends Component{
+  constructor() {
+    super();
+    this.state = {
+      start_date: "",
+      end_date: ""
+    }
+  }
+
+
+
   render(){
+
     return(
       <header>
         <p className="title">Group Name here</p>
@@ -15,7 +27,10 @@ class TripInfo extends Component{
             <ul><li>schedule bar will be here.</li></ul>
           </div>
           <div>
-            <p className="date"><span>10</span> days left</p>
+            <p className="date"><span>
+              <Countdown />
+            </span>
+            </p>
             <p>Upcoming:</p>
             <p>Concert 7pm - 9pm</p>
           </div>

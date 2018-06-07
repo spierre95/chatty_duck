@@ -6,12 +6,15 @@ module Api::V1
       render json: @events
     end
 
-    def create
+    def show
+      @events_id = Event.all.find(params[:id])
+      render json: @events_id
+    end
 
+    def create
       @event = Event.new(trip_params)
 
       @event.save
-
     end
 
     private
