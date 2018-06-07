@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import decode from 'jwt-decode';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
 import {Redirect} from 'react-router-dom';
@@ -37,7 +38,8 @@ e.preventDefault()
 
  this.Auth.login(this.state.email,this.state.password)
   .then(res =>{
-    this.setState({redirect: "/user/:username/profile"})
+    let user = decode(res.data.auth_token).user_id
+    this.setState({redirect: `/user/${user}/profile`})
   })
   .catch(err =>{
     this.setState({showError:true,error:"email or password is incorrect"})

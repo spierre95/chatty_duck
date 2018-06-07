@@ -13,6 +13,11 @@ module Api::V1
       # UserInviteMailer.user_invite.deliver_now
     end
 
+    def show
+     @user_by_id = User.all.find(params[:id])
+      render json: @user_by_id
+    end
+
   private
 
   def user_params

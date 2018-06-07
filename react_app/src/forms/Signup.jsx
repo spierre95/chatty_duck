@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import decode from 'jwt-decode';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
 
@@ -156,7 +157,8 @@ validate = () => {
       .then(res => {
         this.Auth.login(this.state.email,this.state.password)
           .then(res =>{
-              this.setState({redirect: "/user/:username/profile"})
+            let user = decode(res.data.auth_token).user_id
+              this.setState({redirect: `/user/${user}/profile`})
             }).catch(err =>{
               console.log(err);
               })

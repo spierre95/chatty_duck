@@ -3,15 +3,30 @@ import Header from './lp/Header.jsx';
 import Footer from './lp/Footer.jsx';
 import SelectTrip from './forms/SelectTrip.jsx'
 import {Link} from 'react-router-dom';
+import AuthService from './forms/AuthService';
+import withAuth from './forms/withAuth'
+import axios from 'axios';
 
 class Profile extends Component{
-  state = {
-    name: 'Bob',
-    username: 'Bobby',
-    email: 'sample@sample.com',
-    imgUrl: 'images/profile/profile.png'
-  };
+ constructor(){
+  super()
+  this.state = {
+    currentUser:""
+  }
+  this.Auth = new AuthService();
+ }
 
+ componentWillMount(){
+   this.Auth.getCurrentUser()
+   .then((res)=>{
+      const currentUser = res.data
+      this.setState({currentUser})
+      console.log(this.state.Currentuser)
+   })
+   .catch((err)=>{
+    console.log(err)
+   })
+}
   render(){
     const {data} = this.state;
     let detail = (
@@ -23,9 +38,9 @@ class Profile extends Component{
               </div>
               <div className="col-xs-10 col-sm-10 col-md-9 col-ls-9">
                 <ul>
-                  <li>Name: {this.state.name} </li>
-                  <li>Username: {this.state.username}</li>
-                  <li>Email: {this.state.email}</li>
+                  <li>Name: {this.state.currentUser.first_name} </li>
+                  <li>Username: {this.state.currentUser.username}</li>
+                  <li>Email: {this.state.currentUser.email}</li>
                 </ul>
               </div>
           </div>

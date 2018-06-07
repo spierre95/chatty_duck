@@ -11,7 +11,7 @@ export default class AuthService {
 
     login(email, password) {
         console.log(email,password)
-        // Get a token from api server using the fetch api
+        // Get a token from api server using the axios
        return axios.post(`${this.domain}/authenticate`,{email,password})
         .then(res => {
             this.setToken(res.data.auth_token) // Setting the token in localStorage
@@ -59,6 +59,10 @@ export default class AuthService {
         return decode(this.getToken());
     }
 
+    getCurrentUser(){
+        const profile = this.getProfile().user_id
+        return axios.get(`http://localhost:3000/api/v1/users/${profile}`)
+    }
 
     axios(url, options) {
         // performs api calls sending the required authentication headers

@@ -8,13 +8,16 @@ import UserInvite from './UserInvite.jsx';
 import ChatRoom from './ChatRoom.jsx';
 
 class App extends Component {
+
+
+
   render() {
     return (
    <Router>
     <div>
       <Route path="/user/invite" exact strict component={UserInvite}/>
       <Route path="/" exact strict component={LandingPage}/>
-      <Route path="/user/:username/profile" exact strict component={Profile}/>
+      <Route path="/user/:id/profile" exact strict component={Profile}/>
       <Route path="/user/:username/create" exact strict component={CreateTrip}/>
       <Route path="/user/:username/trips/:trip" exact strict component={ChatRoom}/>
     </div>
