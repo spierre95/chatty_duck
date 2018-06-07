@@ -5,7 +5,8 @@ has_secure_password
 has_many :trips_users
 has_many :trips, through: :trips_users
 
-has_many :chatrooms, through: :trips
+has_many :chatrooms_users
+has_many :chatrooms, through: :chatrooms_users
 has_many :events
 
 def self.authenticate_with_credentials(email,password)

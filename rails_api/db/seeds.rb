@@ -18,6 +18,7 @@ Chatroom.create!({
   name:Faker::GameOfThrones.city
 })
 
+
 puts "Creating users not creator"
 5.times do User.create!({
 first_name:Faker::Name.first_name,
@@ -29,6 +30,14 @@ password: "chattyduck",
 password_confirmation: "chattyduck",
 is_creator:false
 })
+end
+
+puts "Creating chatrooms_users"
+5.times do
+  ChatroomsUsers.create!({
+    user_id:Faker::Number.between(User.first.id, User.last.id),
+    chatroom_id:Faker::Number.between(Chatroom.first.id, Chatroom.last.id)
+  })
 end
 
 puts "Creating user thats creator"
@@ -84,14 +93,7 @@ puts "Creating trips_users"
   })
 end
 
-# users.each do |user|
-#   user.events.create!({
-#     name:Faker::HarryPotter.house,
-#     date:Faker::Date.between(5.days.from_now, 20.days.from_now),
-#     start_time:Faker::Time.forward(10, :morning),
-#     end_time:Faker::Time.forward(10, :evening)
-#   })
-# end
+
 
 puts "Creating locations"
 trips.each do |trip|
