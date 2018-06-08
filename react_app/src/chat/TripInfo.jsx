@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import UpcomingEvent from './UpcomingEvent.jsx'
 
 class TripInfo extends Component{
   render(){
@@ -16,7 +17,7 @@ class TripInfo extends Component{
           </div>
           <div>
             <p className="date"><span>10</span> days left</p>
-            <p>Upcoming:</p>
+            <div className="upcoming"><UpcomingEvent /></div>
             <p>Concert 7pm - 9pm</p>
           </div>
         </div>
