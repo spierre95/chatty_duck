@@ -55,11 +55,13 @@ class Profile extends Component{
           <div className="row">
               <h1>Your Profile</h1>
               <div className="col-xs-2 col-sm-2 col-md-3 col-ls-3">
-                <img src={this.state.image_preview}/>
-              </div>
-              <div>
-                <input type="file" onChange = {this.fileSelectHandler}/>
-                <button onClick={this.fileUploadHandler}>Upload</button>
+              <div className="card">
+                <img src={this.props.currentUser.image_url} id="img-preview" />
+                <label className="file-upload-container" htmlFor="file-upload">
+                  Select an Image
+                  <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
+                  <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
+                </label>
               </div>
               <div className="col-xs-10 col-sm-10 col-md-9 col-ls-9">
                 <ul>
@@ -70,6 +72,7 @@ class Profile extends Component{
               </div>
           </div>
         </div>
+      </div>
       );
     return (
       <div className="profile">
