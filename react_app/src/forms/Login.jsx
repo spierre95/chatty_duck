@@ -32,6 +32,7 @@ e.preventDefault()
 
  this.Auth.login(this.state.email,this.state.password)
   .then(res =>{
+    console.log(res)
     let user = decode(res.data.auth_token).user_id
     this.setState({redirect: `/user/${user}/profile`})
   })

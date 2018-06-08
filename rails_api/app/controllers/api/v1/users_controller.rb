@@ -22,7 +22,7 @@ module Api::V1
 
   def user_params
     params.require(:user).permit(
-      :first_name,:last_name,:username,:email,:password,:password_confirmation,:is_creator
+      :first_name,:last_name,:username,:email,:password,:password_confirmation,:is_creator,:image_url
     )
   end
 
