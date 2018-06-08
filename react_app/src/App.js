@@ -12,11 +12,18 @@ class App extends Component {
     return (
    <Router>
     <div>
+<<<<<<< Updated upstream
       <Route path="/user/invite" exact strict component={UserInvite}/>
       <Route path="/" exact strict component={LandingPage}/>
       <Route path="/user/:username/profile" exact strict component={Profile}/>
       <Route path="/user/:username/create" exact strict component={CreateTrip}/>
       <Route path="/user/:username/trips/:trip" exact strict component={ChatRoom}/>
+=======
+      <Route path="/" exact strict render={()=><LandingPage currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>}/>
+      <Route path="/user/:id/profile" exact strict render={()=><Profile currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
+      <Route path="/user/:username/create" exact strict render={()=><CreateTrip currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
+      <Route path="/user/:username/trips/:trip" exact strict render={()=><CreateTrip currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
+>>>>>>> Stashed changes
     </div>
   </Router>
   );

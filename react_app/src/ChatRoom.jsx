@@ -10,8 +10,8 @@ class ChatRoom extends Component{
     return(
         <body>
           <div id="chat-wrapper">
-            <Channel />
-            <Chat />
+            <Channel currentUser={this.props.currentUser}/>
+            <Chat currentUser={this.props.currentUser}/>
           </div>
         </body>
     )
