@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
+import ModalItinerary from './modal/ModalItinerary.jsx';
 
 class ChatRoom extends Component{
-
-
-
   render(){
     return(
         <body>
@@ -13,6 +11,7 @@ class ChatRoom extends Component{
             <Channel />
             <Chat />
           </div>
+          <ModalItinerary />
         </body>
     )
   }
