@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       resources :users, only: [:index,:create,:show]
       resources :messages, only: [:index, :create]
       resources :chatrooms, only: [:index, :create]
+      resources :trips, only: [:index, :create]
+      resources :locations, only: [:index, :create]
+      resources :events, only: [:index, :create]
       mount ActionCable.server => '/cable'
     end
   end

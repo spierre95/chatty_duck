@@ -1,5 +1,7 @@
 class Trip < ApplicationRecord
-  has_and_belongs_to_many :users
-  has_many :events
+  has_many :trips_users
+  has_many :users, through: :trips_users
+
   has_many :locations
+  has_many :events
 end
