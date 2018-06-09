@@ -12,10 +12,28 @@ constructor(props) {
   }
 }
 
+getInitialState() {
+    return {
+      now: new Date(),
+    };
+    this.interval = null;
+  }
+
+
+
 
 componentDidMount() {
 
+  // const self = this;
+  //   self.interval = setInterval(function() {
+  //     self.setState({
+  //       now: new Date(),
+  //     });
+  //   }, 1000);
+
   const { match: { params } } = this.props;
+
+  console.log("props", this.props.match.params.username)
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
@@ -23,7 +41,22 @@ componentDidMount() {
       this.setState({ trip })
     })
 
+  axios.post('http://localhost:3000/api/v1/events', {
+    // trip_id: params.trip,
+    user_id: params.username
+  })
+    .then(res => {
+      console.log("res", res);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
   }
+
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
   render(){
 
