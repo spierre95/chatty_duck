@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 
 class TripInfo extends Component{
   render(){
+
     return(
       <header>
         <p className="title">Group Name here</p>
         <ul>
-          <li><a href="#"><i className="fa fa-camera-retro"></i></a></li>
-          <li><a href="#"><i className="fa fa-calendar"></i></a></li>
+          <li>
+          <a href="#" data-toggle="modal" data-target="#itinerary"><i className="fa fa-calendar"></i></a></li>
           <li><a href="#"><i className="fa fa-plus"></i></a></li>
         </ul>
         <div className="trip-details">
@@ -25,10 +26,3 @@ class TripInfo extends Component{
   }
 }
 export default TripInfo;
-
-
-
-
-
-
-

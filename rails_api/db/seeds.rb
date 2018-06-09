@@ -34,7 +34,7 @@ end
 
 puts "Creating chatrooms_users"
 5.times do
-  ChatroomsUsers.create!({
+  ChatroomsUser.create!({
     user_id:Faker::Number.between(User.first.id, User.last.id),
     chatroom_id:Faker::Number.between(Chatroom.first.id, Chatroom.last.id)
   })

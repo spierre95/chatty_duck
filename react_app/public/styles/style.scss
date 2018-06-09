@@ -12,6 +12,7 @@ $color_grey:        #f4f5f4;
 $color_grey_base:   #eeeeee;
 $color_grey_dark:   #a5a5a5;
 
+$color_purple:      #3e414e;
 
 $device_mobile:             '(max-width: 767px)';
 $device_tablet:             '(min-width: 768px) and (max-width: 991px)';
@@ -579,3 +580,367 @@ footer {
         }
 
     }
+
+
+
+/* ============================== chatroom itinerary ============================== */
+.modal-dialog {
+    @media screen and #{$device_tablet_and_up} {
+        width: 800px;
+    }
+    h3 {
+        font-size: 1.2em !important;
+    }
+    .modal-body.chat {
+        padding: 15px;
+    }
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  // background-image: url(https://images.unsplash.com/photo-1428908728789-d2de25dbd4e2?q=80&fm=jpg&s=fa68c48c66a390579ae96eff13922404);
+  // background-size: cover;
+  // background-position: center;
+  .block__item {
+    flex: 0 1 80%;
+    font-style: italic;
+    .block__inner {
+      padding: 2em 3em;
+
+      @media (max-width: 550px) {
+        padding: 1em;
+      }
+    }
+
+    @media (max-width: 950px) {
+      flex: 0 1 100%;
+    }
+  }
+
+  .block__description {
+    line-height: 22px;
+    &:first-letter {
+      float: left;
+      font-size: 55px;
+      line-height: 40px;
+      padding: 0 .25em;
+    }
+  }
+}
+
+// itinerary header section
+#itinerary-top {
+    background-color: #fff;
+    height: 50px;
+    margin: 0 auto;
+    width: 90%;
+
+    /* ---- Timeline ---- */
+    ol {
+        position: relative;
+        display: block;
+        margin: 55px 5px 20px 5px;
+        height: 2px;
+        background: $color_blue_solid;
+        &:after {
+            border: 3px solid $color_blue_solid;
+            border-radius: 50%;
+            background: #fff;
+            content: "";
+            height: 20px;
+            position: absolute;
+            top: -10px; right: 0;
+            width: 20px;
+        }
+        /* ---- Timeline elements ---- */
+        li {
+            position: relative;
+            display: inline-block;
+            width: 14%;
+            height: 50px;
+            p {
+                &.inactive {
+                    opacity: 0.2;
+                }
+                &.inactive + span.point {
+                    opacity: 0.2;
+                }
+            }
+            & .day-flag {
+                color: $color_purple;
+                font-weight: bold;
+                transform: rotate(-30deg);
+                position: absolute; top: -47px; left: 30%;
+                padding: 10px;
+            }
+            & .point {
+                border: 3px solid $color_blue_solid;
+                border-radius: 50%;
+                background: #fff;
+                content: "";
+                height: 20px;
+                position: absolute;
+                top: -9px; left: 0;
+                width: 20px;
+                &.active {
+                    border: 10px solid $color_blue_solid;
+                }
+            }
+            &:hover {
+                color: #48A4D2;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+// itinerary main section
+.list {
+  font-family: $font_sansserif;
+  font-style: normal;
+  background-color: #3E414E;
+  float: left;
+  padding: 1.5em 0;
+  margin-bottom: 3em;
+
+  .list__item {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .list__time {
+      color: #CBB46E;
+      width: 15%;
+      text-align: center;
+    }
+    .list__desc {
+      width: 60%;
+      border-bottom: 1px solid #484C56;
+      color: #ffffff;
+      font-size: 0.9em !important;
+      line-height: 22px;
+      padding: 1em;
+      position: relative;
+      h3 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .border {
+        background: #2A2B31;
+        width: 2px;
+        position: absolute;
+        top: 0;
+        bottom: -1px;
+        left: -15%;
+        &:after {
+          content: "";
+          background: #3E414E;
+          border: 5px solid #2A2B31;
+          border-radius: 50%;
+          position: absolute;
+          top: 50%;
+          margin-top: -9px;
+          left: -9px;
+          width: 20px;
+          height: 20px;
+        }
+        @media (max-width: 550px) {
+          left: -5%;
+        }
+      }
+    }
+    &:last-of-type {
+      .list__desc {
+        border-bottom: none;
+        .border {
+          &:before {
+            content: "";
+            background: #2A2B31;
+            border-radius: 50%;
+            height: 9px;
+            width: 9px;
+            position: absolute;
+            bottom: -8px;
+            left: -3px;
+          }
+        }
+      }
+    }
+    &:first-of-type {
+      .list__desc {
+        //border-bottom: none;
+        .border {
+          &:before {
+            content: "";
+            background: #2A2B31;
+            border-radius: 50%;
+            height: 9px;
+            width: 9px;
+            position: absolute;
+            top: -8px;
+            left: -3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/* ============================== chatroom itinerary slider ============================== */
+
+#itinerary-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+input[type="radio"] {
+    display: none;
+}
+/* :::::: slideshow :::::: */
+#slideshow {
+    position: relative;
+    width: 100%;
+}
+.slideContents {
+    padding-top: 1em;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.slideContents p.title {
+    color: #fff;
+    padding-bottom: 2em;
+}
+.slideContents {
+    background-color: $color_purple;
+    width: 700%;
+    -webkit-transition: -webkit-transform .6s;
+    transition: transform .6s;
+}
+.slideContents::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.slideContents section {
+    float: left;
+    width: calc(100% /7 );
+    -webkit-transition: opacity .6s;
+    transition: opacity .6s;
+}
+.slideContents section list__item {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    max-width: 100%;
+    height: auto;
+    padding: 0 50px;
+    vertical-align: middle;
+}
+/* :::::: slideshow mechanism :::::: */
+#switch1:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+}
+#switch2:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(100% / 7 * 1));
+    transform: translateX(calc(-100% / 7 * 1));
+}
+#switch3:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(-100% / 7 * 2));
+    transform: translateX(calc(-100% / 7 * 2));
+}
+#switch4:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(-100% / 7 * 3));
+    transform: translateX(calc(-100% / 7 * 3));
+}
+#switch5:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(-100% / 7 * 4));
+    transform: translateX(calc(-100% / 7 * 4));
+}
+#switch6:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(-100% / 7 * 5));
+    transform: translateX(calc(-100% / 7 * 5));
+}
+#switch7:checked ~ #slideshow .slideContents {
+    -webkit-transform: translateX(calc(-100% / 7 * 6));
+    transform: translateX(calc(-100% / 7 * 6));
+}
+// /* :::::: arrows :::::: */
+// .arrow,
+// .arrow label,
+// .arrow .ico {
+//     position: absolute;
+// }
+// .arrow {
+//     top: 0;
+//     margin: 0;
+//     transition: background .3s;
+// }
+// .prev { left: 0; }
+// .next { right: 0; }
+// .arrow:hover {
+//     background: rgba(255,255,255,.2);
+// }
+// .arrow,
+// .arrow label {
+//     cursor: pointer;
+//     width: 50px;
+//     height: 100%;
+// }
+// .arrow label {
+//     top: 0;
+//     left: 0;
+//     z-index: 1;
+// }
+// .arrow .ico {
+//     top: 50%;
+//     width: 12px;
+//     height: 12px;
+//     margin-top: -6px;
+//     border-top: 3px solid #fff;
+//     border-right: 3px solid #fff;
+//     opacity: 0;
+//     transition: right .6s, left .6s, opacity .6s;
+// }
+// .arrow:hover .ico {
+//     opacity: .6;
+//     transition-duration: .3s;
+// }
+// .prev .ico {
+//     left: 60%;
+//     -webkit-transform: rotate(-135deg);
+//     transform: rotate(-135deg);
+// }
+// .next .ico {
+//     right: 60%;
+//     -webkit-transform: rotate(45deg);
+//     transform: rotate(45deg);
+// }
+// .prev:hover .ico { left: 30%; }
+// .next:hover .ico { right: 30%; }
+/* :::::: arrows mechanism :::::: */
+// .arrow label {
+//     pointer-events: none;
+// }
+// #switch1:checked ~ #slideshow .prev label[for="switch5"],
+// #switch2:checked ~ #slideshow .prev label[for="switch1"],
+// #switch3:checked ~ #slideshow .prev label[for="switch2"],
+// #switch4:checked ~ #slideshow .prev label[for="switch3"],
+// #switch5:checked ~ #slideshow .prev label[for="switch4"],
+// #switch1:checked ~ #slideshow .next label[for="switch2"],
+// #switch2:checked ~ #slideshow .next label[for="switch3"],
+// #switch3:checked ~ #slideshow .next label[for="switch4"],
+// #switch4:checked ~ #slideshow .next label[for="switch5"],
+// #switch5:checked ~ #slideshow .next label[for="switch1"] {
+//     pointer-events: auto;
+// }
+
+
+
