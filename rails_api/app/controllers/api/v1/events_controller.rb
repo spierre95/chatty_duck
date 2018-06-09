@@ -6,6 +6,11 @@ module Api::V1
       render json: @events
     end
 
+    def show
+      @event_id = Event.all.find(params[:id])
+      render json: @event_id
+    end
+
     def create
 
       @event = Event.new(trip_params)

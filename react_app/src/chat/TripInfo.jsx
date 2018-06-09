@@ -17,7 +17,7 @@ class TripInfo extends Component{
           </div>
           <div>
             <p className="date"><span>10</span> days left</p>
-            <div className="upcoming"><UpcomingEvent /></div>
+            <div className="upcoming"><UpcomingEvent currentUser={this.props.currentUser}/></div>
             <p>Concert 7pm - 9pm</p>
           </div>
         </div>

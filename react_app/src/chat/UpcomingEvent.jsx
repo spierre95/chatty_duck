@@ -15,21 +15,19 @@ class UpcomingEvent extends Component {
     this.Auth = new AuthService();
   }
 
-componentWillMount(){
-  axios.post('http://localhost:3000/api/v1/users')
-            .then(res => {
-              this.Auth.getProfile(this.props.user)
-              // res.data = Auth.getProfile();
-              console.log(res.data)
-              // this.setState({
-              //   user:profile
-              // })
-            })
-        }
+
+
+// componentWillMount(){
+
+//   axios.get(`http://localhost:3001/user/${this.props.currentUser}`)
+//     .then(res => {
+//       console.log(res)
+//     })
+//         }
 
 render() {
- // const trip = this.props.params.match;
- // console.log({ trip });
+
+
  return(
   <div className="event">
     text

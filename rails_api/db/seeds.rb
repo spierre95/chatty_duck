@@ -34,7 +34,7 @@ end
 
 puts "Creating chatrooms_users"
 5.times do
-  ChatroomsUsers.create!({
+  ChatroomsUser.create!({
     user_id:Faker::Number.between(User.first.id, User.last.id),
     chatroom_id:Faker::Number.between(Chatroom.first.id, Chatroom.last.id)
   })
@@ -75,8 +75,8 @@ users = User.all
 
 puts 'Creating Events'
 trips.each do |trip|
-    5.times do trip.events.create!({
-      name:Faker::HarryPotter.house,
+    20.times do trip.events.create!({
+      name:Faker::University.name,
       date:Faker::Date.between(5.days.from_now, 20.days.from_now),
       start_time:Faker::Time.forward(10, :morning),
       end_time:Faker::Time.forward(10, :evening),
@@ -86,7 +86,7 @@ trips.each do |trip|
 end
 
 puts "Creating trips_users"
-50.times do
+3.times do
   TripsUser.create!({
     user_id:Faker::Number.between(User.first.id, User.last.id),
     trip_id:Faker::Number.between(Trip.first.id, Trip.last.id)
