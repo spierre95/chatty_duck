@@ -4,7 +4,7 @@ class ModalItinerary extends Component {
   constructor() {
     super();
     this.state = {
-      day: '0',
+      day: 0,
       checked: true
     };
   }
@@ -24,23 +24,23 @@ class ModalItinerary extends Component {
         {console.log('THIS IS STATE DAY: ', this.state.day)}
           <li onClick={(e) => this.isClicked(1, e)}>
             <p className="day-flag">Day 1</p>
-            <span className="point"></span>
+            <span className={(this.state.day === 1 || this.state.day === 0 ? 'point active' : 'point')}></span>
           </li>
           <li onClick={(e) => this.isClicked(2, e)}>
             <p className="day-flag">Day 2</p>
-            <span className="point"></span>
+            <span className={(this.state.day === 2 ? 'point active' : 'point')}></span>
           </li>
           <li onClick={(e) => this.isClicked(3, e)}>
             <p className="day-flag">Day 3</p>
-            <span className="point"></span>
+            <span className={(this.state.day === 3 ? 'point active' : 'point')}></span>
           </li>
           <li onClick={(e) => this.isClicked(4, e)}>
             <p className="day-flag">Day 4</p>
-            <span className="point"></span>
+            <span className={(this.state.day === 4 ? 'point active' : 'point')}></span>
           </li>
           <li onClick={(e) => this.isClicked(5, e)}>
             <p className="day-flag">Day 5</p>
-            <span className="point"></span>
+            <span className={(this.state.day === 5 ? 'point active' : 'point')}></span>
           </li>
           <li onClick={(e) => this.isClicked(6, e)}>
             <p className="day-flag inactive">Day 6</p>
@@ -55,7 +55,7 @@ class ModalItinerary extends Component {
     );
     let slider = (
       <div id="itinerary-wrapper">
-        <input type="radio" name="slideshow" id="switch1" checked={(this.state.day === 1 ? 'checked' : null)} defaultChecked />
+        <input type="radio" name="slideshow" id="switch1" defaultChecked />
         <input type="radio" name="slideshow" id="switch2" checked={(this.state.day === 2 ? 'checked' : null)} />
         <input type="radio" name="slideshow" id="switch3" checked={(this.state.day === 3 ? 'checked' : null)} />
         <input type="radio" name="slideshow" id="switch4" checked={(this.state.day === 4 ? 'checked' : null)} />
