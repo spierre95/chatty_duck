@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LandingPage from './LandingPage.jsx';
 import Profile from './Profile.jsx';
 import CreateTrip from './forms/CreateTrip.jsx';
@@ -12,12 +11,13 @@ import withAuth from './forms/withAuth'
 const DeleteToken = new AuthService();
 class App extends Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
   this.state = {
     currentUser:"",
     redirect:"",
-    profile:false
+    userTrips:[]
+
   }
   this.Auth = new AuthService();
   this.handleLogout = this.handleLogout.bind(this);
@@ -30,11 +30,14 @@ constructor(){
  }
 
 componentWillMount(){
+
 if(localStorage.getItem("id_token") !== null){
   this.Auth.getCurrentUser()
    .then((res)=>{
       const currentUser = res.data
+      const userTrips = currentUser.trips
       this.setState({currentUser})
+      this.setState({userTrips})
    })
    .catch((err)=>{
     console.log(err)
@@ -43,19 +46,16 @@ if(localStorage.getItem("id_token") !== null){
 }
 
   render() {
-    return (
-   <Router>
-    <div>
-      <Route path="/" exact strict render={()=><LandingPage currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>}/>
-      <Route path="/user/:id/profile" exact strict render={()=><Profile currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
-      <Route path="/user/:username/create" exact strict render={()=><CreateTrip currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
-      <Route path="/" exact strict render={()=><LandingPage currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>}/>
-      <Route path="/user/:id/profile" exact strict render={()=><Profile currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
-      <Route path="/user/:username/create" exact strict render={()=><CreateTrip currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
-      <Route path="/user/:username/trips/:trip" component={ ChatRoom } />
-    </div>
-  </Router>
-  );
+    return(
+      <Router>
+        <div>
+          <Route path="/" exact strict render={()=><LandingPage currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>}/>
+          <Route path="/user/:id/profile" exact strict render={(props)=>(<Profile  {...props}   currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect} userTrips={this.state.userTrips} />)}/>
+          <Route path="/user/:username/create" exact strict render={()=><CreateTrip currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect} />}/>
+          <Route path="/user/:username/trips/:trip" exact strict component={ChatRoom}/>
+        </div>
+      </Router>
+    );
   }
 }
 

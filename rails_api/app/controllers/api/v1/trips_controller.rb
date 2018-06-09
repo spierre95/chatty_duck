@@ -23,6 +23,11 @@ module Api::V1
 
     end
 
+    def show
+
+
+    end
+
     private
 
     def trip_params

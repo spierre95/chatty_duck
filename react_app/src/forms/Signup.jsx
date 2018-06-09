@@ -28,7 +28,7 @@ class Signup extends Component {
       data:[],
       showError:false,
       redirect:null,
-      image_preview:"",
+      image_url:"/images/lhl-duck.png",
       selectedFile:null
     }
     this.fileUpload = new photoUpload()
@@ -152,7 +152,8 @@ validate = () => {
       email:this.state.email,
       password:this.state.password,
       password_confirmation:this.state.password_confirmation,
-      is_creator:this.state.is_creator
+      is_creator:this.state.is_creator,
+      image_url:this.state.image_url
     };
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
@@ -182,7 +183,7 @@ validate = () => {
   this.fileUpload.upload(file)
     .then((res)=>{
         let image = res.data.secure_url
-        this.setState({image_preview:image})
+        this.setState({image_url:image})
           axios.post("http://localhost:3000/api/v1/user",image)
           .then((res)=>{
             console.log(res)
@@ -207,10 +208,14 @@ validate = () => {
    if(this.state.redirect){
     return (<Redirect push to={this.state.redirect}/>)
    }
+   const imgStyle ={
+        width:'100px',
+        height:'auto',
+      }
     let form = (
     <div>
     <div className="card">
-      <img src={this.state.image_preview} id="img-preview" />
+      <img src={this.state.image_url} style={imgStyle} id="img-preview" />
       <label className="file-upload-container" htmlFor="file-upload">
         Select an Image
         <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>

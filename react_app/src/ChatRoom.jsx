@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
 import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+import ModalItinerary from './modal/ModalItinerary.jsx';
+>>>>>>> master
 
 class ChatRoom extends Component{
+  constructor(props){
+    super(props)
+  }
 
 constructor(props) {
   super(props);
@@ -66,6 +73,7 @@ componentDidMount() {
             <Channel currentUser={this.props.currentUser}/>
             <Chat currentUser={this.props.currentUser} trip={this.state.trip}/>
           </div>
+          <ModalItinerary />
         </body>
     )
   }
