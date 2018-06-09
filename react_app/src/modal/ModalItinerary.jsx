@@ -5,50 +5,49 @@ class ModalItinerary extends Component {
     super();
     this.state = {
       day: 0,
-      checked: true
+      duration: 0
     };
   }
-
-
+  // duration will be total days of the trip.
   isClicked(id, e) {
-    console.log('THIS IS ID: ', id);
     this.setState({
       day: id,
     });
   }
 
+
   render() {
+    let dayBase = 1;
     let sliderTop = (
       <div id="itinerary-top">
         <ol>
-        {console.log('THIS IS STATE DAY: ', this.state.day)}
-          <li onClick={(e) => this.isClicked(1, e)}>
-            <p className="day-flag">Day 1</p>
-            <span className={(this.state.day === 1 || this.state.day === 0 ? 'point active' : 'point')}></span>
+          <li onClick={(e) => this.isClicked(dayBase, e)}>
+            <p className="day-flag">Day {dayBase}</p>
+            <span className={(this.state.day === dayBase || this.state.day === 0 ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(2, e)}>
-            <p className="day-flag">Day 2</p>
-            <span className={(this.state.day === 2 ? 'point active' : 'point')}></span>
+          <li onClick={(e) => this.isClicked(dayBase+1, e)}>
+            <p className="day-flag">Day {dayBase+1}</p>
+            <span className={(this.state.day === (dayBase+1) ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(3, e)}>
-            <p className="day-flag">Day 3</p>
-            <span className={(this.state.day === 3 ? 'point active' : 'point')}></span>
+          <li onClick={(e) => this.isClicked(dayBase+2, e)}>
+            <p className="day-flag">Day {dayBase+2}</p>
+            <span className={(this.state.day === (dayBase+2) ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(4, e)}>
-            <p className="day-flag">Day 4</p>
-            <span className={(this.state.day === 4 ? 'point active' : 'point')}></span>
+          <li onClick={(e) => this.isClicked(dayBase+3, e)}>
+            <p className="day-flag">Day {dayBase+3}</p>
+            <span className={(this.state.day === (dayBase+3) ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(5, e)}>
-            <p className="day-flag">Day 5</p>
-            <span className={(this.state.day === 5 ? 'point active' : 'point')}></span>
+          <li onClick={(e) => this.isClicked(dayBase+4, e)}>
+            <p className="day-flag">Day {dayBase+4}</p>
+            <span className={(this.state.day === (dayBase+4) ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(6, e)}>
-            <p className="day-flag inactive">Day 6</p>
-            <span className="point"></span>
+          <li onClick={(e) => this.isClicked(dayBase+5, e)}>
+            <p className="day-flag inactive">Day {dayBase+5}</p>
+            <span className={(this.state.day === (dayBase+5) ? 'point active' : 'point')}></span>
           </li>
-          <li onClick={(e) => this.isClicked(7, e)}>
-            <p className="day-flag inactive">Day 7</p>
-            <span className="point"></span>
+          <li onClick={(e) => this.isClicked(dayBase+6, e)}>
+            <p className="day-flag">Day {dayBase+6}</p>
+            <span className={(this.state.day === (dayBase+6) ? 'point active' : 'point')}></span>
           </li>
         </ol>
       </div>
@@ -56,10 +55,12 @@ class ModalItinerary extends Component {
     let slider = (
       <div id="itinerary-wrapper">
         <input type="radio" name="slideshow" id="switch1" defaultChecked />
-        <input type="radio" name="slideshow" id="switch2" checked={(this.state.day === 2 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch3" checked={(this.state.day === 3 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch4" checked={(this.state.day === 4 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch5" checked={(this.state.day === 5 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch2" checked={(this.state.day === dayBase+1 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch3" checked={(this.state.day === dayBase+2 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch4" checked={(this.state.day === dayBase+3 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch5" checked={(this.state.day === dayBase+4 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch6" checked={(this.state.day === dayBase+5 ? 'checked' : null)} />
+        <input type="radio" name="slideshow" id="switch7" checked={(this.state.day === dayBase+6 ? 'checked' : null)} />
         <div id="slideshow">
           <div className="slideContents">
             <section id="slide1">
@@ -312,6 +313,118 @@ class ModalItinerary extends Component {
                     <h3>Breakfast</h3>
                     <div>day5 day5</div>
                     <div>day5 day5 day5 day5 day5 day5</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">10:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Gallery</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">2:00 pm</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>The Savoy</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">7:00 pm</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Events</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">12:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Returning Flight</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="slide6">
+              <div className="list" id="day6">
+                <p className="title">Day 6</p>
+                <div className="list__item">
+                  <div className="list__time">8:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Breakfast</h3>
+                    <div>day6 day6</div>
+                    <div>day6 day6 day6 day6 day6 day6</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">10:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Gallery</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">2:00 pm</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>The Savoy</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">7:00 pm</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Events</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+                <div className="list__item">
+                  <div className="list__time">12:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Returning Flight</h3>
+                    <div>maybe address here..?</div>
+                    <div>some more description</div>
+                    <div className="border"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="slide7">
+              <div className="list" id="day7">
+                <p className="title">Day 7</p>
+                <div className="list__item">
+                  <div className="list__time">8:00 am</div>
+                  <div className="list__border"></div>
+                  <div className="list__desc">
+                    <h3>Breakfast</h3>
+                    <div>day7 day7</div>
+                    <div>day7 day7 day7 day7 day7 day7</div>
                     <div className="border"></div>
                   </div>
                 </div>
