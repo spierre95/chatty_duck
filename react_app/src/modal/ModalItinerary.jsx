@@ -5,62 +5,210 @@ class ModalItinerary extends Component {
     super();
     this.state = {
       day: 0,
-      duration: 0
+      duration: 0,
+      dayBase: 2
     };
   }
   // duration will be total days of the trip.
+  // dayBase shows 1st wk, 2nd wk etc.
+
+  // const schedule = [
+  //     { day1:
+  //         ['6:00am', 'Departing Flight', 'Air Canada 2000 Gate:E3 <br />Boarding: 5:30 am Destination: Milano, Italy' ],
+  //         ['8:00am', 'Arriving Airport', 'To city by a bus'],
+  //         ['2:00pm', 'The Savoy', 'Hotel check-in'],
+  //         ['7:00pm', 'Events', 'Show at Motley Crue American Airlines Arena'],
+  //         ['2:00am', 'Hotel', 'Lorem ipsum dolor sit amet, diceret blandit cu mei.']
+  //     },
+  //     { day2:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day3:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day4:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day5:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day6:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city <br />Sed at aliquip fastidii senserit. Quo posidonium consequuntur te, has verear dolorum in.'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day7:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day8:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Gallery', 'Find out Galleria Bianconi'],
+  //         ['12:30pm', 'Lunch', 'At local restaurant'],
+  //         ['2:00pm', 'City Half Day Tour', 'Explore the city'],
+  //         ['6:00pm', 'Dinner', 'at ABC restaurant'],
+  //         ['8:00pm', 'Show', 'at hotel']
+  //     },
+  //     { day9:
+  //         ['8:00am', 'Breakfast', 'At hotel'],
+  //         ['10:00am', 'Hotel', 'Transfer to the airport'],
+  //         ['12:30pm', 'Departing Flight', 'Air Canada 8000 Gate: unknow'],
+  //         ['15:30pm', 'Arriving Montreal', 'Montreal']
+  //     }
+  // ];
+
+
+
   isClicked(id, e) {
     this.setState({
       day: id,
     });
   }
 
+  getSlideIndicator(dayBase) {
+    let indicator = [];
+      for (let i = 0; i < 7; i++) {
+
+        if (i != 0) {
+          indicator.push(
+            <li onClick={(e) => this.isClicked(dayBase + i, e)}>
+              <p className="day-flag">Day {dayBase + i}</p>
+              <span className={(this.state.day === (dayBase + i) ? 'point active' : 'point')}></span>
+            </li>
+          );
+        } else {
+          indicator.push(
+            <li onClick={(e) => this.isClicked(dayBase, e)}>
+              <p className="day-flag">Day {dayBase}</p>
+              <span className={(this.state.day === dayBase || this.state.day === 0 ? 'point active' : 'point')}></span>
+            </li>
+          );
+        }
+      }
+      return indicator;
+  }
+
+  getItineraryRadio(dayBase){
+    let radio = [];
+    for (let i = 0; i < 7; i++) {
+      if (i != 0) {
+        radio.push(
+          <input type="radio" name="slideshow" id={'switch'+(dayBase + i)} dayBase checked={(this.state.day === (dayBase + i) ? 'checked' : null)} />
+        );
+      } else {
+        radio.push(
+          <input type="radio" name="slideshow" id={'switch'+(dayBase)} defaultChecked />
+        );
+      }
+    }
+    return radio;
+  }
+
+  // getSlide(dayBase){
+  //   // dayX: [time, title, description]
+  //   let output = [];
+  //   for (let i = 0; i < 7; i++) {
+  //     output.push(
+  //       <section id="slide1">
+  //           <div className="list" id="day1">
+  //             <p className="title">Day 1</p>
+  //             <div className="list__item">
+  //               <div className="list__time">6:00 am</div>
+  //               <div className="list__border"></div>
+  //               <div className="list__desc">
+  //                 <h3>Departing Flight</h3>
+  //                 <div>Southwest #80293 Gate:511</div>
+  //                 <div>Boarding: 5:30 am Destination: Miami, FL</div>
+  //                 <div className="border"></div>
+  //               </div>
+  //             </div>
+  //             <div className="list__item">
+  //               <div className="list__time">8:00 am</div>
+  //               <div className="list__border"></div>
+  //               <div className="list__desc">
+  //                 <h3>Enterprise Car Rental</h3>
+  //                 <div>940 NW 27th Ave, Miami, FL 33125</div>
+  //                 <div>Pick up: 8:00 am</div>
+  //                 <div className="border"></div>
+  //               </div>
+  //             </div>
+  //             <div className="list__item">
+  //               <div className="list__time">2:00 pm</div>
+  //               <div className="list__border"></div>
+  //               <div className="list__desc">
+  //                 <h3>The Savoy</h3>
+  //                 <div>425 Ocean Drive, Miami Beach, FL 33139</div>
+  //                 <div>Check-in: 2:00 pm</div>
+  //                 <div className="border"></div>
+  //               </div>
+  //             </div>
+  //             <div className="list__item">
+  //               <div className="list__time">7:00 pm</div>
+  //               <div className="list__border"></div>
+  //               <div className="list__desc">
+  //                 <h3>Events</h3>
+  //                 <div>Motley Crue American Airlines Arena</div>
+  //                 <div>Showtime: 7:00 pm</div>
+  //                 <div className="border"></div>
+  //               </div>
+  //             </div>
+  //             <div className="list__item">
+  //               <div className="list__time">12:00 am</div>
+  //               <div className="list__border"></div>
+  //               <div className="list__desc">
+  //                 <h3>Returning Flight</h3>
+  //                 <div>Southwest #80293 Gate: 515</div>
+  //                 <div>Boarding: 11:00 am Destination: Denver, CO</div>
+  //                 <div className="border"></div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </section>
+  //       );
+  // }
 
   render() {
-    let dayBase = 1;
+    const dayBase = this.state.dayBase;
+    //getSlideIndicator(dayBase);
+
     let sliderTop = (
       <div id="itinerary-top">
         <ol>
-          <li onClick={(e) => this.isClicked(dayBase, e)}>
-            <p className="day-flag">Day {dayBase}</p>
-            <span className={(this.state.day === dayBase || this.state.day === 0 ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+1, e)}>
-            <p className="day-flag">Day {dayBase+1}</p>
-            <span className={(this.state.day === (dayBase+1) ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+2, e)}>
-            <p className="day-flag">Day {dayBase+2}</p>
-            <span className={(this.state.day === (dayBase+2) ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+3, e)}>
-            <p className="day-flag">Day {dayBase+3}</p>
-            <span className={(this.state.day === (dayBase+3) ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+4, e)}>
-            <p className="day-flag">Day {dayBase+4}</p>
-            <span className={(this.state.day === (dayBase+4) ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+5, e)}>
-            <p className="day-flag inactive">Day {dayBase+5}</p>
-            <span className={(this.state.day === (dayBase+5) ? 'point active' : 'point')}></span>
-          </li>
-          <li onClick={(e) => this.isClicked(dayBase+6, e)}>
-            <p className="day-flag">Day {dayBase+6}</p>
-            <span className={(this.state.day === (dayBase+6) ? 'point active' : 'point')}></span>
-          </li>
+          {this.getSlideIndicator(dayBase)}
         </ol>
       </div>
     );
     let slider = (
       <div id="itinerary-wrapper">
-        <input type="radio" name="slideshow" id="switch1" defaultChecked />
-        <input type="radio" name="slideshow" id="switch2" checked={(this.state.day === dayBase+1 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch3" checked={(this.state.day === dayBase+2 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch4" checked={(this.state.day === dayBase+3 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch5" checked={(this.state.day === dayBase+4 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch6" checked={(this.state.day === dayBase+5 ? 'checked' : null)} />
-        <input type="radio" name="slideshow" id="switch7" checked={(this.state.day === dayBase+6 ? 'checked' : null)} />
+        {this.getItineraryRadio(dayBase)}
+
         <div id="slideshow">
           <div className="slideContents">
             <section id="slide1">
@@ -358,7 +506,6 @@ class ModalItinerary extends Component {
                 </div>
               </div>
             </section>
-
             <section id="slide6">
               <div className="list" id="day6">
                 <p className="title">Day 6</p>
@@ -414,7 +561,6 @@ class ModalItinerary extends Component {
                 </div>
               </div>
             </section>
-
             <section id="slide7">
               <div className="list" id="day7">
                 <p className="title">Day 7</p>
