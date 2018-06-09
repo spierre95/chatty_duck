@@ -10,12 +10,13 @@ import photoUpload from './photoUpload';
 
 class Profile extends Component{
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       image_preview:"",
       selectedFile:null
     }
+    debugger
     this.fileUpload = new photoUpload()
     this.fileSelectHandler = this.fileSelectHandler.bind(this)
     this.fileUploadHandler = this.fileUploadHandler.bind(this)
@@ -80,7 +81,7 @@ class Profile extends Component{
         <section>
           {detail}
         </section>
-        <SelectTrip />
+        <SelectTrip userTrips={this.props.userTrips} currentUser={this.props.currentUser} />
         <Footer />
       </div>
     );

@@ -3,7 +3,10 @@ import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
 
 class ChatRoom extends Component{
-
+  constructor(props){
+    super(props)
+    debugger
+  }
   render(){
     return(
         <body>
