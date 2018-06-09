@@ -5,7 +5,6 @@ import Chat from './chat/Chat.jsx';
 class ChatRoom extends Component{
   constructor(props){
     super(props)
-    debugger
   }
   render(){
     return(

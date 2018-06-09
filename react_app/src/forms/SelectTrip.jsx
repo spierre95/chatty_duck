@@ -8,6 +8,12 @@ class SelectTrip extends Component{
 
   render(){
 
+    if(this.props.currentUser){
+      return <Link to={`/user/${this.props.currentUser.id}/trips/${trip.id}`}>
+    }else{
+      return <button></button>
+    }
+
     let thumbs = (
         <div className="container">
           <div className="row">
