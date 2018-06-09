@@ -8,16 +8,10 @@ class ChatRoom extends Component{
 constructor(props) {
   super(props);
   this.state = {
-    events: [],
+    trip: [],
   }
 }
 
- getInitialState() {
-    return {
-      now: new Date(),
-    };
-    this.interval = null;
-  },
 
 componentDidMount() {
 
@@ -25,19 +19,19 @@ componentDidMount() {
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
-      const events = res.data.events;
-      this.setState({ events })
+      const trip = res.data;
+      this.setState({ trip })
     })
 
   }
 
   render(){
-    console.log(getInitialState())
+
     return(
         <body>
           <div id="chat-wrapper">
             <Channel currentUser={this.props.currentUser}/>
-            <Chat currentUser={this.props.currentUser} events={this.state.events}/>
+            <Chat currentUser={this.props.currentUser} trip={this.state.trip}/>
           </div>
         </body>
     )

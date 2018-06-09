@@ -9,7 +9,7 @@ class UpcomingEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
+      events: this.props.trip.events
     };
 
     this.Auth = new AuthService();
@@ -17,16 +17,16 @@ class UpcomingEvent extends Component {
 
 
 
-// componentWillMount(){
+componentDidMount(){
 
-//   axios.get(`http://localhost:3001/user/${this.props.currentUser}`)
-//     .then(res => {
-//       console.log(res)
-//     })
-//         }
+  // const events = this.props.trip.events;
+  // this.setState({ events })
+
+        }
 
 render() {
 
+  // console.log(new Date())
 
  return(
   <div className="event">

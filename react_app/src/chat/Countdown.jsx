@@ -9,10 +9,6 @@ class Countdown extends Component {
     super(props);
 
     this.state = {
-      chatrooms: [],
-      trips: [],
-      start_date: "",
-      end_date: "",
       days: 0,
       hours: 0,
       min: 0,
@@ -33,17 +29,15 @@ class Countdown extends Component {
   //   })
   // }
 
-  componentDidMount() {
+  componentWillMount() {
 
-    console.log(this.props.trip_id)
-
-    axios.get('http://localhost:3000/api/v1/trips/2')
-    .then(res => {
-      const trip = res.data
-        this.setState({ start_date: trip.departure ,
-                        end_date: trip.arrival })
-        console.log(this.state)
-    })
+    // axios.get('http://localhost:3000/api/v1/trips/2')
+    // .then(res => {
+    //   const trip = res.data
+    //     this.setState({ start_date: trip.departure ,
+    //                     end_date: trip.arrival })
+    //     console.log(this.state)
+    // })
 
     // update every second
     this.interval = setInterval(() => {
