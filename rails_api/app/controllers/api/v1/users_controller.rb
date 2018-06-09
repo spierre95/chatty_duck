@@ -15,7 +15,7 @@ module Api::V1
 
     def show
 
-        @user = User.find(1)
+@user = User.find(params[:id])
 @user_trips = @user.trips
 trips_data = {}
 trips_data[:id] = @user.id

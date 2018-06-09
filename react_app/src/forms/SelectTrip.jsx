@@ -7,6 +7,7 @@ import axios from 'axios';
 class SelectTrip extends Component{
 
   render(){
+
     let thumbs = (
         <div className="container">
           <div className="row">
@@ -23,11 +24,6 @@ class SelectTrip extends Component{
                       <img src={trip.image_url} alt={trip.name} />
                     </Link>
                   </li>
-                  {trip.locations.map(location => (
-                      <div className="trip-details">
-                        <span className="title">{location.name}</span>
-                      </div>
-                  ))}
                 ))}
               </ul>
           </div>
