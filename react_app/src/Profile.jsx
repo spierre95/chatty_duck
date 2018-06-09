@@ -80,7 +80,7 @@ class Profile extends Component{
         <section>
           {detail}
         </section>
-        <SelectTrip />
+        <SelectTrip userTrips={this.props.userTrips} currentUser={this.props.currentUser} />
         <Footer />
       </div>
     );
