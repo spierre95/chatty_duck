@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService';
+import {Redirect} from 'react-router-dom';
 
 export default function withAuth(AuthService){
   const Auth = new AuthService("http://locahost:3000");
@@ -7,13 +8,14 @@ export default function withAuth(AuthService){
       constructor(){
         super()
         this.state = {
-          user:null
+          user:null,
+          redirect:null
         }
       }
 
       componentWillMount(){
         if(!Auth.loggedIn()){
-          this.props.history.replace('/')
+          this.setState({redirect: "/"})
         }else{
             try {
               const profile = Auth.getProfile()
@@ -21,14 +23,17 @@ export default function withAuth(AuthService){
                 user:profile
               })
             }catch(err){
-              Auth.logout()
-              this.props.history.replace('/')
+          Auth.logout()
+          this.setState({redirect: "/"})
           }
         }
       }
       render(){
         if(this.state.user){
-          return (<AuthService history={this.props.history} user={this.props.user}/>)
+          return (<AuthService history={this.props.redirect} user={this.props.user}/>)
+        }
+        if(this.state.redirect){
+          return (<Redirect push to={this.state.redirect}/>)
         }
     }
   }
