@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
 import ModalItinerary from './modal/ModalItinerary.jsx';
-import CreateEvent from './forms/CreateEvent.jsx';
+import CreateEvent from './modal/ModalCreateEvent.jsx';
 
 class ChatRoom extends Component{
   constructor(props){

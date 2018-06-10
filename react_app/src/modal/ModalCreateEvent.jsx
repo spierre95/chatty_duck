@@ -1,14 +1,10 @@
-import React, {Component} from 'react';
-import Header from '../lp/Header.jsx';
-import Footer from '../lp/Footer.jsx';
-import AuthService from './AuthService';
-import withAuth from './withAuth'
+import React, { Component } from 'react';
 
 class CreateEvent extends Component {
   render(){
    let form = (
         <form>
-          <p>Create an event.</p>
+          <p>Add a new event!</p>
           <div className="form-group">
             <label htmlFor="event name">Event Name</label>
             <input type="text" className="form-control" id="name" placeholder="Enter trip name" />
@@ -25,16 +21,24 @@ class CreateEvent extends Component {
             <label htmlFor="end time">End Time</label>
             <input type="time" className="form-control" id="end_time" placeholder="" />
           </div>
+          <div class="form-group">
+            <label for="event contents">Event Details</label>
+            <textarea class="form-control" id="event_details" rows="3"></textarea>
+          </div>
           <button type="submit" className="btn btn-primary">Create</button>
         </form>
     );
     return (
-      <div className="form-page">
-        <Header currentUser ={this.props.currentUser} handleLogout={this.props.handleLogout} />
-          <section>
-            {form}
-          </section>
-        <Footer />
+      <div id="modal">
+        <div className="modal fade" id="event-form" tabindex="-1" role="dialog" aria-labelledby="eventForm" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-body chat">
+                {form}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
