@@ -9,6 +9,8 @@ class Countdown extends Component {
     super(props);
 
     this.state = {
+      start_date: '',
+      end_date: '',
       days: 0,
       hours: 0,
       min: 0,
@@ -18,18 +20,11 @@ class Countdown extends Component {
     this.Auth = new AuthService();
   }
 
-  // findDate() {
-  //   this.state.trips.forEach((trip) => {
-  //     console.log('trip', trip)
-  //     return trip;
-  //   })
-  //   this.state.chatrooms.forEach((room) => {
-  //     console.log('room', room)
-  //     return room;
-  //   })
-  // }
 
-  componentWillMount() {
+  componentDidMount() {
+    // console.log("props", this.props)
+
+    // console.log(this.props.trip_id)
 
     // axios.get('http://localhost:3000/api/v1/trips/2')
     // .then(res => {
@@ -90,6 +85,14 @@ class Countdown extends Component {
     clearInterval(this.interval);
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.trip !== undefined)
+    this.setState({
+      start_date: nextProps.trip.departure,
+      end_date: nextProps.trip.arrival,
+    })
+  }
+
   addLeadingZeros(value) {
     value = String(value);
     while (value.length < 2) {
@@ -100,7 +103,6 @@ class Countdown extends Component {
 
   render() {
     const countDown = this.state;
-
     return (
       <div className="Countdown">
         <span className="Countdown-col">
@@ -114,6 +116,13 @@ class Countdown extends Component {
           <span className="Countdown-col-element">
             <strong>{this.addLeadingZeros(countDown.hours)}</strong>
             <span>Hours</span>
+          </span>
+        </span>
+
+        <span className="Countdown-col">
+          <span className="Countdown-col-element">
+            <strong>{this.addLeadingZeros(countDown.min)}</strong>
+            <span>Min</span>
           </span>
         </span>
       </div>

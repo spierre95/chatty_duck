@@ -1,21 +1,16 @@
 import React, {Component} from 'react';
 import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
-<<<<<<< HEAD
 import axios from 'axios';
-=======
 import ModalItinerary from './modal/ModalItinerary.jsx';
->>>>>>> master
 
 class ChatRoom extends Component{
-  constructor(props){
-    super(props)
-  }
 
 constructor(props) {
   super(props);
   this.state = {
-    trip: [],
+    trip: {},
+    events: []
   }
 }
 
@@ -40,20 +35,17 @@ componentDidMount() {
 
   const { match: { params } } = this.props;
 
-  console.log("props", this.props.match.params.username)
-
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
-      const trip = res.data;
-      this.setState({ trip })
+      this.setState({ trip : res.data })
     })
 
-  axios.post('http://localhost:3000/api/v1/events', {
-    // trip_id: params.trip,
-    user_id: params.username
-  })
+    axios.post('http://localhost:3000/api/v1/events', {
+    trip_id: params.trip,
+    // user_id: params.username
+    })
     .then(res => {
-      console.log("res", res);
+      this.setState({ events: res.data })
     })
     .catch(error => {
       console.log(error);
@@ -61,19 +53,19 @@ componentDidMount() {
 
   }
 
+
   // componentWillUnmount() {
   //   clearInterval(this.interval);
   // }
 
   render(){
-
     return(
         <body>
           <div id="chat-wrapper">
-            <Channel currentUser={this.props.currentUser}/>
-            <Chat currentUser={this.props.currentUser} trip={this.state.trip}/>
+            <Channel currentUser={this.props.currentUser} />
+            <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
           </div>
-          <ModalItinerary />
+          <ModalItinerary events={this.state.events} trip={this.state.trip}/>
         </body>
     )
   }

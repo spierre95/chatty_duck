@@ -1,19 +1,12 @@
 import React, {Component} from 'react';
 import UpcomingEvent from './UpcomingEvent.jsx'
 import Countdown from './Countdown.jsx'
+import axios from 'axios';
 
 class TripInfo extends Component{
 
-  constructor(props){
-    super(props);
-    this.state = {
-      start_date: this.props.arrival,
-      end_date: this.props.departure,
-    }
-  }
 
   render(){
-
     return(
       <header>
         <p className="title">Group Name here</p>

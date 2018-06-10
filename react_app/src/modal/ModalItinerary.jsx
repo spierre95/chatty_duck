@@ -16,7 +16,38 @@ class ModalItinerary extends Component {
   }
 
 
+
+//   tripLength = () => {
+//     this.setState({ duration: this.props.trip.arrival - this.props.trip.departure })
+//     console.log("state", this.state.duration)
+//   }
+
+//   findDates = () => {
+
+// }
+
+
+componentWillMount() {
+  debugger
+}
+
+
   render() {
+
+
+  const dates = [];
+
+  const theDates = this.props.events.map(event => {
+    console.log("event", event)
+    dates.push(event.date)
+    console.log(dates.sort())
+  })
+
+  // const eachDay = getDates.forEach(day => {
+  //   const theDay = this.day;
+  //   console.log(theDay)
+  // })
+
     let dayBase = 1;
     let sliderTop = (
       <div id="itinerary-top">
@@ -70,7 +101,7 @@ class ModalItinerary extends Component {
                   <div className="list__time">6:00 am</div>
                   <div className="list__border"></div>
                   <div className="list__desc">
-                    <h3>Departing Flight</h3>
+                    <h3>getEvents</h3>
                     <div>Southwest #80293 Gate:511</div>
                     <div>Boarding: 5:30 am Destination: Miami, FL</div>
                     <div className="border"></div>

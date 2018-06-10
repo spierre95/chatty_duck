@@ -4,6 +4,18 @@ Message.destroy_all
 Trip.destroy_all
 Location.destroy_all
 TripsUser.destroy_all
+ChatroomsUser.destroy_all
+
+
+puts 'Creating trips'
+3.times do Trip.create!({
+  name:Faker::StarWars.planet,
+  departure:Faker::Date.between(Date.today, 5.days.from_now),
+  arrival:Faker::Date.forward(22),
+  details:Faker::Simpsons.quote,
+  image_url:Faker::Avatar.image
+})
+end
 
 puts "Creating chatrooms"
 Chatroom.create!({
@@ -61,14 +73,6 @@ chatrooms.each do |chatroom|
   end
 end
 
-puts 'Creating trips'
-3.times do Trip.create!({
-  name:Faker::StarWars.planet,
-  departure:Faker::Date.between(Date.today, 5.days.from_now),
-  arrival:Faker::Date.forward(22),
-  image_url:Faker::Avatar.image
-})
-end
 
 trips = Trip.all
 users = User.all
@@ -80,6 +84,7 @@ trips.each do |trip|
       date:Faker::Date.between(5.days.from_now, 20.days.from_now),
       start_time:Faker::Time.forward(10, :morning),
       end_time:Faker::Time.forward(10, :evening),
+      details:Faker::Simpsons.quote,
       user_id:Faker::Number.between(User.first.id, User.last.id)
     })
   end

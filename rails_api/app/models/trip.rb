@@ -4,4 +4,5 @@ class Trip < ApplicationRecord
 
   has_many :locations
   has_many :events
+  has_one :chatroom
 end

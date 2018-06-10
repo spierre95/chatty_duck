@@ -6,21 +6,17 @@ import withAuth from '../forms/withAuth';
 
 class UpcomingEvent extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      events: this.props.trip.events
-    };
-
-    this.Auth = new AuthService();
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     events:
+  //   };
+  // }
 
 
 
 componentDidMount(){
 
-  // const events = this.props.trip.events;
-  // this.setState({ events })
 
         }
 

@@ -16,7 +16,6 @@ class Profile extends Component{
       image_preview:"",
       selectedFile:null
     }
-    debugger
     this.fileUpload = new photoUpload()
     this.fileSelectHandler = this.fileSelectHandler.bind(this)
     this.fileUploadHandler = this.fileUploadHandler.bind(this)
