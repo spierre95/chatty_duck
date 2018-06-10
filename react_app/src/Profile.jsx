@@ -40,9 +40,9 @@ class Profile extends Component{
   console.log(file)
   this.fileUpload.upload(file)
     .then((res)=>{
-        let image = res.data.secure_url
-        this.setState({image_preview:image})
-          axios.post("http://localhost:3000/api/v1/user",image)
+        let image_url = res.data.secure_url
+        this.setState({profile:{image_url:image_url}})
+          axios.post(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}`,{image_url})
           .then((res)=>{
             console.log(res)
           })
