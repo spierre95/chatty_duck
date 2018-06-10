@@ -17,9 +17,10 @@ module Api::V1
 
     end
 
-    def show
-
-
+    def add_to_trip
+      @user = User.find(params[:user_id])
+      @trip = Trip.find(params[:trip_id])
+      @trip.users << @user
     end
 
     private

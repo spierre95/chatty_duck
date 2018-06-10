@@ -3,7 +3,8 @@ import axios from 'axios';
 import Header from './lp/Header.jsx';
 import Footer from './lp/Footer.jsx';
 import SelectTrip from './forms/SelectTrip.jsx'
-import {Link,Redirect} from 'react-router-dom';
+import SearchProfiles from './SearchProfiles.jsx'
+import {Link,Redirect,withRouter} from 'react-router-dom';
 import AuthService from './forms/AuthService';
 import withAuth from './forms/withAuth'
 import photoUpload from './photoUpload';
@@ -14,9 +15,16 @@ class Profile extends Component{
     super(props)
     this.state = {
       image_preview:"",
-      selectedFile:null
+      selectedFile:null,
+      profile:{
+          id:this.props.currentUser.id,
+          first_name:this.props.currentUser.first_name,
+          last_name:this.props.currentUser.last_name,
+          email:this.props.currentUser.email,
+          image_url:this.props.currentUser.iamge_url
+        },
+      trips:this.props.userTrips
     }
-    debugger
     this.fileUpload = new photoUpload()
     this.fileSelectHandler = this.fileSelectHandler.bind(this)
     this.fileUploadHandler = this.fileUploadHandler.bind(this)
@@ -47,6 +55,22 @@ class Profile extends Component{
     })
   }
 
+componentWillMount(){
+
+    this.props.history.listen(() => {
+      const {match:{params}} = this.props
+      console.log(this.props)
+      axios.get(`http://localhost:3000/api/v1/users/${params.id}`)
+      .then(res => {
+      const currentUser = res.data
+      const userTrips = currentUser.trips
+      this.setState({profile:res.data})
+      this.setState({trips:userTrips})
+      })
+
+    });
+  }
+
   render(){
       if(this.props.redirect){
     return (<Redirect push to={this.props.redirect}/>)
@@ -57,7 +81,7 @@ class Profile extends Component{
               <h1>Your Profile</h1>
               <div className="col-xs-2 col-sm-2 col-md-3 col-ls-3">
               <div className="card">
-                <img src={this.props.currentUser.image_url} id="img-preview" />
+                <img src={this.state.profile.image_url} id="img-preview" />
                 <label className="file-upload-container" htmlFor="file-upload">
                   Select an Image
                   <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
@@ -66,9 +90,9 @@ class Profile extends Component{
               </div>
               <div className="col-xs-10 col-sm-10 col-md-9 col-ls-9">
                 <ul>
-                  <li>Name: {this.props.currentUser.first_name} </li>
-                  <li>Username: {this.props.currentUser.username}</li>
-                  <li>Email: {this.props.currentUser.email}</li>
+                  <li>Name: {this.state.profile.first_name} </li>
+                  <li>Username: {this.state.profile.username}</li>
+                  <li>Email: {this.state.profile.email}</li>
                 </ul>
               </div>
           </div>
@@ -78,17 +102,18 @@ class Profile extends Component{
     return (
       <div className="profile">
         <Header currentUser={this.props.currentUser} handleLogout={this.props.handleLogout} redirect={this.props.redirect}/>
+        <SearchProfiles props={this.props}/>
         <section>
           {detail}
         </section>
-        <SelectTrip userTrips={this.props.userTrips} currentUser={this.props.currentUser} />
+        <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
         <Footer />
       </div>
     );
   }
 }
 
-export default Profile;
+export default withRouter(Profile);
 
 
 
