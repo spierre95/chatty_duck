@@ -55,6 +55,7 @@ class ModalItinerary extends Component {
     return radio;
   }
 
+
   getSchedule(){
     let schedule =
       {
@@ -116,40 +117,38 @@ class ModalItinerary extends Component {
       }
     ;
     let output = [];
+    let section = '';
+    Object.keys(schedule).forEach(function(day) {
+      let dayNum = day.substr(3);
+      //console.log(day, schedule[][day]);
+      //output.push(key, schedule[][day]);
 
-
-      let section = '';
-      Object.keys(schedule).forEach(function(day) {
-        let dayNum = day.substr(3);
-        //console.log(day, schedule[][day]);
-        //output.push(key, schedule[][day]);
-
-        let daySchedule = schedule[day];
-        let sectionChildren = [];
-        for (let j = 0; j < daySchedule.length; j++) {
-          sectionChildren.push(
-            <div className="list__item">
-              <div className="list__time">{daySchedule[j].time}</div>
-              <div className="list__border"></div>
-              <div className="list__desc">
-                <h3>{daySchedule[j].name}</h3>
-                <div>{daySchedule[j].details}</div>
-              </div>
+      let daySchedule = schedule[day];
+      let sectionChildren = [];
+      for (let j = 0; j < daySchedule.length; j++) {
+        sectionChildren.push(
+          <div className="list__item">
+            <div className="list__time">{daySchedule[j].time}</div>
+            <div className="list__border"></div>
+            <div className="list__desc">
+              <h3>{daySchedule[j].name}</h3>
+              <div>{daySchedule[j].details}</div>
             </div>
-          );
-        }
-        section = (
-          <section id={'slide'+(dayNum)}>
-            <div className="list" id={day}>
-              <p className="title">{'Day ' + dayNum}</p>
-               {sectionChildren}
-            </div>
-          </section>);
+          </div>
+        );
+      }
+      section = (
+        <section id={'slide'+(dayNum)}>
+          <div className="list" id={day}>
+            <p className="title">{'Day ' + dayNum}</p>
+             {sectionChildren}
+          </div>
+        </section>);
 
-        output.push(section);
-      });
+      output.push(section);
+    });
 
-    return output;
+  return output;
   }
 
   render() {
