@@ -11,7 +11,7 @@ class MessageList extends Component{
     super();
     this.state = {
       messages: [],
-      chatroom_id: 1
+      // trip: this.props.trip
     };
   }
 
@@ -37,9 +37,11 @@ class MessageList extends Component{
    const messageComponent = this.state.messages.map((message, index) => {
       return <li key={message.id}>{ message.content }</li>
    })
+
+   console.log(this.props.user_id)
     const main = (
             <div>
-            <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
+            <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.trip }} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
                 <li className="thumb">
                   <img src="/images/lhl-duck.png" />
