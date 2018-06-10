@@ -4,6 +4,10 @@ import Chat from './chat/Chat.jsx';
 import ModalItinerary from './modal/ModalItinerary.jsx';
 
 class ChatRoom extends Component{
+  constructor(props){
+    super(props)
+  }
+
   render(){
     return(
         <body>

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import decode from 'jwt-decode';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
 import {Redirect} from 'react-router-dom';
-
-const DeleteToken = new AuthService();
 
 class Login extends Component {
 
@@ -19,7 +18,6 @@ constructor(props){
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogout.bind(this)
     this.Auth = new AuthService();
   }
 
@@ -28,16 +26,15 @@ constructor(props){
     console.log(this.state)
   }
 
- handleLogout(){
-    DeleteToken.logout()
- }
 
 handleSubmit = (e) =>{
 e.preventDefault()
 
  this.Auth.login(this.state.email,this.state.password)
   .then(res =>{
-    this.setState({redirect: "/user/:username/profile"})
+    console.log(res)
+    let user = decode(res.data.auth_token).user_id
+    this.setState({redirect: `/user/${user}/profile`})
   })
   .catch(err =>{
     this.setState({showError:true,error:"email or password is incorrect"})
@@ -65,7 +62,6 @@ e.preventDefault()
     );
     return (
       <aside>
-      <button type="button" className="form-submit" onClick={this.handleLogout}>Logout</button>
         {form}
         {Redirect}
       </aside>

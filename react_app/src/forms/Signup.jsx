@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import decode from 'jwt-decode';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
+import photoUpload from '../photoUpload';
+
 
 class Signup extends Component {
 
@@ -24,11 +27,11 @@ class Signup extends Component {
       is_creator:false,
       data:[],
       showError:false,
-      redirect:null
+      redirect:null,
+      image_url:"/images/lhl-duck.png",
+      selectedFile:null
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.validate= this.validate.bind(this);
+    this.fileUpload = new photoUpload()
     this.Auth = new AuthService();
   }
 
@@ -149,14 +152,16 @@ validate = () => {
       email:this.state.email,
       password:this.state.password,
       password_confirmation:this.state.password_confirmation,
-      is_creator:this.state.is_creator
+      is_creator:this.state.is_creator,
+      image_url:this.state.image_url
     };
 
     axios.post(`http://localhost:3000/api/v1/users`, { user })
       .then(res => {
         this.Auth.login(this.state.email,this.state.password)
           .then(res =>{
-              this.setState({redirect: "/user/:username/profile"})
+            let user = decode(res.data.auth_token).user_id
+              this.setState({redirect: `/user/${user}/profile`})
             }).catch(err =>{
               console.log(err);
               })
@@ -164,6 +169,32 @@ validate = () => {
               console.log(err);
               })
     }
+  }
+
+
+  fileSelectHandler = (event) => {
+     this.setState({selectedFile:event.target.files[0]})
+  }
+
+  fileUploadHandler = () => {
+  let file = this.state.selectedFile
+  console.log(this.state.selectedFile)
+  console.log(file)
+  this.fileUpload.upload(file)
+    .then((res)=>{
+        let image = res.data.secure_url
+        this.setState({image_url:image})
+          axios.post("http://localhost:3000/api/v1/user",image)
+          .then((res)=>{
+            console.log(res)
+          })
+          .catch((err)=>{
+             console.log(err)
+          })
+    })
+    .catch((err)=>{
+       console.log(err)
+    })
   }
 
   componentDidMount() {
@@ -177,7 +208,20 @@ validate = () => {
    if(this.state.redirect){
     return (<Redirect push to={this.state.redirect}/>)
    }
+   const imgStyle ={
+        width:'100px',
+        height:'auto',
+      }
     let form = (
+    <div>
+    <div className="card">
+      <img src={this.state.image_url} style={imgStyle} id="img-preview" />
+      <label className="file-upload-container" htmlFor="file-upload">
+        Select an Image
+        <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
+        <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
+      </label>
+      </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="first name">First Name</label>
@@ -213,6 +257,7 @@ validate = () => {
           <button type="submit" className="btn btn-primary">Submit</button>
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
         </form>
+      </div>
     );
     return (
       <aside>

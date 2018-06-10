@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import Header from '../lp/Header.jsx';
 import Footer from '../lp/Footer.jsx';
-
+import AuthService from './AuthService';
+import withAuth from './withAuth'
 
 class CreateTrip extends Component {
   render(){
-    let form = (
+   let form = (
         <form>
           <p>Create a new trip.</p>
           <div className="form-group">
@@ -25,7 +26,7 @@ class CreateTrip extends Component {
     );
     return (
       <div className="form-page">
-        <Header />
+        <Header currentUser ={this.props.currentUser} handleLogout={this.props.handleLogout} />
           <section>
             {form}
           </section>
