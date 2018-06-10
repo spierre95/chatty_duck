@@ -60,3 +60,4 @@ if(localStorage.getItem("id_token") !== null){
 }
 
 export default App;
+      // exact strict render={()=><ChatRoom currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}

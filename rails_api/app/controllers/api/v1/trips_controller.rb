@@ -6,6 +6,12 @@ module Api::V1
       render json: @trips
     end
 
+
+    def show
+      @trip = Trip.find(params[:id])
+      render json: @trip.as_json.merge(users: @trip.users)
+    end
+
     def create
 
       @trip = Trip.new(trip_params)

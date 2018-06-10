@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import UpcomingEvent from './UpcomingEvent.jsx'
+import Countdown from './Countdown.jsx'
+import axios from 'axios';
 
 class TripInfo extends Component{
-  render(){
 
+
+  render(){
     return(
       <header>
         <p className="title">Group Name here</p>
@@ -17,8 +21,8 @@ class TripInfo extends Component{
             <ul><li>schedule bar will be here.</li></ul>
           </div>
           <div>
-            <p className="date"><span>10</span> days left</p>
-            <p>Upcoming:</p>
+            <p className="date"><span><Countdown trip={this.props.trip} /></span> days left</p>
+            <div className="upcoming"><UpcomingEvent currentUser={this.props.currentUser} trip={this.props.trip} /></div>
             <p>Concert 7pm - 9pm</p>
           </div>
         </div>

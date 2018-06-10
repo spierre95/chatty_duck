@@ -9,8 +9,8 @@ class Chat extends Component{
   render(){
     return(
       <div id="chat">
-        <TripInfo />
-        <MessageList />
+        <TripInfo currentUser={this.props.currentUser} trip={this.props.trip} />
+        <MessageList trip={this.props.trip} />
         <ChatBar />
       </div>
     )
