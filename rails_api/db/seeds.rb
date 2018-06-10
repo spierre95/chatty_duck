@@ -6,6 +6,11 @@ Location.destroy_all
 TripsUser.destroy_all
 ChatroomsUser.destroy_all
 
+puts "Creating chatrooms"
+3.times do Chatroom.create!({
+  name:Faker::GameOfThrones.city,
+})
+end
 
 puts 'Creating trips'
 3.times do Trip.create!({
@@ -13,22 +18,10 @@ puts 'Creating trips'
   departure:Faker::Date.between(Date.today, 5.days.from_now),
   arrival:Faker::Date.forward(22),
   details:Faker::Simpsons.quote,
-  image_url:Faker::Avatar.image
+  image_url:Faker::Avatar.image,
+  chatroom_id:Faker::Number.between(Chatroom.first.id, Chatroom.last.id)
 })
 end
-
-puts "Creating chatrooms"
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
-
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
-
-Chatroom.create!({
-  name:Faker::GameOfThrones.city
-})
 
 
 puts "Creating users not creator"

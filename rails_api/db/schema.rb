@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_10_190317) do
+ActiveRecord::Schema.define(version: 2018_06_10_212313) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.integer "trip_id"
-    t.index ["trip_id"], name: "index_chatrooms_on_trip_id"
   end
 
   create_table "chatrooms_users", id: false, force: :cascade do |t|
@@ -72,6 +70,8 @@ ActiveRecord::Schema.define(version: 2018_06_10_190317) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.text "details"
+    t.integer "chatroom_id"
+    t.index ["chatroom_id"], name: "index_trips_on_chatroom_id"
   end
 
   create_table "trips_users", id: false, force: :cascade do |t|

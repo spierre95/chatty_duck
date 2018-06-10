@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class ModalItinerary extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       day: 0,
-      duration: 0,
+      dates: [],
+      duration: null,
+      start_date: "",
+      end_date: "",
       dayBase: 1
     };
+
   }
 
   isClicked(id, e) {
@@ -151,10 +156,12 @@ class ModalItinerary extends Component {
   }
 
 
-//   tripLength = () => {
-//     this.setState({ duration: this.props.trip.arrival - this.props.trip.departure })
-//     console.log("state", this.state.duration)
-//   }
+  // tripLength = () => {
+  //   let a = Moment(this.state.start_date,'M/D/YYYY');
+  //   let b = Moment(this.state.end_date,'M/D/YYYY');
+  //   let diffDays = b.diff(a, 'days');
+  //   this.setState({ duration: diffDays })
+  // }
 
 //   findDates = () => {
 
@@ -162,19 +169,34 @@ class ModalItinerary extends Component {
 
 
 componentWillMount() {
-  debugger
+    let a = moment(this.state.arrival).format();
+    // let diffDays = b.diff(a, 'days');
+    console.log("a", a)
+    // console.log(diffDays)
+//   const dates = [];
+
+//   const theDates = this.props.events.map(event => {
+//     dates.push(event.date)
+//     this.setState({ dates: dates.sort() })
+//     console.log("state", this.state.dates)
+//   })
 }
+
+
+
+  componentWillReceiveProps(nextProps){
+  if(nextProps.trip !== undefined)
+    this.setState({
+      start_date: nextProps.trip.arrival,
+      end_date: nextProps.trip.departure,
+  })
+  console.log(this.state)
+  }
 
 
   render() {
 
-  const dates = [];
 
-  const theDates = this.props.events.map(event => {
-    console.log("event", event)
-    dates.push(event.date)
-    console.log(dates.sort())
-  })
 
   // const eachDay = getDates.forEach(day => {
   //   const theDay = this.day;
