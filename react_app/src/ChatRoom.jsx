@@ -3,6 +3,7 @@ import Channel from './chat/Channel.jsx';
 import Chat from './chat/Chat.jsx';
 import axios from 'axios';
 import ModalItinerary from './modal/ModalItinerary.jsx';
+import CreateEvent from './modal/ModalCreateEvent.jsx';
 
 class ChatRoom extends Component{
 
@@ -66,6 +67,8 @@ componentDidMount() {
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
+          <CreateEvent />
+          <ModalItinerary />
         </body>
     )
   }
