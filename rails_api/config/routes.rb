@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :locations, only: [:index, :create]
       resources :events, only: [:index, :create]
       resources :trips_user, only:[:show]
+      post "/addtotrip" => 'trips#add_to_trip'
       mount ActionCable.server => '/cable'
     end
   end

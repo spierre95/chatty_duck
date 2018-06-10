@@ -106,7 +106,7 @@ componentWillMount(){
         <section>
           {detail}
         </section>
-        <SelectTrip userTrips={this.state.trips} currentUser={this.props.currentUser} />
+        <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
         <Footer />
       </div>
     );
