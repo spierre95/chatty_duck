@@ -8,8 +8,9 @@ class TripInfo extends Component{
         <p className="title">Group Name here</p>
         <ul>
           <li>
-          <a href="#" data-toggle="modal" data-target="#itinerary"><i className="fa fa-calendar"></i></a></li>
-          <li><a href="#"><i className="fa fa-plus"></i></a></li>
+            <a href="#" data-toggle="modal" data-target="#itinerary"><i className="fa fa-calendar"></i></a></li>
+          <li>
+            <a href="#" data-toggle="modal" data-target="#event-form"><i className="fa fa-plus"></i></a></li>
         </ul>
         <div className="trip-details">
           <div className="schedule">
