@@ -114,8 +114,7 @@ class ModalItinerary extends Component {
           {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
           {time: '8:00pm', name: 'Show', details: 'at hotel' }
         ]
-      }
-    ;
+      };
     let output = [];
     let section = '';
     Object.keys(schedule).forEach(function(day) {
