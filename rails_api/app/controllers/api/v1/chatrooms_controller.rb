@@ -16,10 +16,16 @@ module Api::V1
       end
     end
 
+    def add_to_chatroom
+      @user = User.find(params[:user_id])
+      @chatroom = Chatroom.find(params[:chatroom_id])
+      @chatroom.users << @user
+    end
+
     private
 
     def chatroom_params
-      params.require(:chatroom).permite(:name)
+      params.require(:chatroom).permit(:name)
     end
 
   end
