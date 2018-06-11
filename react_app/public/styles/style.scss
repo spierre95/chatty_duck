@@ -11,7 +11,6 @@ $color_footer_bg:   #3d3d3d;
 $color_grey:        #f4f5f4;
 $color_grey_base:   #eeeeee;
 $color_grey_dark:   #a5a5a5;
-
 $color_purple:      #3e414e;
 
 $device_mobile:             '(max-width: 767px)';
@@ -680,15 +679,15 @@ footer {
             width: 14%;
             height: 50px;
             &.inactive {
-                cursor: auto;
+                cursor: default;
             }
             p {
                 &.inactive {
-                    cursor: auto;
+                    cursor: default;
                     opacity: 0.2;
                 }
                 &.inactive + span.point {
-                    cursor: auto;
+                    cursor: default;
                     opacity: 0.2;
                 }
             }
@@ -718,7 +717,6 @@ footer {
             }
         }
     }
-
 }
 
 // itinerary main section
@@ -813,8 +811,6 @@ footer {
     }
   }
 }
-
-
 /* ============================== chatroom itinerary slider ============================== */
 
 #itinerary-wrapper {
@@ -894,5 +890,3 @@ input[type="radio"] {
     -webkit-transform: translateX(calc(-100% / 7 * 6));
     transform: translateX(calc(-100% / 7 * 6));
 }
-
-

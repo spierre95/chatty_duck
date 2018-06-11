@@ -240,7 +240,6 @@ class ModalItinerary extends Component {
 
 // }
 
-
 componentWillMount() {
     //let a = moment(this.state.arrival).format();
     // let diffDays = b.diff(a, 'days');
@@ -255,8 +254,6 @@ componentWillMount() {
 //   })
 }
 
-
-
   componentWillReceiveProps(nextProps){
   if(nextProps.trip !== undefined)
     this.setState({
@@ -268,15 +265,10 @@ componentWillMount() {
 
 
   render() {
-
-
-
   // const eachDay = getDates.forEach(day => {
   //   const theDay = this.day;
   //   console.log(theDay)
   // })
-
-
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;
     const arrowPrev = (dayBase !== 1) ? (<p className="arrow prev" onClick={this.getPrevIndicatorSet}><i class="fa fa-chevron-left"></i></p>) : null;
