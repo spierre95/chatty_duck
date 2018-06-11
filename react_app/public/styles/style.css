@@ -497,8 +497,21 @@ footer {
   background-color: #fff;
   height: 50px;
   margin: 0 auto;
-  width: 90%;
+  position: relative;
+  width: 95%;
   /* ---- Timeline ---- */ }
+  #itinerary-top p {
+    color: #3d3d3d;
+    padding: 10px;
+    position: absolute;
+    top: -20px;
+    z-index: 10; }
+    #itinerary-top p.arrow.prev {
+      left: -30px; }
+    #itinerary-top p.arrow.next {
+      right: -30px; }
+    #itinerary-top p:hover {
+      cursor: pointer; }
   #itinerary-top ol {
     position: relative;
     display: block;

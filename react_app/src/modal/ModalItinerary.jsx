@@ -8,11 +8,21 @@ class ModalItinerary extends Component {
       duration: 0,
       dayBase: 1
     };
+    this.getNewIndicatorSet = this.getNewIndicatorSet.bind(this);
   }
 
   isClicked(id, e) {
     this.setState({
       day: id,
+    });
+  }
+
+  getNewIndicatorSet() {
+    const dayBase = this.state.dayBase;
+    const newDayBase = dayBase + 7;
+    console.log(newDayBase);
+    this.setState({
+      dayBase: newDayBase
     });
   }
 
@@ -117,6 +127,8 @@ class ModalItinerary extends Component {
       };
     let output = [];
     let section = '';
+    let duration = Object.keys(schedule).length; // 7
+
     Object.keys(schedule).forEach(function(day) {
       let dayNum = day.substr(3);
       //console.log(day, schedule[][day]);
@@ -132,7 +144,9 @@ class ModalItinerary extends Component {
             <div className="list__desc">
               <h3>{daySchedule[j].name}</h3>
               <div>{daySchedule[j].details}</div>
+              <div className="border"></div>
             </div>
+
           </div>
         );
       }
@@ -158,6 +172,8 @@ class ModalItinerary extends Component {
         <ol>
           {this.getSlideIndicator(dayBase)}
         </ol>
+        <p className="arrow prev"><i class="fa fa-chevron-left"></i></p>
+        <p className="arrow next" onClick={this.getNewIndicatorSet}><i class="fa fa-chevron-right"></i></p>
       </div>
     );
 
