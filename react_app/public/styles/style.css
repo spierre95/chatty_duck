@@ -534,9 +534,13 @@ footer {
       display: inline-block;
       width: 14%;
       height: 50px; }
+      #itinerary-top ol li.inactive {
+        cursor: auto; }
       #itinerary-top ol li p.inactive {
+        cursor: auto;
         opacity: 0.2; }
       #itinerary-top ol li p.inactive + span.point {
+        cursor: auto;
         opacity: 0.2; }
       #itinerary-top ol li .day-flag {
         color: #3e414e;

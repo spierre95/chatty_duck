@@ -679,11 +679,16 @@ footer {
             display: inline-block;
             width: 14%;
             height: 50px;
+            &.inactive {
+                cursor: auto;
+            }
             p {
                 &.inactive {
+                    cursor: auto;
                     opacity: 0.2;
                 }
                 &.inactive + span.point {
+                    cursor: auto;
                     opacity: 0.2;
                 }
             }
