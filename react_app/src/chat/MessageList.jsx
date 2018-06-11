@@ -11,8 +11,9 @@ class MessageList extends Component{
     super();
     this.state = {
       messages: [],
-      chatroom_id: 1
+      chatroom_id: 3,
     };
+    this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
   }
 
   handleReceivedMessage = response => {
@@ -24,21 +25,23 @@ class MessageList extends Component{
   }
 
   componentDidMount() {
-  axios.get('http://localhost:3000/api/v1/messages')
+
+  const { match: { params } } = this.props.props.props;
+
+  axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)
     .then(res => {
-      const messages = res.data;
-      this.setState({ messages });
+      const messages = res.data.messages;
+      this.setState({ messages: messages , chatroom_id: res.data.id });
     });
   }
 
 
 
   render(){
+    console.log("render state", this.state)
    const messageComponent = this.state.messages.map((message, index) => {
       return <li key={message.id}>{ message.content }</li>
    })
-
-   console.log(this.props.user_id)
     const main = (
             <div>
             <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />

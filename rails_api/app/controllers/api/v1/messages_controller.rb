@@ -17,6 +17,12 @@ module Api::V1
       end
     end
 
+    # def add_to_chatroom
+    #   @message = Message.find(params[:message_id])
+    #   @chatroom = Chatroom.find(params[:chatroom_id])
+    #   @chatroom.messages << @message
+    # end
+
     private
 
     def message_params

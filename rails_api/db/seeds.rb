@@ -61,7 +61,8 @@ puts "Creating messages"
 chatrooms = Chatroom.all
 chatrooms.each do |chatroom|
   12.times do chatroom.messages.create!({
-  content:Faker::Hipster.sentence(4)
+  content:Faker::Hipster.sentence(4),
+  user_id:Faker::Number.between(User.first.id, User.last.id)
   })
   end
 end

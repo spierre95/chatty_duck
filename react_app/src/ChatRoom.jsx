@@ -64,7 +64,7 @@ componentDidMount() {
         <body>
           <div id="chat-wrapper">
             <Channel currentUser={this.props.currentUser} />
-            <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
+            <Chat currentUser={this.props.currentUser} trip={this.state.trip} props={this.props} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
           <CreateEvent />

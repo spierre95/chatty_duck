@@ -3,11 +3,10 @@ import { API_ROOT, HEADERS } from '../constants';
 import axios from 'axios';
 
 class ChatBar extends Component{
-  constructor() {
-  super();
+  constructor(props) {
+  super(props);
   this.state = {
     content: '',
-    chatroom_id: 1
   };
 }
 
@@ -19,23 +18,23 @@ class ChatBar extends Component{
   handleSubmit = e => {
     e.preventDefault();
     console.log("Submitting")
-    const that = this;
-    axios.post(`${API_ROOT}/api/v1/messages`, that.state )
+    // const that = this;
+    axios.post(`http://localhost:3000/api/v1/addtochatroom`, {content: e.target.content.value , chatroom_id: this.props.trip.chatroom_id , user_id: this.props.currentUser.id } )
       .then(res => {
-      this.setState({ content: '' });
-      console.log(res.data);
+      console.log(res);
   });
 }
 
 
   render(){
-
+    // debugger
     const chatbar = (
         <div className="message">
           <form onSubmit={this.handleSubmit}>
             <input
               id="comment"
               type="text"
+              name="content"
               value={this.state.content}
               onChange={this.handleChange}
               placeholder="Type a message and hit ENTER"
