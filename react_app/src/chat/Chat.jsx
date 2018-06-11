@@ -11,7 +11,7 @@ class Chat extends Component{
       <div id="chat">
         <TripInfo currentUser={this.props.currentUser} trip={this.props.trip} />
         <MessageList trip={this.props.trip} />
-        <ChatBar />
+        <ChatBar trip={this.props.trip} />
       </div>
     )
   }

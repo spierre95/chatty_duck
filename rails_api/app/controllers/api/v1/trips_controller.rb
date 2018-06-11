@@ -9,7 +9,6 @@ module Api::V1
 
     def show
       @trip = Trip.find(params[:id])
-      @chatroom = Chatroom.find(params[:id])
       render json: @trip.as_json.merge(users: @trip.users)
     end
 
