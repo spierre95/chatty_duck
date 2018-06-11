@@ -33,8 +33,10 @@ render(){
       }
   )
   return (
-    <div>
-     <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+    <div className="container">
+      <div className="row">
+        <div className="col-xs-12 col-sm-12 col-md-12 col-ls-12">
+          <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}/>
         <ul>
         {filteredUsers.map((user)=>{
             return (
@@ -43,6 +45,8 @@ render(){
             </li>)
         })}
         </ul>
+        </div>
+      </div>
     </div>
 
   )

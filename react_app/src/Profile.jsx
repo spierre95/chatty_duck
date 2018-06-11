@@ -108,11 +108,13 @@ componentWillMount(){
     return (
       <div className="profile">
         <Header currentUser={this.props.currentUser} handleLogout={this.props.handleLogout} redirect={this.props.redirect}/>
-        <SearchProfiles props={this.props}/>
-        <section>
-          {detail}
-        </section>
-        <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
+        <main>
+          <SearchProfiles props={this.props}/>
+          <section>
+            {detail}
+          </section>
+          <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
+        </main>
         <Footer />
       </div>
     );
@@ -120,50 +122,4 @@ componentWillMount(){
 }
 
 export default withRouter(Profile);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
