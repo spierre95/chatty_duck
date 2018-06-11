@@ -15,10 +15,10 @@ class UpcomingEvent extends Component {
 
 
 
-componentDidMount(){
+// componentDidMount(){
 
 
-        }
+//         }
 
 render() {
 

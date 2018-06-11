@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 class ModalItinerary extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       day: 0,
       dates: [],
       duration: null,
-      start_date: "",
-      end_date: "",
+      trip: {},
+      events: [],
       dayBase: 1
     };
     this.getNewIndicatorSet = this.getNewIndicatorSet.bind(this);
@@ -169,52 +171,40 @@ class ModalItinerary extends Component {
   }
 
 
-  // tripLength = () => {
-  //   let a = Moment(this.state.start_date,'M/D/YYYY');
-  //   let b = Moment(this.state.end_date,'M/D/YYYY');
-  //   let diffDays = b.diff(a, 'days');
-  //   this.setState({ duration: diffDays })
-  // }
+  tripLength = () => {
+    let start = moment(this.state.start_date, "YYYY-MM-DD");
+    let end = moment(this.state.end_date, "YYYY-MM-DD");
 
-//   findDates = () => {
+    //Difference in number of days
+    return moment(start).diff(end, 'days');
+  }
 
-// }
+  eventDates = () => {
+    const theDays = [];
+    const loop = this.state.events.forEach((day) => {
+      theDays.push(day.date);
+      theDays.sort();
+      return theDays;
+    });
+  }
 
-
-componentWillMount() {
-    let a = moment(this.state.arrival).format();
-    // let diffDays = b.diff(a, 'days');
-    console.log("a", a)
-    // console.log(diffDays)
-//   const dates = [];
-
-//   const theDates = this.props.events.map(event => {
-//     dates.push(event.date)
-//     this.setState({ dates: dates.sort() })
-//     console.log("state", this.state.dates)
-//   })
-}
 
 
 
   componentWillReceiveProps(nextProps){
   if(nextProps.trip !== undefined)
-    this.setState({
-      start_date: nextProps.trip.arrival,
-      end_date: nextProps.trip.departure,
-  })
-  console.log(this.state)
+    this.setState({ trip: nextProps.trip, events: nextProps.trip.events } , ()=>{
+        console.log("state", this.state)
+      });
   }
+
+
+
 
 
   render() {
 
 
-
-  // const eachDay = getDates.forEach(day => {
-  //   const theDay = this.day;
-  //   console.log(theDay)
-  // })
 
 
     const dayBase = this.state.dayBase;

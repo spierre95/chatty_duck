@@ -11,7 +11,7 @@ constructor(props) {
   super(props);
   this.state = {
     trip: {},
-    events: []
+    events: [],
   }
 }
 
@@ -26,7 +26,7 @@ getInitialState() {
 
 
 componentDidMount() {
-
+// debugger
   // const self = this;
   //   self.interval = setInterval(function() {
   //     self.setState({
@@ -38,20 +38,22 @@ componentDidMount() {
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
-      this.setState({ trip : res.data })
+      this.setState({ trip : res.data,
+                      events: res.data.events
+       })
+      console.log("mount", this.stat)
     })
 
-    axios.post('http://localhost:3000/api/v1/events', {
-    trip_id: params.trip,
-    // user_id: params.username
-    })
-    .then(res => {
-      this.setState({ events: res.data })
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
+  //   axios.post('http://localhost:3000/api/v1/events', {
+  //   trip_id: params.trip,
+  //   // user_id: params.username
+  //   })
+  //   .then(res => {
+  //     this.setState({ events: res.data })
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //   });
   }
 
 
@@ -66,7 +68,7 @@ componentDidMount() {
             <Channel currentUser={this.props.currentUser} />
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
           </div>
-          <ModalItinerary events={this.state.events} trip={this.state.trip}/>
+          <ModalItinerary trip={this.state.trip} events={this.state.events} />
           <CreateEvent />
           <ModalItinerary />
         </body>

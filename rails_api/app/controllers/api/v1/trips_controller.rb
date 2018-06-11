@@ -8,8 +8,13 @@ module Api::V1
 
 
     def show
+      # @trip_locations = Trip.includes(:locations).find(params[:id])
+      #    @user_trips = User.includes(:trips).find(params[:id])
+      #    render json: @user_trips.as_json.merge(trips: @trip_locations.as_json.merge(locations: @trip_locations.locations))
+
       @trip = Trip.find(params[:id])
-      render json: @trip.as_json.merge(users: @trip.users)
+      @trip_events = Trip.includes(:events).find(params[:id])
+      render json: @trip.as_json.merge(events: @trip_events.events)
     end
 
     def create
