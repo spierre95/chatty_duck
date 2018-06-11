@@ -637,9 +637,26 @@ footer {
     background-color: #fff;
     height: 50px;
     margin: 0 auto;
-    width: 90%;
+    position: relative;
+    width: 95%;
 
     /* ---- Timeline ---- */
+    p {
+        color: $color_black;
+        padding: 10px;
+        position: absolute;
+        top: -20px;
+        z-index: 10;
+        &.arrow.prev {
+            left: -30px;
+        }
+        &.arrow.next{
+            right: -30px;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
     ol {
         position: relative;
         display: block;
