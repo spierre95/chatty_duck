@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 import LandingPage from './LandingPage.jsx';
 import Profile from './Profile.jsx';
 import CreateTrip from './forms/CreateTrip.jsx';
@@ -60,3 +60,4 @@ if(localStorage.getItem("id_token") !== null){
 }
 
 export default App;
+      // exact strict render={()=><ChatRoom currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}
