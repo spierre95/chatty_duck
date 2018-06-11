@@ -32,7 +32,7 @@ module Api::V1
     private
 
     def trip_params
-     params.require(:trip).permit(:name, :departure, :arrival)
+     params.require(:trip).permit(:name, :departure, :arrival,:image_url,:chatroom_id)
     end
 
   end

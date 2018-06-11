@@ -42,7 +42,7 @@ class Profile extends Component{
     .then((res)=>{
         let image_url = res.data.secure_url
         this.setState({profile:{image_url:image_url}})
-          axios.post(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}`,{image_url})
+          axios.post("http://localhost:3000/api/v1/update_image",{image_url:image_url,id:this.props.currentUser.id})
           .then((res)=>{
             console.log(res)
           })
@@ -72,16 +72,22 @@ componentWillMount(){
   }
 
   render(){
-      if(this.props.redirect){
+  if(this.props.redirect){
     return (<Redirect push to={this.props.redirect}/>)
    }
+
+   const imgStyle ={
+        width:'250px',
+        height:'auto',
+      }
+
     let detail = (
         <div className="container">
           <div className="row">
               <h1>Your Profile</h1>
               <div className="col-xs-2 col-sm-2 col-md-3 col-ls-3">
               <div className="card">
-                <img src={this.state.profile.image_url} id="img-preview" />
+                <img src={this.state.profile.image_url} id="img-preview" style={imgStyle} />
                 <label className="file-upload-container" htmlFor="file-upload">
                   Select an Image
                   <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
