@@ -20,7 +20,7 @@ class ChatBar extends Component{
     e.preventDefault();
     console.log("Submitting")
     const that = this;
-    axios.post(`${API_ROOT}/api/v1/chatrooms`, that.state )
+    axios.post(`${API_ROOT}/api/v1/messages`, that.state )
       .then(res => {
       this.setState({ content: '' });
       console.log(res.data);
