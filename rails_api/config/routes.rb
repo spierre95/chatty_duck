@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :chatrooms, only: [:index, :create]
       resources :trips, only: [:index, :create, :show]
       post "/events" => "events#list_of_events"
+      post "/events/create" => "events#create_event"
       resources :locations, only: [:index, :create]
       # resources :events, only: [:index, :create, :show]
       resources :trips_user, only:[:show]

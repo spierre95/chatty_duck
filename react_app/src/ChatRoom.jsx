@@ -109,8 +109,7 @@ this.setState({schedule})
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
-          <CreateEvent />
-          <ModalItinerary />
+          <CreateEvent currentUser={this.props.currentUser} trip={this.state.trip}/>
         </body>
     )
   }
