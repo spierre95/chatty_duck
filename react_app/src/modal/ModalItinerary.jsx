@@ -6,100 +6,8 @@ class ModalItinerary extends Component {
     super(props);
     this.state = {
       day: 0,
-      dates: [],
-      duration: null,
-      start_date: "",
-      end_date: "",
       dayBase: 1,
-      schedule: {
-        day1: [
-          {time: '6:00am', name: 'Departing Flight', details: 'Air Canada 2000 Gate:E3 <br />Boarding: 5:30 am Destination: Milano, Italy' },
-          {time: '8:00am', name: 'Arriving Airport', details: 'To city by a bus' },
-          {time: '2:00pm', name: 'The Savoy', details: 'Hotel check-in' },
-          {time: '7:00pm', name: 'Events', details: 'Show at Motley Crue American Airlines Arena' },
-          {time: '8:00pm', name: 'Hotel', details: 'Lorem ipsum dolor sit amet, diceret blandit cu mei.' }
-        ],
-        day2: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Gallery', details: 'Find out Galleria Bianconi' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Explore the city' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day3: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 3', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Explore the city' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day4: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 4', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day5: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 5', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Explore the city' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' }
-        ],
-        day6: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 6', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Explore the city' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day7: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 7', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day8: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 7', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day9: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 7', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day10: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 7', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ],
-        day11: [
-          {time: '8:00am', name: 'Breakfast', details: 'At hotel' },
-          {time: '10:00am', name: 'Day 7', details: 'Activities' },
-          {time: '12:30pm', name: 'Lunch', details: 'At local restaurant' },
-          {time: '2:00pm', name: 'City Half Day Tour', details: 'Ei justo mollis sit. His feugiat pertinacia eu, porro rationibus vis eu. Eum facer commune adversarium ei. Mel ei harum audiam aeterno, pro ne mazim expetenda philosophia.' },
-          {time: '6:00pm', name: 'Dinner', details: 'at ABC restaurant' },
-          {time: '8:00pm', name: 'Show', details: 'at hotel' }
-        ]
-      }
+      schedule:{}
     };
     this.getNewIndicatorSet = this.getNewIndicatorSet.bind(this);
     this.getPrevIndicatorSet = this.getPrevIndicatorSet.bind(this);
@@ -228,47 +136,51 @@ class ModalItinerary extends Component {
   return output;
   }
 
+componentWillReceiveProps(nextProps){
+if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
 
-  // tripLength = () => {
-  //   let a = Moment(this.state.start_date,'M/D/YYYY');
-  //   let b = Moment(this.state.end_date,'M/D/YYYY');
-  //   let diffDays = b.diff(a, 'days');
-  //   this.setState({ duration: diffDays })
-  // }
+let departure = moment(nextProps.trip.depature).format("YYYY-MM-DD")
+let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
 
-//   findDates = () => {
+function enumerateDaysBetweenDates(startDate, endDate) {
+    startDate = moment(startDate);
+    endDate = moment(endDate);
 
-// }
+    var now = startDate, dates = [];
 
-componentWillMount() {
-    //let a = moment(this.state.arrival).format();
-    // let diffDays = b.diff(a, 'days');
-    //console.log("a", a)
-    // console.log(diffDays)
-//   const dates = [];
 
-//   const theDates = this.props.events.map(event => {
-//     dates.push(event.date)
-//     this.setState({ dates: dates.sort() })
-//     console.log("state", this.state.dates)
-//   })
+    while (now.isBefore(endDate) || now.isSame(endDate)) {
+        dates.push(now.format('YYYY-MM-DD'));
+        now.add(1, 'days');
+    }
+    return dates;
+};
+
+let dates = (enumerateDaysBetweenDates(departure,arrival))
+
+let schedule = {}
+
+for (let day of dates ){
+  schedule[day] = []
 }
 
-  componentWillReceiveProps(nextProps){
-  if(nextProps.trip !== undefined)
-    this.setState({
-      start_date: nextProps.trip.arrival,
-      end_date: nextProps.trip.departure,
-  })
-  console.log(this.state)
-  }
+let datesArr = Object.keys(schedule)
 
+nextProps.events.forEach((event)=>{
+  for(let day of datesArr){
+    if(event.date === day){
+      schedule[event.date].push(event)
+    }
+  }
+})
+
+this.setState({schedule})
+
+}
+}
 
   render() {
-  // const eachDay = getDates.forEach(day => {
-  //   const theDay = this.day;
-  //   console.log(theDay)
-  // })
+
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;
     const arrowPrev = (dayBase !== 1) ? (<p className="arrow prev" onClick={this.getPrevIndicatorSet}><i class="fa fa-chevron-left"></i></p>) : null;
