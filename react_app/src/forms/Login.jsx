@@ -14,7 +14,7 @@ constructor(props){
       passwordError:"",
       error:"",
       showError:false,
-      redirect:null
+      redirect:""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -42,9 +42,9 @@ e.preventDefault()
 }
 
   render(){
-     if(this.state.redirect){
+  if(this.state.redirect){
     return (<Redirect push to={this.state.redirect}/>)
-   }
+  }
     let form = (
         <form onSubmit={this.handleSubmit}>
          <p>{this.state.showError ? this.state.error : null }</p>

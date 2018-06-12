@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       resources :locations, only: [:index, :create]
       # resources :events, only: [:index, :create, :show]
       resources :trips_user, only:[:show]
-      post "/addtotrip" => 'trips#add_to_trip'
+      post "/add_to_trip" => 'trips#add_to_trip'
+      post "/update_image" => 'users#update_image'
       mount ActionCable.server => '/cable'
     end
   end

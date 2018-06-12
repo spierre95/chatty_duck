@@ -10,6 +10,7 @@ class SelectTrip extends Component{
   super()
     this.state = {
       trip_id:"",
+      trips:[]
     }
      this.handleSubmit = this.handleSubmit.bind(this)
 
@@ -18,7 +19,7 @@ class SelectTrip extends Component{
 handleSubmit(event){
   event.preventDefault()
 
-  axios.post("http://localhost:3000/api/v1/addtotrip",{user_id:this.state.user_id,
+  axios.post("http://localhost:3000/api/v1/add_to_trip",{user_id:this.state.user_id,
   trip_id:event.target.trip.value})
   .then((res)=>{
     console.log(res)
@@ -31,11 +32,21 @@ handleSubmit(event){
  componentWillReceiveProps(nextProps){
     if(this.props !== nextProps)
     this.setState({user_id: nextProps.currentUser.id} , ()=>{
-    console.log(this.state.user_id);
 });
 }
 
+ componentDidMount() {
+
+    axios.get(`http://localhost:3000/api/v1/trips`)
+      .then(res => {
+        const trips = res.data;
+        this.setState({ trips })
+    })
+}
+
 render(){
+
+let nextTrip = (this.state.trips.length + 1)
 
 let DisplayTrip = this.props.userTrips.map(trip => {
                 if (this.props.currentUser.id === this.props.profile.id){
@@ -68,7 +79,7 @@ let DisplayTrip = this.props.userTrips.map(trip => {
         <div className="container">
           <div className="row">
               <h2>Select your trip</h2>
-              <Link to="/user/:username/create"><i className="fa fa-plus"></i>&nbsp;&nbsp;Create Trip</Link>
+              <Link to={`/user/${this.props.currentUser.id}/create/${nextTrip}`}><i className="fa fa-plus"></i>&nbsp;&nbsp;Create Trip</Link>
               <ul className="thumbs row">
                 {DisplayTrip}
               </ul>

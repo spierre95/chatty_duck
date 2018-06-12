@@ -534,9 +534,13 @@ footer {
       display: inline-block;
       width: 14%;
       height: 50px; }
+      #itinerary-top ol li.inactive {
+        cursor: default; }
       #itinerary-top ol li p.inactive {
+        cursor: default;
         opacity: 0.2; }
       #itinerary-top ol li p.inactive + span.point {
+        cursor: default;
         opacity: 0.2; }
       #itinerary-top ol li .day-flag {
         color: #3e414e;
@@ -708,7 +712,5 @@ input[type="radio"] {
 #switch7:checked ~ #slideshow .slideContents {
   -webkit-transform: translateX(calc(-100% / 7 * 6));
   transform: translateX(calc(-100% / 7 * 6)); }
-
-/* :::::: arrows mechanism :::::: */
 
 /*# sourceMappingURL=style.css.map */

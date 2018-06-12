@@ -3,23 +3,108 @@ import Header from '../lp/Header.jsx';
 import Footer from '../lp/Footer.jsx';
 import AuthService from './AuthService';
 import withAuth from './withAuth'
+import photoUpload from '../photoUpload';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class CreateTrip extends Component {
+
+constructor(){
+  super()
+  this.state = {
+    image_url:"/images/group-of-ducks.jpg",
+    name:"",
+    departure:"",
+    arrival:"",
+    selectedFile:"",
+    redirect:null
+  }
+  this.fileUpload = new photoUpload()
+  this.fileSelectHandler = this.fileSelectHandler.bind(this)
+  this.fileUploadHandler = this.fileUploadHandler.bind(this)
+  this.handleSubmit = this.handleSubmit.bind(this)
+}
+
+fileSelectHandler = (event) => {
+     this.setState({selectedFile:event.target.files[0]})
+  }
+
+  fileUploadHandler = () => {
+  let file = this.state.selectedFile
+  console.log(this.state.selectedFile)
+  console.log(file)
+  this.fileUpload.upload(file)
+    .then((res)=>{
+        let image_url = res.data.secure_url
+        this.setState({image_url:image_url})
+    })
+    .catch((err)=>{
+       console.log(err)
+    })
+  }
+
+  handleSubmit(event){
+    event.preventDefault()
+
+    const {match:{params}} = this.props
+
+    const trip = {
+      name:event.target.name.value,
+      departure:event.target.departure.value,
+      arrival:event.target.departure.value,
+      image_url:this.state.image_url,
+      chatroom_id:params.trip
+    }
+
+    axios.post("http://localhost:3000/api/v1/trips",{trip})
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    .then((res)=>{
+      axios.post("http://localhost:3000/api/v1/add_to_trip",{trip_id:params.trip,user_id:params.username})
+        .then((res)=>{
+          console.log(res)
+          this.setState({redirect:`/user/${params.username}/trips/${params.trip}`})
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+    })
+  }
+
   render(){
+  const imgStyle ={
+    width:'250px',
+    height:'auto',
+  }
+  if(this.state.redirect){
+    return (<Redirect push to={this.state.redirect}/>)
+  }
    let form = (
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <p>Create a new trip.</p>
+          <div className="card">
+                <img src={this.state.image_url} id="img-preview" style={imgStyle} />
+                <label className="file-upload-container" htmlFor="file-upload">
+                  Select an Image
+                  <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
+                  <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
+                </label>
+          </div>
           <div className="form-group">
             <label htmlFor="trip name">TripName</label>
-            <input type="text" className="form-control" id="trip-name" placeholder="Enter trip name" />
+            <input type="text" name="name" className="form-control" id="trip-name" placeholder="Enter trip name" />
           </div>
           <div className="form-group">
             <label htmlFor="start date">Start Date</label>
-            <input type="date" className="form-control" id="start-name" placeholder="yyyy-mm-dd" />
+            <input type="date" name="departure"className="form-control" id="start-name" placeholder="yyyy-mm-dd" />
           </div>
           <div className="form-group">
             <label htmlFor="end date">End Date</label>
-            <input type="date" className="form-control" id="end-date" placeholder="yyyy-mm-dd" />
+            <input type="date" name="arrival"className="form-control" id="end-date" placeholder="yyyy-mm-dd" />
           </div>
           <button type="submit" className="btn btn-primary">Create</button>
         </form>
