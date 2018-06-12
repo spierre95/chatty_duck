@@ -51,8 +51,8 @@ if(localStorage.getItem("id_token") !== null){
         <div>
           <Route path="/" exact strict render={()=><LandingPage currentUser={this.state.currentUser} handleLogout={this.handleLogout}/>}/>
           <Route path="/user/:id/profile" exact strict render={(props)=>(<Profile  {...props}   currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect} userTrips={this.state.userTrips} />)}/>
-          <Route path="/user/:username/create/:trip" exact strict render={(props)=><CreateTrip {...props} currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
           <Route path="/user/:username/trips/:trip" exact strict render={(props)=>(<ChatRoom  {...props}   currentUser={this.state.currentUser} />)} />
+          <Route path="/user/:username/create/:trip" exact strict render={(props)=><CreateTrip {...props} currentUser={this.state.currentUser} handleLogout={this.handleLogout} redirect={this.state.redirect}/>}/>
         </div>
       </Router>
     );

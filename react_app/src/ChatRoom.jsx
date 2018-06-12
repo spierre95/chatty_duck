@@ -106,7 +106,7 @@ this.setState({schedule})
         <body>
           <div id="chat-wrapper">
             <Channel currentUser={this.props.currentUser} />
-            <Chat currentUser={this.props.currentUser} trip={this.state.trip} />
+            <Chat currentUser={this.props.currentUser} trip={this.state.trip} props={this.props} chatroom_id={this.props.match.params.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
           <CreateEvent currentUser={this.props.currentUser} trip={this.state.trip}/>
