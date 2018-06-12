@@ -11,8 +11,9 @@ class MessageList extends Component{
     super();
     this.state = {
       messages: [],
-      // trip: this.props.trip
+      chatroom_id: null,
     };
+    this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
   }
 
   handleReceivedMessage = response => {
@@ -23,11 +24,13 @@ class MessageList extends Component{
     })
   }
 
-  componentDidMount() {
-  axios.get('http://localhost:3000/api/v1/messages')
+  componentWillMount() {
+    const { match: { params } } = this.props.props.props;
+    const that = this;
+    axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)
     .then(res => {
-      const messages = res.data;
-      this.setState({ messages });
+      const messages = res.data.messages;
+      that.setState({ messages: messages , chatroom_id: res.data.id });
     });
   }
 
@@ -37,11 +40,9 @@ class MessageList extends Component{
    const messageComponent = this.state.messages.map((message, index) => {
       return <li key={message.id}>{ message.content }</li>
    })
-
-   console.log(this.props.user_id)
-    const main = (
+    let main = (
             <div>
-            <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.trip }} onReceived={this.handleReceivedMessage} />
+            <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
                 <li className="thumb">
                   <img src="/images/lhl-duck.png" />
@@ -54,6 +55,12 @@ class MessageList extends Component{
               </ul>
             </div>
     );
+
+    if(this.state.chatroom_id === null){
+
+      main = <div>asdasdasdds</div>
+    }
+
     return(
       <main>
         {main}

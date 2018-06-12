@@ -5,6 +5,11 @@ module Api::V1
       render json: @chatrooms
     end
 
+    def show
+      @chatroom = Chatroom.find(params[:id])
+      render json: @chatroom
+    end
+
     def create
       chatroom = Chatroom.new(chatroom_params)
       if chatroom.save
@@ -17,9 +22,11 @@ module Api::V1
     end
 
     def add_to_chatroom
+      puts params
       @user = User.find(params[:user_id])
       @chatroom = Chatroom.find(params[:chatroom_id])
-      @chatroom.users << @user
+      @chatroom.messages.new(content:params[:content], user_id:@user.id)
+      @chatroom.save
     end
 
     private
