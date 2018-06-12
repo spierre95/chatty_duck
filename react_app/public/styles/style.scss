@@ -11,7 +11,6 @@ $color_footer_bg:   #3d3d3d;
 $color_grey:        #f4f5f4;
 $color_grey_base:   #eeeeee;
 $color_grey_dark:   #a5a5a5;
-
 $color_purple:      #3e414e;
 
 $device_mobile:             '(max-width: 767px)';
@@ -679,11 +678,16 @@ footer {
             display: inline-block;
             width: 14%;
             height: 50px;
+            &.inactive {
+                cursor: default;
+            }
             p {
                 &.inactive {
+                    cursor: default;
                     opacity: 0.2;
                 }
                 &.inactive + span.point {
+                    cursor: default;
                     opacity: 0.2;
                 }
             }
@@ -713,7 +717,6 @@ footer {
             }
         }
     }
-
 }
 
 // itinerary main section
@@ -808,8 +811,6 @@ footer {
     }
   }
 }
-
-
 /* ============================== chatroom itinerary slider ============================== */
 
 #itinerary-wrapper {
@@ -889,75 +890,3 @@ input[type="radio"] {
     -webkit-transform: translateX(calc(-100% / 7 * 6));
     transform: translateX(calc(-100% / 7 * 6));
 }
-// /* :::::: arrows :::::: */
-// .arrow,
-// .arrow label,
-// .arrow .ico {
-//     position: absolute;
-// }
-// .arrow {
-//     top: 0;
-//     margin: 0;
-//     transition: background .3s;
-// }
-// .prev { left: 0; }
-// .next { right: 0; }
-// .arrow:hover {
-//     background: rgba(255,255,255,.2);
-// }
-// .arrow,
-// .arrow label {
-//     cursor: pointer;
-//     width: 50px;
-//     height: 100%;
-// }
-// .arrow label {
-//     top: 0;
-//     left: 0;
-//     z-index: 1;
-// }
-// .arrow .ico {
-//     top: 50%;
-//     width: 12px;
-//     height: 12px;
-//     margin-top: -6px;
-//     border-top: 3px solid #fff;
-//     border-right: 3px solid #fff;
-//     opacity: 0;
-//     transition: right .6s, left .6s, opacity .6s;
-// }
-// .arrow:hover .ico {
-//     opacity: .6;
-//     transition-duration: .3s;
-// }
-// .prev .ico {
-//     left: 60%;
-//     -webkit-transform: rotate(-135deg);
-//     transform: rotate(-135deg);
-// }
-// .next .ico {
-//     right: 60%;
-//     -webkit-transform: rotate(45deg);
-//     transform: rotate(45deg);
-// }
-// .prev:hover .ico { left: 30%; }
-// .next:hover .ico { right: 30%; }
-/* :::::: arrows mechanism :::::: */
-// .arrow label {
-//     pointer-events: none;
-// }
-// #switch1:checked ~ #slideshow .prev label[for="switch5"],
-// #switch2:checked ~ #slideshow .prev label[for="switch1"],
-// #switch3:checked ~ #slideshow .prev label[for="switch2"],
-// #switch4:checked ~ #slideshow .prev label[for="switch3"],
-// #switch5:checked ~ #slideshow .prev label[for="switch4"],
-// #switch1:checked ~ #slideshow .next label[for="switch2"],
-// #switch2:checked ~ #slideshow .next label[for="switch3"],
-// #switch3:checked ~ #slideshow .next label[for="switch4"],
-// #switch4:checked ~ #slideshow .next label[for="switch5"],
-// #switch5:checked ~ #slideshow .next label[for="switch1"] {
-//     pointer-events: auto;
-// }
-
-
-
