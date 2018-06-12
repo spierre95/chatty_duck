@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import moment from 'moment';
+import moment from 'moment';
 
 class ModalItinerary extends Component {
   constructor(props) {
@@ -11,9 +11,15 @@ class ModalItinerary extends Component {
     };
     this.getNewIndicatorSet = this.getNewIndicatorSet.bind(this);
     this.getPrevIndicatorSet = this.getPrevIndicatorSet.bind(this);
+    this.isClicked = this.isClicked.bind(this);
+    this.getSlideIndicator = this.getSlideIndicator.bind(this);
+    this.getItineraryRadio = this.getItineraryRadio.bind(this);
+    this.getSchedule = this.getSchedule.bind(this);
+
   }
 
   isClicked(id, e) {
+    console.log('clicked!!!!!')
     this.setState({
       day: id,
     });
@@ -37,6 +43,7 @@ class ModalItinerary extends Component {
 
   getSlideIndicator(dayBase, active) { console.log('ACTIVE:::', active);
     let indicator = [];
+    console.log(dayBase, 'inside of get slide')
       for (let i = 0; i < 7; i++) {
           if (i != 0 && i <= active) {
             indicator.push(
@@ -61,6 +68,7 @@ class ModalItinerary extends Component {
             );
           }
       }
+      console.log(indicator, 'indicator')
       return indicator;
   }
 
@@ -77,6 +85,7 @@ class ModalItinerary extends Component {
         );
       }
     }
+    console.log(radio, 'radio')
     return radio;
   }
 
@@ -87,8 +96,10 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const obj = this.state.schedule;
 
-    Object.keys(obj).forEach(function(day) {
-      let dayNum = day.substr(3);
+
+    Object.keys(obj).forEach(function(day,index) {
+      let dayNum = (index + 1)
+
       let daySchedule = obj[day];
       let sectionChildren = [];
       let maxLength = ((tripLength - dayBase) / 7 >= 1) ? dayBase + 6 : (tripLength - dayBase) + dayBase;
@@ -96,7 +107,7 @@ class ModalItinerary extends Component {
       for (let j = 0; j < daySchedule.length; j++) {
         sectionChildren.push(
           <div className="list__item">
-            <div className="list__time">{daySchedule[j].time}</div>
+            <div className="list__time">{daySchedule[j].start_time}</div>
             <div className="list__border"></div>
             <div className="list__desc">
               <h3>{daySchedule[j].name}</h3>
@@ -105,15 +116,16 @@ class ModalItinerary extends Component {
             </div>
           </div>
         );
+
       }
+
       section = (
             <section id={'slide'+(dayNum)}>
-              <div className="list" id={day}>
+              <div className="list" id={'day'+ dayNum}>
                 <p className="title">{'Day ' + dayNum}</p>
                  {sectionChildren}
               </div>
             </section>);
-
       if (dayBase === 1) {
         if (dayNum >= 1 && dayNum <= 7) {
           output.push(section);
@@ -179,7 +191,15 @@ this.setState({schedule})
 }
 }
 
+
+  shouldComponentUpdate(nextProps, nextState) {
+  return this.state.schedule !== nextState.schedule
+}
+
+
   render() {
+
+    console.log(this.state.schedule)
 
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;
