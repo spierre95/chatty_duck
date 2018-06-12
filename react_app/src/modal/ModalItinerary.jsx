@@ -193,7 +193,7 @@ this.setState({schedule})
 
 
   shouldComponentUpdate(nextProps, nextState) {
-  return this.state.schedule !== nextState.schedule
+  return this.state !== nextState
 }
 
 
