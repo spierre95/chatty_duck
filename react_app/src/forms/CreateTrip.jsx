@@ -91,7 +91,7 @@ fileSelectHandler = (event) => {
                 <label className="file-upload-container" htmlFor="file-upload">
                   Select an Image
                   <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
-                  <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
+                  <button type="button"className ="btn btn-secondary" onClick={this.fileUploadHandler}>Upload</button>
                 </label>
           </div>
           <div className="form-group">

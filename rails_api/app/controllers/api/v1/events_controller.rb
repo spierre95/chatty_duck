@@ -1,10 +1,10 @@
 module Api::V1
   class EventsController < ActionController::API
 
-    def index
-      @events = Event.all
-      render json: @events
-    end
+    # def index
+    #   @events = Event.all
+    #   render json: @events
+    # end
 
     def show
       @event_id = Event.all.find(params[:id])
@@ -31,10 +31,17 @@ module Api::V1
       end
     end
 
+    def create_event
+     @event =  Event.new(event_params)
+     @event.save
+    end
+
+
+
     private
 
     def event_params
-     params.require(:event).permit(:name, :date, :start_time, :end_time, :image_url)
+     params.require(:event).permit(:name,:date,:start_time,:end_time,:trip_id,:user_id)
     end
 
 
