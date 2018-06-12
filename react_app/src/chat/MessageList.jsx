@@ -11,7 +11,7 @@ class MessageList extends Component{
     super();
     this.state = {
       messages: [],
-      chatroom_id: 3,
+      chatroom_id: null,
     };
     this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
   }
@@ -24,25 +24,23 @@ class MessageList extends Component{
     })
   }
 
-  componentDidMount() {
-
-  const { match: { params } } = this.props.props.props;
-
-  axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)
+  componentWillMount() {
+    const { match: { params } } = this.props.props.props;
+    const that = this;
+    axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)
     .then(res => {
       const messages = res.data.messages;
-      this.setState({ messages: messages , chatroom_id: res.data.id });
+      that.setState({ messages: messages , chatroom_id: res.data.id });
     });
   }
 
 
 
   render(){
-    console.log("render state", this.state)
    const messageComponent = this.state.messages.map((message, index) => {
       return <li key={message.id}>{ message.content }</li>
    })
-    const main = (
+    let main = (
             <div>
             <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
               <ul className="message-wrapper">
@@ -57,6 +55,12 @@ class MessageList extends Component{
               </ul>
             </div>
     );
+
+    if(this.state.chatroom_id === null){
+
+      main = <div>asdasdasdds</div>
+    }
+
     return(
       <main>
         {main}

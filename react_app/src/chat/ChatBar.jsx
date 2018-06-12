@@ -18,16 +18,20 @@ class ChatBar extends Component{
   handleSubmit = e => {
     e.preventDefault();
     console.log("Submitting")
-    // const that = this;
-    axios.post(`http://localhost:3000/api/v1/addtochatroom`, {content: e.target.content.value , chatroom_id: this.props.trip.chatroom_id , user_id: this.props.currentUser.id } )
-      .then(res => {
-      console.log(res);
-  });
+    const that = this;
+    if( parseInt(this.props.chatroom_id) === parseInt(this.props.trip.chatroom_id)){
+      axios.post(`http://localhost:3000/api/v1/messages`, {content: e.target.content.value , chatroom_id: that.props.trip.chatroom_id , user_id: that.props.currentUser.id } )
+        .then(res => {
+        console.log(res);
+        this.setState({content: ''})
+      });
+    }else{
+      alert("Sorry, you are not apart of this Trip");
+    }
 }
 
 
   render(){
-    // debugger
     const chatbar = (
         <div className="message">
           <form onSubmit={this.handleSubmit}>

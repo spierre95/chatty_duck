@@ -1,8 +1,6 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
-    # binding.pry
-    puts "params #{params}"
-    chatroom = Chatroom.find(params[:room])
+    chatroom = Chatroom.find(params['room'])
     stream_for chatroom
   end
 
