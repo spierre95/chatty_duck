@@ -6,6 +6,7 @@ module Api::V1
     end
 
     def create
+      puts "message params #{message_params}"
       @chatroom = Chatroom.find(message_params[:chatroom_id])
       @chatroom.messages.new(message_params)
       if @chatroom.save
