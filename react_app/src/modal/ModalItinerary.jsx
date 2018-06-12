@@ -7,10 +7,8 @@ class ModalItinerary extends Component {
     this.state = {
       day: 0,
       dates: [],
-      duration: null,
-      start_date: "",
-      end_date: "",
-      dayBase: 1
+      dayBase: 1,
+      schedule:{}
     };
     this.getNewIndicatorSet = this.getNewIndicatorSet.bind(this);
   }
@@ -24,7 +22,7 @@ class ModalItinerary extends Component {
   getNewIndicatorSet() {
     const dayBase = this.state.dayBase;
     const newDayBase = dayBase + 7;
-    console.log(newDayBase);
+    // console.log(newDayBase);
     this.setState({
       dayBase: newDayBase
     });
@@ -168,54 +166,53 @@ class ModalItinerary extends Component {
   return output;
   }
 
+componentWillReceiveProps(nextProps){
+if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
 
-  // tripLength = () => {
-  //   let a = Moment(this.state.start_date,'M/D/YYYY');
-  //   let b = Moment(this.state.end_date,'M/D/YYYY');
-  //   let diffDays = b.diff(a, 'days');
-  //   this.setState({ duration: diffDays })
-  // }
+let departure = moment(nextProps.trip.depature).format("YYYY-MM-DD")
+let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
 
-//   findDates = () => {
+function enumerateDaysBetweenDates(startDate, endDate) {
+    startDate = moment(startDate);
+    endDate = moment(endDate);
 
-// }
+    var now = startDate, dates = [];
 
+    while (now.isBefore(endDate) || now.isSame(endDate)) {
+        dates.push(now.format('YYYY-MM-DD'));
+        now.add(1, 'days');
+    }
+    return dates;
+};
 
-componentWillMount() {
-    let a = moment(this.state.arrival).format();
-    // let diffDays = b.diff(a, 'days');
-    console.log("a", a)
-    // console.log(diffDays)
-//   const dates = [];
+let dates = (enumerateDaysBetweenDates(departure,arrival))
 
-//   const theDates = this.props.events.map(event => {
-//     dates.push(event.date)
-//     this.setState({ dates: dates.sort() })
-//     console.log("state", this.state.dates)
-//   })
+let schedule = {}
+
+for (let day of dates ){
+  schedule[day] = []
 }
-
-
-
-  componentWillReceiveProps(nextProps){
-  if(nextProps.trip !== undefined)
-    this.setState({
-      start_date: nextProps.trip.arrival,
-      end_date: nextProps.trip.departure,
+  nextProps.events.map((event)=>{
+    event.date = moment(event.date).format("YYYY-MM-DD")
+    event.start_time = moment(event.start_time).format("HH")
   })
-  console.log(this.state)
+
+let datesArr = Object.keys(schedule)
+
+nextProps.events.forEach((event)=>{
+  for(let day of datesArr){
+    if(event.date === day){
+      schedule[event.date].push(event)
+    }
+  }
+})
+
+this.setState({schedule})
+
+    }
   }
 
-
   render() {
-
-
-
-  // const eachDay = getDates.forEach(day => {
-  //   const theDay = this.day;
-  //   console.log(theDay)
-  // })
-
 
     const dayBase = this.state.dayBase;
 
