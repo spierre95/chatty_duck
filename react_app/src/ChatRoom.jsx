@@ -5,6 +5,7 @@ import axios from 'axios';
 import ModalItinerary from './modal/ModalItinerary.jsx';
 import CreateEvent from './modal/ModalCreateEvent.jsx';
 import moment from 'moment'
+import {Link,Redirect,withRouter} from 'react-router-dom';
 
 class ChatRoom extends Component{
 
@@ -13,7 +14,8 @@ constructor(props) {
   this.state = {
     trip: {},
     events: [],
-    schedule:{}
+    schedule:{},
+    users: []
   }
 }
 
@@ -40,7 +42,7 @@ componentDidMount() {
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
-      this.setState({ trip : res.data })
+      this.setState({ trip : res.data, users: res.data.users })
     })
 
     axios.post('http://localhost:3000/api/v1/events', {
@@ -55,6 +57,8 @@ componentDidMount() {
     });
 
   }
+
+
 
 setSchedule(){
 
@@ -102,10 +106,11 @@ this.setState({schedule})
 
 
   render(){
+
     return(
         <body>
           <div id="chat-wrapper">
-            <Channel currentUser={this.props.currentUser} trip={this.state.trip} />
+            <Channel currentUser={this.props.currentUser} users={this.state.users} />
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} props={this.props} chatroom_id={this.props.match.params.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
@@ -114,4 +119,4 @@ this.setState({schedule})
     )
   }
 }
-export default ChatRoom;
+export default withRouter(ChatRoom);
