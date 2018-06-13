@@ -28,7 +28,7 @@ getInitialState() {
 handleSubmit(e){
 
     e.preventDefault()
-    console.log(this.props)
+    console.log(this.state.trip.id)
 
     const event = {
       name:e.target.name.value,
@@ -44,8 +44,10 @@ handleSubmit(e){
     axios.post("http://localhost:3000/api/v1/events/create",{event})
     .then((res)=>{
           console.log('success!')
-          axios.post('http://localhost:3000/api/v1/events', {trip_id:this.state.trip.id,})
+          axios.post('http://localhost:3000/api/v1/events', {trip_id:this.state.trip.id})
           .then(res => {
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log(res.data, 'RESPONSE')
             this.setState({ events: res.data })
           })
           .catch(error => {
@@ -65,6 +67,7 @@ componentDidMount() {
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
+      console.log(res.data, 'trip from database')
       this.setState({ trip : res.data })
     })
 

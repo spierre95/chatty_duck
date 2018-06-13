@@ -41,7 +41,7 @@ module Api::V1
     private
 
     def event_params
-     params.require(:event).permit(:name,:date,:start_time,:end_time,:trip_id,:user_id)
+     params.require(:event).permit(:name,:date,:start_time,:end_time,:trip_id,:user_id,:details)
     end
 
 
