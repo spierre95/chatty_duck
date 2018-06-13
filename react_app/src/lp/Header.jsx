@@ -27,7 +27,6 @@ class Header extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="top col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <Link className="logo" to="/"><img src="/images/logo.png" alt="logo" /></Link>
             <h1>Chatty Duck</h1>
             {auth}
           </div>
@@ -44,3 +43,4 @@ class Header extends Component {
 }
 
 export default Header;
+// <Link className="logo" to="/"><img src="/images/logo.png" alt="logo" /></Link>
