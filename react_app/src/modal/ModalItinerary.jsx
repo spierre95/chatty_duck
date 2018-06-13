@@ -103,7 +103,7 @@ class ModalItinerary extends Component {
       let maxLength = ((tripLength - dayBase) / 7 >= 1) ? dayBase + 6 : (tripLength - dayBase) + dayBase;
       //for (let j = (dayBase - 1); j < maxLength; j++) {
       for (let j = 0; j < daySchedule.length; j++) {
-        let time = moment(daySchedule[j].start_time).format("HH:mm")
+        let time = moment.utc(daySchedule[j].start_time).format("HH:mm")
         sectionChildren.push(
           <div className="list__item">
             <div className="list__time">{time}</div>
@@ -150,12 +150,8 @@ class ModalItinerary extends Component {
 
 componentWillReceiveProps(nextProps){
 if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
-
-let departure = moment(nextProps.trip.departure).format("YYYY-MM-DD")
-let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
-console.log(departure, 'departure')
-console.log(arrival, 'arrival')
-
+let departure = moment.utc(nextProps.trip.departure).format("YYYY-MM-DD")
+let arrival =  moment.utc(nextProps.trip.arrival).format("YYYY-MM-DD")
 function enumerateDaysBetweenDates(startDate, endDate) {
     startDate = moment(startDate);
     endDate = moment(endDate);
@@ -172,7 +168,6 @@ function enumerateDaysBetweenDates(startDate, endDate) {
 
 
 let dates = (enumerateDaysBetweenDates(departure,arrival))
-console.log(dates,"DATES")
 
 let schedule = {}
 

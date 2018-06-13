@@ -98,7 +98,7 @@ class Profile extends Component{
                   <label className="file-upload-container" htmlFor="file-upload">
                     Change your image
                     <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
-                    <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Update</button>
+                    <button className ="btn btn-primary" type="button" onClick={this.fileUploadHandler}>Update</button>
                   </label>
                 </div>
               </div>

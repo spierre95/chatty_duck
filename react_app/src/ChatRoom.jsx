@@ -5,7 +5,7 @@ import axios from 'axios';
 import ModalItinerary from './modal/ModalItinerary.jsx';
 import CreateEvent from './modal/ModalCreateEvent.jsx';
 import moment from 'moment'
-import {Link,Redirect,withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class ChatRoom extends Component{
 
