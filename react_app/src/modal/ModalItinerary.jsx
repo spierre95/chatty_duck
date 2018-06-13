@@ -126,6 +126,7 @@ class ModalItinerary extends Component {
               </div>
             </section>);
       if (dayBase === 1) {
+        console.log(dayNum)
         if (dayNum >= 1 && dayNum <= 7) {
           output.push(section);
         }
@@ -152,6 +153,8 @@ if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
 
 let departure = moment(nextProps.trip.departure).format("YYYY-MM-DD")
 let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
+console.log(departure, 'departure')
+console.log(arrival, 'arrival')
 
 function enumerateDaysBetweenDates(startDate, endDate) {
     startDate = moment(startDate);
@@ -167,7 +170,9 @@ function enumerateDaysBetweenDates(startDate, endDate) {
     return dates;
 };
 
+
 let dates = (enumerateDaysBetweenDates(departure,arrival))
+console.log(dates,"DATES")
 
 let schedule = {}
 
