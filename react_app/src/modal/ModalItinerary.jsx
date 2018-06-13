@@ -19,7 +19,6 @@ class ModalItinerary extends Component {
   }
 
   isClicked(id, e) {
-    console.log('clicked!!!!!')
     this.setState({
       day: id,
     });
@@ -43,7 +42,6 @@ class ModalItinerary extends Component {
 
   getSlideIndicator(dayBase, active) { console.log('ACTIVE:::', active);
     let indicator = [];
-    console.log(dayBase, 'inside of get slide')
       for (let i = 0; i < 7; i++) {
           if (i != 0 && i <= active) {
             indicator.push(
@@ -68,7 +66,6 @@ class ModalItinerary extends Component {
             );
           }
       }
-      console.log(indicator, 'indicator')
       return indicator;
   }
 
@@ -85,7 +82,6 @@ class ModalItinerary extends Component {
         );
       }
     }
-    console.log(radio, 'radio')
     return radio;
   }
 
@@ -96,6 +92,8 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const obj = this.state.schedule;
 
+    console.log(this.state.schedule, 'inside getSchedule')
+
 
     Object.keys(obj).forEach(function(day,index) {
       let dayNum = (index + 1)
@@ -105,9 +103,10 @@ class ModalItinerary extends Component {
       let maxLength = ((tripLength - dayBase) / 7 >= 1) ? dayBase + 6 : (tripLength - dayBase) + dayBase;
       //for (let j = (dayBase - 1); j < maxLength; j++) {
       for (let j = 0; j < daySchedule.length; j++) {
+        let time = moment(daySchedule[j].start_time).format("HH:mm")
         sectionChildren.push(
           <div className="list__item">
-            <div className="list__time">{daySchedule[j].start_time}</div>
+            <div className="list__time">{time}</div>
             <div className="list__border"></div>
             <div className="list__desc">
               <h3>{daySchedule[j].name}</h3>
@@ -151,7 +150,7 @@ class ModalItinerary extends Component {
 componentWillReceiveProps(nextProps){
 if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
 
-let departure = moment(nextProps.trip.depature).format("YYYY-MM-DD")
+let departure = moment(nextProps.trip.departure).format("YYYY-MM-DD")
 let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
 
 function enumerateDaysBetweenDates(startDate, endDate) {
@@ -198,8 +197,6 @@ this.setState({schedule})
 
 
   render() {
-
-    console.log(this.state.schedule)
 
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;

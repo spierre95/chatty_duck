@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.17",
     "react": "^16.4.0",
     "react-actioncable-provider": "^1.0.3",
     "react-dom": "^16.4.0",

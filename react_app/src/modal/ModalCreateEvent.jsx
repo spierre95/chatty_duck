@@ -6,34 +6,7 @@ class CreateEvent extends Component {
 
 constructor(){
   super()
- this.handleSubmit = this.handleSubmit.bind(this);
 }
-
-handleSubmit(e){
-
-    e.preventDefault()
-
-    const event = {
-      name:e.target.name.value,
-      date:e.target.date.value,
-      start_time:e.target.start_time.value,
-      end_time:e.target.end_time.value,
-      details:e.target.details.value,
-      user_id:this.props.currentUser.id,
-      trip_id:this.props.trip.id
-    }
-
-
-    axios.post("http://localhost:3000/api/v1/events/create",{event})
-    .then((res)=>{
-      console.log(res,'success')
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-
-  }
-
 
 
   render(){
@@ -42,7 +15,7 @@ let departure = moment(this.props.trip.depature).format("YYYY-MM-DD")
 let arrival =  moment(this.props.trip.arrival).format("YYYY-MM-DD")
 
    let form = (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
           <p>Add a new event!</p>
           <div className="form-group">
             <label htmlFor="event name">Event Name</label>
