@@ -6,13 +6,14 @@ module Api::V1
     end
 
     def create
-      message = Message.new(message_params)
-      chatroom = Chatroom.find(message_params[:chatroom_id])
-      if message.save
+      puts "message params #{message_params}"
+      @chatroom = Chatroom.find(message_params[:chatroom_id])
+      @chatroom.messages.new(message_params)
+      if @chatroom.save
         serialized_data = ActiveModelSerializers::Adapter::Json.new(
-          MessageSerializer.new(message)
+          MessageSerializer.new(@chatroom.messages.last)
         ).serializable_hash
-        MessagesChannel.broadcast_to chatroom, serialized_data
+        MessagesChannel.broadcast_to @chatroom, serialized_data
         head :ok
       end
     end
@@ -20,7 +21,7 @@ module Api::V1
     private
 
     def message_params
-      params.require(:message).permit(:content, :chatroom_id)
+      params.require(:message).permit(:content, :chatroom_id ,:user_id)
     end
 
   end

@@ -4,9 +4,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:index,:create,:show]
       resources :messages, only: [:index, :create]
-      resources :chatrooms, only: [:index, :create]
+      post "/addtochatroom" => 'chatrooms#add_to_chatroom'
+      resources :chatrooms, only: [:index, :show, :create]
       resources :trips, only: [:index, :create, :show]
       post "/events" => "events#list_of_events"
+      post "/events/create" => "events#create_event"
       resources :locations, only: [:index, :create]
       # resources :events, only: [:index, :create, :show]
       resources :trips_user, only:[:show]

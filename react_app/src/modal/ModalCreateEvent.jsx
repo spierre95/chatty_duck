@@ -1,29 +1,68 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import axios from 'axios';
 
 class CreateEvent extends Component {
+
+constructor(){
+  super()
+ this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleSubmit(e){
+
+    e.preventDefault()
+
+    const event = {
+      name:e.target.name.value,
+      date:e.target.date.value,
+      start_time:e.target.start_time.value,
+      end_time:e.target.end_time.value,
+      details:e.target.details.value,
+      user_id:this.props.currentUser.id,
+      trip_id:this.props.trip.id
+    }
+
+
+    axios.post("http://localhost:3000/api/v1/events/create",{event})
+    .then((res)=>{
+      console.log(res,'success')
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+  }
+
+
+
   render(){
+
+let departure = moment(this.props.trip.depature).format("YYYY-MM-DD")
+let arrival =  moment(this.props.trip.arrival).format("YYYY-MM-DD")
+
    let form = (
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <p>Add a new event!</p>
           <div className="form-group">
             <label htmlFor="event name">Event Name</label>
-            <input type="text" className="form-control" id="name" placeholder="Enter trip name" />
+            <input type="text" name="name" className="form-control" id="name" placeholder="Enter trip name" />
           </div>
           <div className="form-group">
             <label htmlFor="date">Date</label>
-            <input type="date" className="form-control" id="date" placeholder="yyyy-mm-dd" />
+            <input max={arrival} min={departure} type="date" name="date" className="form-control" id="date" placeholder="yyyy-mm-dd" />
           </div>
           <div className="form-group">
             <label htmlFor="start time">Start Time</label>
-            <input type="time" className="form-control" id="start_time" placeholder="" />
+            <input type="time" name="start_time" className="form-control" id="start_time" placeholder="" />
           </div>
           <div className="form-group">
             <label htmlFor="end time">End Time</label>
-            <input type="time" className="form-control" id="end_time" placeholder="" />
+            <input type="time" name="end_time"className="form-control" id="end_time" placeholder="" />
           </div>
           <div className="form-group">
             <label for="event contents">Event Details</label>
-            <textarea className="form-control" id="event_details" rows="3"></textarea>
+            <textarea className="form-control" name="details" id="event_details" rows="3"></textarea>
           </div>
           <button type="submit" className="btn btn-primary">Create</button>
         </form>

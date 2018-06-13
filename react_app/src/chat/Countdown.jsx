@@ -22,17 +22,6 @@ class Countdown extends Component {
 
 
   componentDidMount() {
-    // console.log("props", this.props)
-
-    // console.log(this.props.trip_id)
-
-    // axios.get('http://localhost:3000/api/v1/trips/2')
-    // .then(res => {
-    //   const trip = res.data
-    //     this.setState({ start_date: trip.departure ,
-    //                     end_date: trip.arrival })
-    //     console.log(this.state)
-    // })
 
     // update every second
     this.interval = setInterval(() => {
