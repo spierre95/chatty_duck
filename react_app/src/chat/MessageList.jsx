@@ -12,19 +12,23 @@ class MessageList extends Component{
     this.state = {
       messages: [],
       chatroom_id: null,
+      username: ""
     };
     this.handleReceivedMessage = this.handleReceivedMessage.bind(this)
   }
 
   handleReceivedMessage = response => {
     const { message } = response;
+    console.log("res", response)
     console.log('Triggered')
     this.setState ({
-      messages: [...this.state.messages, message]
+      messages: [...this.state.messages, message] , username: response.user
     })
+    console.log("state" ,this.state)
   }
 
   componentWillMount() {
+    console.log("props", this.props.props.props)
     const { match: { params } } = this.props.props.props;
     const that = this;
     axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)

@@ -19,7 +19,6 @@ class ModalItinerary extends Component {
   }
 
   isClicked(id, e) {
-    console.log('clicked!!!!!')
     this.setState({
       day: id,
     });
@@ -43,7 +42,6 @@ class ModalItinerary extends Component {
 
   getSlideIndicator(dayBase, active) { console.log('ACTIVE:::', active);
     let indicator = [];
-    console.log(dayBase, 'inside of get slide')
       for (let i = 0; i < 7; i++) {
           if (i != 0 && i <= active) {
             indicator.push(
@@ -68,7 +66,6 @@ class ModalItinerary extends Component {
             );
           }
       }
-      console.log(indicator, 'indicator')
       return indicator;
   }
 
@@ -85,7 +82,6 @@ class ModalItinerary extends Component {
         );
       }
     }
-    console.log(radio, 'radio')
     return radio;
   }
 
@@ -199,7 +195,6 @@ this.setState({schedule})
 
   render() {
 
-    console.log(this.state.schedule)
 
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;

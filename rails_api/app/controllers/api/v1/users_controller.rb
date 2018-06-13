@@ -56,7 +56,6 @@ render json: trips_data.to_json
     end
 
 def update_image
-  binding.pry
   user = User.find(params[:id])
   user.update_column(:image_url, params[:image_url])
 end
