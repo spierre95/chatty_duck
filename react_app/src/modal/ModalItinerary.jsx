@@ -92,7 +92,7 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const obj = this.state.schedule;
 
-    console.log(this.state.schedule, 'inside getSchedule')
+
 
 
     Object.keys(obj).forEach(function(day,index) {
@@ -126,7 +126,6 @@ class ModalItinerary extends Component {
               </div>
             </section>);
       if (dayBase === 1) {
-        console.log(dayNum)
         if (dayNum >= 1 && dayNum <= 7) {
           output.push(section);
         }

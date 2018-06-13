@@ -51,7 +51,7 @@ fileSelectHandler = (event) => {
     const trip = {
       name:event.target.name.value,
       departure:event.target.departure.value,
-      arrival:event.target.departure.value,
+      arrival:event.target.arrival.value,
       image_url:this.state.image_url,
       chatroom_id:params.trip
     }

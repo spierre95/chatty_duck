@@ -17,7 +17,7 @@ class TripInfo extends Component{
   }
     return(
       <header>
-        <p className="title">Group Name here</p>
+        <p className="title">{this.props.trip.name}</p>
         <ul>
           <li>
             <a href="#" data-toggle="modal" data-target="#itinerary"><i className="fa fa-calendar"></i></a></li>
@@ -29,12 +29,11 @@ class TripInfo extends Component{
         </ul>
         <div className="trip-details">
           <div className="schedule">
-            <ul><li>schedule bar will be here.</li></ul>
           </div>
           <div>
             <Countdown trip={this.props.trip} />
             <span>days left</span>
-            <div className="upcoming"><UpcomingEvent currentUser={this.props.currentUser} trip={this.props.trip} /></div>
+            <div className="upcoming"><UpcomingEvent currentUser={this.props.currentUser} trip={this.props.trip} events={this.props.events} /></div>
           </div>
         </div>
       </header>

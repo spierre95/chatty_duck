@@ -10,11 +10,10 @@ constructor(){
 
 
 render(){
-console.log('before',this.props.trip.departure)
+
 let departure = moment.utc(this.props.trip.departure).format("YYYY-MM-DD")
 let arrival =  moment.utc(this.props.trip.arrival).format("YYYY-MM-DD")
 
-console.log(departure, 'after')
 
    let form = (
         <form onSubmit={this.props.handleSubmit}>

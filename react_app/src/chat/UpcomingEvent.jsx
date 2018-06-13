@@ -3,26 +3,23 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import AuthService from '../forms/AuthService';
 import withAuth from '../forms/withAuth';
+import moment from 'moment';
 
 class UpcomingEvent extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     events:
-  //   };
-  // }
-
-
-
-componentDidMount(){
-
-
-        }
 
 render() {
+  let filterEvents = this.props.events.filter((event) => {
+    let unixTime = moment(event.start_time).unix()
+    console.log("unix", unixTime);
+    if (unixTime < moment().unix()) {
+     console.log("event", event);
+    }
+  })
 
-  // console.log(new Date())
+    // let times = moment.utc(event.start_time).format();
+    // for (let i = 0, i <= times.length, )
+    // if (moment.utc() > )
 
  return(
   <div className="event">
