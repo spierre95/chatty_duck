@@ -92,6 +92,14 @@ input.fontawesome {
   .btn.btn-primary:hover {
     background-color: #10cfcc; }
 
+button:focus, .btn.btn-primary:focus, .btn.btn-secondary:focus {
+  outline: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
+h2 {
+  width: 80%; }
+
 h1, h2 {
   color: #a5a5a5;
   font-family: "Crimson Text", osaka, serif; }
@@ -161,6 +169,11 @@ a {
 /* header  */
 header {
   height: 100px; }
+  header .top {
+    height: 100px; }
+    header .top .btn.btn-primary {
+      margin-top: 30px;
+      margin-bottom: 30px; }
   header img {
     float: left; }
   header h1 {
@@ -170,13 +183,15 @@ header {
     text-align: left;
     font-family: "Crimson Text", osaka, serif;
     font-size: 3em; }
+  header h1 + div {
+    float: right; }
   header a, header button {
     display: block;
     float: right; }
     header a.logo, header button.logo {
       float: left; }
     header a.btn, header button.btn {
-      margin: 30px 10px; }
+      margin: 10px; }
       header a.btn.btn-primary, header button.btn.btn-primary {
         background-color: #1cd2d0;
         border-color: #10cfcc; }
@@ -282,7 +297,9 @@ footer {
     #chat header .trip-details {
       border-top: 1px solid #f4f5f4;
       clear: both;
-      padding: 5px 10px; }
+      float: left;
+      padding: 5px 10px;
+      width: 100%; }
       #chat header .trip-details .schedule {
         float: left; }
         #chat header .trip-details .schedule ul li {
@@ -296,6 +313,11 @@ footer {
             text-align: right; }
             #chat header .trip-details .schedule + div p:last-child {
               font-weight: bold; }
+      #chat header .trip-details .Countdown {
+        float: left;
+        font-size: 0.9em;
+        margin-top: 2px;
+        margin-right: 5px; }
   #chat main {
     background-color: #eee;
     flex: 1;
@@ -378,10 +400,6 @@ footer {
       #chat footer #comment:-ms-input-placeholder {
         color: #a5a5a5; }
 
-/* ============================== modal ============================== */
-.modal-body {
-  padding: 50px 15px 15px 15px; }
-
 /* ============================== form ============================== */
 .form-page header h1 + a, .form-page header a + a {
   display: none; }
@@ -397,8 +415,79 @@ footer {
     float: right;
     padding-top: 15px;
     padding-bottom: 15px; }
+  .form-page aside form p.error, .form-page section form p.error {
+    color: red; }
 .form-page aside select, .form-page section select {
   width: 100%; }
+
+form .card {
+  background-color: #f4f5f4;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  float: left; }
+  form .card img {
+    display: block;
+    border-radius: 5px;
+    float: left;
+    height: auto;
+    margin: 15px;
+    width: 80px; }
+    form .card img.create-trip {
+      border: 1px solid #f4f5f4;
+      width: 120px; }
+  form .card .file-upload-container {
+    background-color: #f4f5f4;
+    border-radius: 5px;
+    color: #3d3d3d;
+    float: right;
+    padding: 15px 15px 5px 15px;
+    text-align: left;
+    width: 70%; }
+    form .card .file-upload-container input[type="file"] {
+      float: left;
+      margin-top: 15px;
+      padding: 0;
+      width: 100%; }
+      form .card .file-upload-container input[type="file"]:focus {
+        outline: none; }
+      form .card .file-upload-container input[type="file"]:active {
+        box-shadow: none;
+        -webkit-box-shadow: none; }
+    form .card .file-upload-container .btn.btn-primary {
+      background-color: transparent;
+      border: none;
+      clear: both;
+      color: #3d3d3d;
+      float: right;
+      margin: 0;
+      padding: 10px 0 10px 10px; }
+      form .card .file-upload-container .btn.btn-primary:focus {
+        outline: none; }
+      form .card .file-upload-container .btn.btn-primary:acitve {
+        box-shadow: none;
+        -webkit-box-shadow: none; }
+
+#modal .modal-dialog.modal-dialog-centered {
+  width: 400px; }
+  #modal .modal-dialog.modal-dialog-centered .modal-footer {
+    border-top: 0; }
+
+.form-group p.error, .form-group + p.error {
+  color: red;
+  font-size: 0.9em;
+  display: inline-block;
+  margin-bottom: 5px;
+  float: right;
+  text-align: right; }
+
+/* ============================== modal ============================== */
+.modal-body {
+  padding: 25px 15px; }
+  .modal-body.chat {
+    padding: 25px 15px 70px 15px; }
+  .modal-body button {
+    float: right; }
 
 /* ============================== profile page ============================== */
 .profile .container .row {
@@ -410,7 +499,8 @@ footer {
     float: right;
     font-size: 1.2em;
     margin-top: 25px;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    padding: 5px; }
 .profile ul {
   clear: both; }
   .profile ul li {
@@ -419,53 +509,143 @@ footer {
     padding: 10px; }
     .profile ul.thumbs li {
       margin-bottom: 10px;
-      position: relative; }
-      .profile ul.thumbs li a {
-        display: block;
-        margin: 0 auto; }
-        .profile ul.thumbs li a .trip-details {
-          color: #fff;
-          height: 100%;
-          opacity: 0.8;
-          padding: 50px 30px 30px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          text-align: center;
-          width: 100%;
-          transition: all 0.4s ease-in-out;
-          -moz-transition: all 0.4s ease-in-out;
-          -webkit-transition: all 0.4s ease-in-out;
-          -o-transition: all 0.4s ease-in-out;
-          -ms-transition: all 0.4s ease-in-out; }
-          .profile ul.thumbs li a .trip-details span {
-            text-shadow: 2px 2px 2px #3d3d3d;
-            display: block;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            width: 100%; }
-            .profile ul.thumbs li a .trip-details span.title {
-              font-weight: bold; }
-        .profile ul.thumbs li a img {
-          border: 1px solid #f4f5f4;
-          border-radius: 5px;
-          -moz-border-radius: 5px;
-          -webkit-border-radius: 5px;
+      position: relative;
+      display: block;
+      margin: 0 auto; }
+      .profile ul.thumbs li .trip-details {
+        color: #fff;
+        height: 100%;
+        opacity: 0.8;
+        padding: 50px 30px 30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -webkit-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out; }
+        .profile ul.thumbs li .trip-details span {
+          text-shadow: 2px 2px 2px #3d3d3d;
           display: block;
-          height: auto;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          width: 100%; }
+          .profile ul.thumbs li .trip-details span.title {
+            font-weight: bold; }
+      .profile ul.thumbs li img {
+        border: 1px solid #f4f5f4;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        display: block;
+        height: auto;
+        width: 100%; }
+      .profile ul.thumbs li form {
+        text-align: center;
+        margin-top: 15px;
+        width: 100%; }
+        .profile ul.thumbs li form button {
           width: 100%; }
       .profile ul.thumbs li:hover a {
         opacity: 1; }
         .profile ul.thumbs li:hover a img {
           scale: 1.2; }
+.profile .card {
+  background-color: #f4f5f4;
+  border-radius: 5px;
+  float: right;
+  margin: 25px auto;
+  padding: 25px;
+  text-align: left;
+  width: 80%; }
+  .profile .card img {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 150px;
+    -webkit-box-shadow: 0px 0px 10px 5px rgba(99, 99, 99, 0.1);
+    -moz-box-shadow: 0px 0px 10px 5px rgba(99, 99, 99, 0.1);
+    box-shadow: 0px 0px 10px 5px rgba(99, 99, 99, 0.1); }
+  .profile .card ul {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 1.5em;
+    vertical-align: middle; }
+    .profile .card ul li {
+      font-size: 1.2em;
+      text-align: left; }
+      .profile .card ul li span.title {
+        display: inline-block;
+        font-size: 1em;
+        padding: 0 5px 5px 5px;
+        text-align: right;
+        width: 5.5em; }
+  .profile .card label {
+    margin-top: 30px;
+    text-align: left; }
+    .profile .card label input[type="file"] {
+      padding-left: 0;
+      width: 75%; }
+    .profile .card label .btn.btn-primary {
+      background-color: transparent;
+      border: none;
+      color: #1a8db6;
+      float: left;
+      margin: 0;
+      padding: 0; }
+      .profile .card label .btn.btn-primary:active, .profile .card label .btn.btn-primary:focus {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        outline: none; }
+
+header h1 + div a {
+  padding-top: 15px; }
+  header h1 + div a .profile-img {
+    border: 1px solid #1a8db6;
+    border-radius: 50%;
+    width: 65px;
+    height: auto; }
+
+.search input {
+  border-radius: 5px;
+  border-width: 1px;
+  border: 1px solid #eeeeee;
+  width: 50%; }
+.search h4 {
+  color: #a5a5a5;
+  font-family: "Crimson Text", osaka, serif;
+  font-size: 1.5em; }
+
+ul {
+  margin-top: 15px; }
+  ul li a {
+    font-size: 0.9em; }
+
+h2 + p {
+  clear: left; }
+
+::placeholder {
+  color: #eeeeee;
+  opacity: 1;
+  /* Firefox */ }
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #eeeeee; }
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #eeeeee; }
 
 /* ============================== chatroom itinerary ============================== */
 @media screen and (min-width: 768px) {
-  .modal-dialog {
+  #itinerary.modal.fade.in .modal-dialog.modal-dialog-centered {
     width: 800px; } }
-.modal-dialog h3 {
+#itinerary.modal.fade.in .modal-dialog.modal-dialog-centered h3 {
   font-size: 1.2em !important; }
-.modal-dialog .modal-body.chat {
+#itinerary.modal.fade.in .modal-dialog.modal-dialog-centered .modal-body.chat {
   padding: 15px; }
 
 .block {

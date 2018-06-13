@@ -85,13 +85,13 @@ fileSelectHandler = (event) => {
   }
    let form = (
         <form onSubmit={this.handleSubmit}>
-          <p>Create a new trip.</p>
+          <h3>Create a new trip.</h3>
           <div className="card">
-                <img src={this.state.image_url} id="img-preview" style={imgStyle} />
+                <img className="create-trip" src={this.state.image_url} id="img-preview" />
                 <label className="file-upload-container" htmlFor="file-upload">
                   Select an Image
                   <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
-                  <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
+
                 </label>
           </div>
           <div className="form-group">
@@ -106,7 +106,7 @@ fileSelectHandler = (event) => {
             <label htmlFor="end date">End Date</label>
             <input type="date" name="arrival"className="form-control" id="end-date" placeholder="yyyy-mm-dd" />
           </div>
-          <button type="submit" className="btn btn-primary">Create</button>
+          <button type="submit" className="btn btn-primary pull-right">Create</button>
         </form>
     );
     return (
@@ -121,3 +121,5 @@ fileSelectHandler = (event) => {
   }
 }
 export default CreateTrip;
+
+//<button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>

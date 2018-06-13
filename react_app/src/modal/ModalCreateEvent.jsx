@@ -21,9 +21,9 @@ class CreateEvent extends Component {
             <label htmlFor="end time">End Time</label>
             <input type="time" className="form-control" id="end_time" placeholder="" />
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label for="event contents">Event Details</label>
-            <textarea class="form-control" id="event_details" rows="3"></textarea>
+            <textarea className="form-control" id="event_details" rows="3"></textarea>
           </div>
           <button type="submit" className="btn btn-primary">Create</button>
         </form>

@@ -33,22 +33,18 @@ render(){
       }
   )
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-xs-12 col-sm-12 col-md-12 col-ls-12">
-          <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+      <div className="search">
+        <h4>Find Profiles</h4>
+        <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Type your friend's name"/>
         <ul>
         {filteredUsers.map((user)=>{
             return (
-            <li >
+            <li>
               <Link to={`/user/${user.id}/profile`} >{user.username}</Link>
             </li>)
         })}
         </ul>
-        </div>
       </div>
-    </div>
-
   )
 }
 }

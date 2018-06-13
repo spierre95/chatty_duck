@@ -26,7 +26,7 @@ render() {
 
  return(
   <div className="event">
-    text
+    <p>Concert 7pm - 9pm</p>
   </div>
     );
   }
