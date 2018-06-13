@@ -50,7 +50,7 @@ let nextTrip = (this.state.trips.length + 1)
 
 let DisplayTrip = this.props.userTrips.map(trip => {
                 if (this.props.currentUser.id === this.props.profile.id){
-                  return (<li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                  return (<li className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <Link to={`/user/${this.props.currentUser.id}/trips/${trip.id}`}>
                       <div className="trip-details">
                         <span className="title">{trip.name}</span>
@@ -60,7 +60,7 @@ let DisplayTrip = this.props.userTrips.map(trip => {
                     </Link>
                   </li>)
                 }else{
-                 return (<li class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                 return (<li className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <div>
                       <div className="trip-details">
                         <span className="title">{trip.name}</span>
@@ -69,7 +69,7 @@ let DisplayTrip = this.props.userTrips.map(trip => {
                       <img src={trip.image_url} alt={trip.name} />
                       <form onSubmit={this.handleSubmit}>
                         <input name='trip' type="hidden" value={trip.id}/>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Join</button>
                       </form>
                     </div>
                   </li>)

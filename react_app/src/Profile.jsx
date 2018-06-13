@@ -55,7 +55,7 @@ class Profile extends Component{
     })
   }
 
-componentWillMount(){
+  componentWillMount(){
 
     this.props.history.listen(() => {
       const {match:{params}} = this.props
@@ -76,43 +76,84 @@ componentWillMount(){
     return (<Redirect push to={this.props.redirect}/>)
    }
 
-   const imgStyle ={
-        width:'250px',
-        height:'auto',
-      }
+  const imgStyle ={
+    width:'250px',
+    height:'auto',
+  }
 
-    let detail = (
+  let detail = '';console.log("PROPS:::", this.props.currentUser.id);console.log("STATE:::", this.state.profile.id);
+    if(this.props.currentUser.id === this.state.profile.id) {
+      detail = (
         <div className="container">
           <div className="row">
-              <h1>Your Profile</h1>
-              <div className="col-xs-2 col-sm-2 col-md-3 col-ls-3">
-              <div className="card">
-                <img src={this.state.profile.image_url} id="img-preview" style={imgStyle} />
-                <label className="file-upload-container" htmlFor="file-upload">
-                  Select an Image
-                  <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
-                  <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
-                </label>
+              <div className="col-xs-12 col-sm-12 col-md-8 col-ls-8">
+              <h2>Your Profile</h2>
+                <div className="card">
+                  <img src={this.state.profile.image_url} id="img-preview" />
+                  <ul>
+                    <li><span className="title">Name:</span> {this.state.profile.first_name} </li>
+                    <li><span className="title">Username:</span> {this.state.profile.username}</li>
+                    <li><span className="title">Email:</span> {this.state.profile.email}</li>
+                  </ul>
+                  <label className="file-upload-container" htmlFor="file-upload">
+                    Change your image
+                    <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
+                    <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Update</button>
+                  </label>
+                </div>
               </div>
-              <div className="col-xs-10 col-sm-10 col-md-9 col-ls-9">
-                <ul>
-                  <li>Name: {this.state.profile.first_name} </li>
-                  <li>Username: {this.state.profile.username}</li>
-                  <li>Email: {this.state.profile.email}</li>
-                </ul>
+              <div className="col-xs-12 col-sm-12 col-md-4 col-ls-4">
+                <SearchProfiles props={this.props}/>
               </div>
           </div>
         </div>
-      </div>
       );
+    } else if(this.state.profile.id){
+      detail = (
+          <div className="container">
+            <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-8 col-ls-8">
+                  <h2>{this.state.profile.first_name}'s Profile</h2>
+                  <div className="card">
+                    <img src={this.state.profile.image_url} id="img-preview" />
+                    <ul>
+                      <li><span className="title">Name:</span> {this.state.profile.first_name} </li>
+                      <li><span className="title">Username:</span> {this.state.profile.username}</li>
+                      <li><span className="title">Email:</span> {this.state.profile.email}</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="col-xs-12 col-sm-12 col-md-4 col-ls-4">
+                  <SearchProfiles props={this.props}/>
+                </div>
+            </div>
+          </div>
+        );
+    } else {
+      detail = (
+        <div className="container">
+            <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-8 col-ls-8">
+                  <h2>Your Profile</h2>
+                  <p>To change your profile image, please click your top right image.</p>
+                </div>
+                <div className="col-xs-12 col-sm-12 col-md-4 col-ls-4">
+                  <SearchProfiles props={this.props}/>
+                </div>
+            </div>
+          </div>
+      );
+    }
     return (
       <div className="profile">
         <Header currentUser={this.props.currentUser} handleLogout={this.props.handleLogout} redirect={this.props.redirect}/>
-        <SearchProfiles props={this.props}/>
-        <section>
-          {detail}
-        </section>
-        <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
+        <main>
+          <section>
+            {detail}
+          </section>
+          <SelectTrip props={this.props} userTrips={this.state.trips} currentUser={this.props.currentUser} profile={this.state.profile} />
+        </main>
         <Footer />
       </div>
     );
@@ -120,50 +161,4 @@ componentWillMount(){
 }
 
 export default withRouter(Profile);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

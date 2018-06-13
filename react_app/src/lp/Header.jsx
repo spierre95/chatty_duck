@@ -7,17 +7,12 @@ import withAuth from '.././forms/withAuth'
 class Header extends Component {
 
   render(){
-    const imgStyle = {
-        width:'65px',
-        height:'auto',
-        borderRadius:'50%'
-      }
 
     let auth
     if(this.props.currentUser){
       auth =
      <div><button type="button" className="btn btn-primary" onClick={this.props.handleLogout}>Logout</button>
-     <Link to={`/user/${this.props.currentUser.id}/profile`}><img src={this.props.currentUser.image_url} style={imgStyle}/></Link></div>
+     <Link to={`/user/${this.props.currentUser.id}/profile`}><img className="profile-img" src={this.props.currentUser.image_url} /></Link></div>
     }else{
       auth =
       <div><button type="button" className="btn btn-primary" data-toggle="modal" data-target="#signup">
@@ -33,7 +28,7 @@ class Header extends Component {
         <div className="row">
           <div className="top col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <Link className="logo" to="/"><img src="/images/logo.png" alt="logo" /></Link>
-            <h1>Travel Chat App</h1>
+            <h1>Chatty Duck</h1>
             {auth}
           </div>
         </div>

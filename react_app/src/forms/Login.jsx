@@ -47,14 +47,13 @@ e.preventDefault()
   }
     let form = (
         <form onSubmit={this.handleSubmit}>
-         <p>{this.state.showError ? this.state.error : null }</p>
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">Email Address</label><p class="error">{this.state.showError ? this.state.error : null }</p>
             <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password"className="form-control" id="password" placeholder="Password" onChange={this.handleChange}/>
+            <input type="password" name="password"className="form-control" id="password" placeholder="Enter Password" onChange={this.handleChange}/>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
