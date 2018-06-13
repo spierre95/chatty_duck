@@ -20,7 +20,7 @@ class ChatBar extends Component{
     console.log("Submitting")
     const that = this;
     if( parseInt(that.props.chatroom_id) === parseInt(that.props.trip.chatroom_id)){
-      axios.post(`http://localhost:3000/api/v1/messages`, {content: e.target.content.value , chatroom_id: that.props.trip.chatroom_id } )
+      axios.post(`http://localhost:3000/api/v1/messages`, {content: e.target.content.value , chatroom_id: that.props.trip.chatroom_id , user_id: that.props.currentUser.id } )
         .then(res => {
         console.log(res);
         this.setState({content: ''})

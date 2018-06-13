@@ -21,9 +21,9 @@ class TripInfo extends Component{
             <ul><li>schedule bar will be here.</li></ul>
           </div>
           <div>
-            <p className="date"><span><Countdown trip={this.props.trip} /></span> days left</p>
+            <Countdown trip={this.props.trip} />
+            <span>days left</span>
             <div className="upcoming"><UpcomingEvent currentUser={this.props.currentUser} trip={this.props.trip} /></div>
-            <p>Concert 7pm - 9pm</p>
           </div>
         </div>
       </header>

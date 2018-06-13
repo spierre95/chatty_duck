@@ -213,46 +213,38 @@ validate = () => {
         height:'auto',
       }
     let form = (
-    <div>
-    <div className="card">
-      <img src={this.state.image_url} style={imgStyle} id="img-preview" />
-      <label className="file-upload-container" htmlFor="file-upload">
-        Select an Image
-        <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
-        <button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button>
-      </label>
-      </div>
+      <div>
         <form onSubmit={this.handleSubmit}>
+          <div className="card">
+            <img src={this.state.image_url} id="img-preview" />
+            <label className="file-upload-container" htmlFor="file-upload">
+              Select an Image
+              <input type="file" className="btn btn-secondary" onChange = {this.fileSelectHandler}/>
+            </label>
+          </div>
           <div className="form-group">
-            <label htmlFor="first name">First Name</label>
+            <label htmlFor="first name">First Name</label> <p className="error">{ this.state.showError ? this.state.firstNameError : null }</p>
             <input type="text" name="first_name" className="form-control" id="first-name" placeholder="Enter First Name" onChange={this.handleChange}/>
-            <p>{ this.state.showError ? this.state.firstNameError : null }</p>
           </div>
           <div className="form-group">
-            <label htmlFor="last name">Last Name</label>
+            <label htmlFor="last name">Last Name</label> <p className="error">{ this.state.showError ? this.state.lastNameError : null }</p>
             <input type="text" name="last_name"className="form-control" id="last-name" placeholder="Enter Last Name" onChange={this.handleChange}  />
-             <p>{ this.state.showError ? this.state.lastNameError : null }</p>
           </div>
           <div className="form-group">
-            <label htmlFor="username">User Name</label>
+            <label htmlFor="username">User Name</label> <p className="error">{ this.state.showError ? this.state.usernameError : null }</p>
             <input type="text" name="username" className="form-control" id="username" placeholder="Enter Username" onChange={this.handleChange}  />
-             <p>{ this.state.showError ? this.state.usernameError : null }</p>
           </div>
-
           <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email">Email Address</label> <p className="error">{ this.state.showError ? this.state.emailError : null }</p>
             <input type="email" name="email" className="form-control" id="email" placeholder="Enter Email" onChange={this.handleChange} />
-            <p>{ this.state.showError ? this.state.emailError : null }</p>
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" className="form-control" id="password" placeholder="Password" onChange={this.handleChange} />
-            <p>{ this.state.showError ? this.state.passwordError : null }</p>
+            <label htmlFor="password">Password</label> <p className="error">{ this.state.showError ? this.state.passwordError : null }</p>
+            <input type="password" name="password" className="form-control" id="password" placeholder="Enter Password" onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="password confirmation">Password Confirmation</label>
+            <label htmlFor="password confirmation">Password Confirmation</label> <p className="error">{ this.state.showError ? this.state.passwordConfirmError : null }</p>
             <input type="password" name="password_confirmation" className="form-control" id="password-confirmation" placeholder="Confirm Password" onChange={this.handleChange}/>
-             <p>{ this.state.showError ? this.state.passwordConfirmError : null }</p>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -268,6 +260,8 @@ validate = () => {
   }
 }
 export default Signup;
+
+//<button className ="btn btn-primary" onClick={this.fileUploadHandler}>Upload</button> in the card, for img
 
 
 

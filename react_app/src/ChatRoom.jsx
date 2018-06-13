@@ -17,6 +17,7 @@ constructor(props) {
     schedule:{},
     users: []
   }
+this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 getInitialState() {
@@ -26,17 +27,43 @@ getInitialState() {
     this.interval = null;
   }
 
+handleSubmit(e){
 
+    e.preventDefault()
+    console.log(this.state.trip.id)
+
+    const event = {
+      name:e.target.name.value,
+      date:e.target.date.value,
+      start_time:e.target.start_time.value,
+      end_time:e.target.end_time.value,
+      details:e.target.details.value,
+      user_id:this.props.currentUser.id,
+      trip_id:this.state.trip.id
+    }
+
+
+    axios.post("http://localhost:3000/api/v1/events/create",{event})
+    .then((res)=>{
+          console.log('success!')
+          axios.post('http://localhost:3000/api/v1/events', {trip_id:this.state.trip.id})
+          .then(res => {
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            console.log(res.data, 'RESPONSE')
+            this.setState({ events: res.data })
+          })
+          .catch(error => {
+            console.log(error);
+          });
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+}
 
 
 componentDidMount() {
-
-  // const self = this;
-  //   self.interval = setInterval(function() {
-  //     self.setState({
-  //       now: new Date(),
-  //     });
-  //   }, 1000);
 
   const { match: { params } } = this.props;
 
@@ -45,10 +72,7 @@ componentDidMount() {
       this.setState({ trip : res.data, users: res.data.users })
     })
 
-    axios.post('http://localhost:3000/api/v1/events', {
-    trip_id: params.trip,
-    // user_id: params.username
-    })
+    axios.post('http://localhost:3000/api/v1/events', {trip_id: params.trip,})
     .then(res => {
       this.setState({ events: res.data })
     })
@@ -57,53 +81,6 @@ componentDidMount() {
     });
 
   }
-
-
-
-setSchedule(){
-
-let departure = moment(this.state.trip.depature).format("YYYY-MM-DD")
-let arrival =  moment(this.state.trip.arrival).format("YYYY-MM-DD")
-
-function enumerateDaysBetweenDates(startDate, endDate) {
-    startDate = moment(startDate);
-    endDate = moment(endDate);
-
-    var now = startDate, dates = [];
-
-    while (now.isBefore(endDate) || now.isSame(endDate)) {
-        dates.push(now.format('YYYY-MM-DD'));
-        now.add(1, 'days');
-    }
-    return dates;
-};
-
-let dates = (enumerateDaysBetweenDates(departure,arrival))
-
-let schedule = {}
-
-for (let day of dates ){
-  schedule[day] = []
-}
-  this.state.events.map((event)=>{
-    event.date = moment(event.date).format("YYYY-MM-DD")
-    event.start_time = moment(event.start_time).format("HH")
-  })
-
-let datesArr = Object.keys(schedule)
-
-this.state.events.forEach((event)=>{
-  for(let day of datesArr){
-    if(event.date === day){
-      schedule[event.date].push(event)
-    }
-  }
-})
-
-this.setState({schedule})
-
-}
-
 
   render(){
 
@@ -114,7 +91,7 @@ this.setState({schedule})
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} props={this.props} chatroom_id={this.props.match.params.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
-          <CreateEvent currentUser={this.props.currentUser} trip={this.state.trip}/>
+          <CreateEvent currentUser={this.props.currentUser} trip={this.state.trip} handleSubmit={this.handleSubmit}/>
         </body>
     )
   }

@@ -4,6 +4,7 @@ import { API_ROOT } from '../constants';
 import { API_WS_ROOT } from '../constants';
 import ChatBar from './ChatBar.jsx';
 import axios from 'axios';
+import moment from 'moment'
 
 class MessageList extends Component{
 
@@ -17,10 +18,10 @@ class MessageList extends Component{
   }
 
   handleReceivedMessage = response => {
-    const { message } = response;
+    console.log(response)
     console.log('Triggered')
     this.setState ({
-      messages: [...this.state.messages, message]
+      messages: [...this.state.messages, response]
     })
   }
 
@@ -38,21 +39,21 @@ class MessageList extends Component{
 
   render(){
    const messageComponent = this.state.messages.map((message, index) => {
-      return <li key={message.id}>{ message.content }</li>
+      return  <ul className="message-wrapper">
+                <li className="thumb">
+                  <img src={message.image_url} />
+                  <i className="fa fa-commenting-o"></i>
+                </li>
+                <li className="message">
+                  <span className="user">{message.user}<span>{moment(message.created_at).fromNow()}</span></span>
+                  {message.content}
+                </li>
+              </ul>
    })
     let main = (
             <div>
             <ActionCable channel={{ channel: 'MessagesChannel', room: this.state.chatroom_id }} onReceived={this.handleReceivedMessage} />
-              <ul className="message-wrapper">
-                <li className="thumb">
-                  <img src="/images/lhl-duck.png" />
-                  <i className="fa fa-commenting-o"></i>
-                </li>
-                <li className="message">
-                  <span className="user">Monica<span>12:50pm</span></span>
-                  { messageComponent }
-                </li>
-              </ul>
+              {messageComponent}
             </div>
     );
 
@@ -70,6 +71,7 @@ class MessageList extends Component{
 }
 
 export default MessageList;
+
 
 //helpers
 

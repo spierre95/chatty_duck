@@ -92,6 +92,8 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const obj = this.state.schedule;
 
+    console.log(this.state.schedule, 'inside getSchedule')
+
 
     Object.keys(obj).forEach(function(day,index) {
       let dayNum = (index + 1)
@@ -101,9 +103,10 @@ class ModalItinerary extends Component {
       let maxLength = ((tripLength - dayBase) / 7 >= 1) ? dayBase + 6 : (tripLength - dayBase) + dayBase;
       //for (let j = (dayBase - 1); j < maxLength; j++) {
       for (let j = 0; j < daySchedule.length; j++) {
+        let time = moment(daySchedule[j].start_time).format("HH:mm")
         sectionChildren.push(
           <div className="list__item">
-            <div className="list__time">{daySchedule[j].start_time}</div>
+            <div className="list__time">{time}</div>
             <div className="list__border"></div>
             <div className="list__desc">
               <h3>{daySchedule[j].name}</h3>
@@ -123,6 +126,7 @@ class ModalItinerary extends Component {
               </div>
             </section>);
       if (dayBase === 1) {
+        console.log(dayNum)
         if (dayNum >= 1 && dayNum <= 7) {
           output.push(section);
         }
@@ -147,8 +151,10 @@ class ModalItinerary extends Component {
 componentWillReceiveProps(nextProps){
 if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
 
-let departure = moment(nextProps.trip.depature).format("YYYY-MM-DD")
+let departure = moment(nextProps.trip.departure).format("YYYY-MM-DD")
 let arrival =  moment(nextProps.trip.arrival).format("YYYY-MM-DD")
+console.log(departure, 'departure')
+console.log(arrival, 'arrival')
 
 function enumerateDaysBetweenDates(startDate, endDate) {
     startDate = moment(startDate);
@@ -164,7 +170,9 @@ function enumerateDaysBetweenDates(startDate, endDate) {
     return dates;
 };
 
+
 let dates = (enumerateDaysBetweenDates(departure,arrival))
+console.log(dates,"DATES")
 
 let schedule = {}
 
@@ -194,8 +202,6 @@ this.setState({schedule})
 
 
   render() {
-
-
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;
     const arrowPrev = (dayBase !== 1) ? (<p className="arrow prev" onClick={this.getPrevIndicatorSet}><i class="fa fa-chevron-left"></i></p>) : null;
