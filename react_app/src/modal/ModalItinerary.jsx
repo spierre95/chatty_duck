@@ -202,7 +202,6 @@ this.setState({schedule})
 
 
   render() {
-
     const dayBase = this.state.dayBase;
     const tripLength = Object.keys(this.state.schedule).length;
     const arrowPrev = (dayBase !== 1) ? (<p className="arrow prev" onClick={this.getPrevIndicatorSet}><i class="fa fa-chevron-left"></i></p>) : null;
