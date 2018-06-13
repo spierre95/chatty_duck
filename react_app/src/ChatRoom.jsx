@@ -14,7 +14,8 @@ constructor(props) {
   this.state = {
     trip: {},
     events: [],
-    schedule:{}
+    schedule:{},
+    users: []
   }
 this.handleSubmit = this.handleSubmit.bind(this);
 }
@@ -68,8 +69,7 @@ componentDidMount() {
 
   axios.get(`http://localhost:3000/api/v1/trips/${params.trip}`)
     .then( res => {
-      console.log(res.data, 'trip from database')
-      this.setState({ trip : res.data })
+      this.setState({ trip : res.data, users: res.data.users })
     })
 
     axios.post('http://localhost:3000/api/v1/events', {trip_id: params.trip,})
@@ -83,10 +83,11 @@ componentDidMount() {
   }
 
   render(){
+
     return(
         <body>
           <div id="chat-wrapper">
-            <Channel currentUser={this.props.currentUser} />
+            <Channel currentUser={this.props.currentUser} users={this.state.users} />
             <Chat currentUser={this.props.currentUser} trip={this.state.trip} props={this.props} chatroom_id={this.props.match.params.trip} />
           </div>
           <ModalItinerary events={this.state.events} trip={this.state.trip}/>
