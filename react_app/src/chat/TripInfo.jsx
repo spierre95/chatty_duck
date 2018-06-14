@@ -10,9 +10,9 @@ class TripInfo extends Component{
   render(){
 
   const imgStyle = {
-   border: "1px solid #1a8db6",
+   border: "1px solid #1cd2d0",
    borderRadius: "50%",
-   width: "50px",
+   width: "45px",
    height: "auto",
   }
     return(
