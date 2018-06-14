@@ -6,6 +6,7 @@ import withAuth from './withAuth'
 import photoUpload from '../photoUpload';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import moment from 'moment';
 
 class CreateTrip extends Component {
 
@@ -51,7 +52,7 @@ fileSelectHandler = (event) => {
     const trip = {
       name:event.target.name.value,
       departure:event.target.departure.value,
-      arrival:event.target.departure.value,
+      arrival:event.target.arrival.value,
       image_url:this.state.image_url,
       chatroom_id:params.trip
     }

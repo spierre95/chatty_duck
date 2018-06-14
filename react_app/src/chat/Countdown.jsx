@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import AuthService from '../forms/AuthService'
+import AuthService from '../forms/AuthService';
+import moment from 'moment'
 
 
 class Countdown extends Component {
@@ -36,7 +37,7 @@ class Countdown extends Component {
   }
 
   calculateCountdown(endDate) {
-    let diff = (Date.parse(new Date(this.state.end_date)) - Date.parse(new Date())) / 1000;
+    let diff = (this.state.end_date) - moment().unix() / 1000;
     // clear countdown when date is reached
     if (diff <= 0) return false;
 
@@ -75,10 +76,11 @@ class Countdown extends Component {
   }
 
   componentWillReceiveProps(nextProps){
+    console.log("nextProps", nextProps)
     if(nextProps.trip !== undefined)
     this.setState({
-      start_date: nextProps.trip.departure,
-      end_date: nextProps.trip.arrival,
+      start_date: moment(nextProps.trip.departure).unix(),
+      end_date: moment(nextProps.trip.arrival).unix(),
     })
   }
 
