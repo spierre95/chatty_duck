@@ -12,7 +12,7 @@ class CreateTrip extends Component {
 constructor(){
   super()
   this.state = {
-    image_url:"/images/group-of-ducks.jpg",
+    image_url:"/images/thumb1.jpg",
     name:"",
     departure:"",
     arrival:"",

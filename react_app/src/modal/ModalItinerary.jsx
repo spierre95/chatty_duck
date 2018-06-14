@@ -19,7 +19,6 @@ class ModalItinerary extends Component {
   }
 
   isClicked(id, e) {
-    console.log("ID::::", id);
     this.setState({
       day: id,
     });
