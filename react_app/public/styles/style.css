@@ -217,10 +217,17 @@ main {
       color: #1cd2d0;
       font-size: 100px; }
   main .note {
+    font-size: 1.2em;
     padding-top: 30px;
     padding-bottom: 15px; }
   main .bx-controls {
     display: none; }
+  main .row.landing {
+    display: flex; }
+    main .row.landing .card {
+      display: flex; }
+    main .row.landing p.icon {
+      margin-bottom: 25px; }
 
 footer {
   background: url("../images/footer.png") 0 0 no-repeat;
@@ -459,7 +466,7 @@ form .card {
     width: 70%; }
     form .card .file-upload-container input[type="file"] {
       float: left;
-      margin-top: 15px;
+      margin-top: 10px;
       padding: 0;
       width: 100%; }
       form .card .file-upload-container input[type="file"]:focus {
@@ -474,7 +481,7 @@ form .card {
       color: #3d3d3d;
       float: left;
       margin: 0;
-      padding: 10px 0 10px 10px; }
+      padding: 10px 10px 10px 0; }
       form .card .file-upload-container .btn.btn-primary:focus {
         outline: none; }
       form .card .file-upload-container .btn.btn-primary:acitve {
@@ -528,13 +535,8 @@ form .card {
       display: block;
       margin: 0 auto; }
       .profile ul.thumbs li .trip-details {
-        color: #fff;
+        color: #3d3d3d;
         height: 100%;
-        opacity: 0.8;
-        padding: 50px 30px 30px;
-        position: absolute;
-        top: 0;
-        left: 0;
         text-align: center;
         width: 100%;
         transition: all 0.4s ease-in-out;
@@ -543,13 +545,13 @@ form .card {
         -o-transition: all 0.4s ease-in-out;
         -ms-transition: all 0.4s ease-in-out; }
         .profile ul.thumbs li .trip-details span {
-          text-shadow: 2px 2px 2px #3d3d3d;
           display: block;
           margin-top: 5px;
           margin-bottom: 5px;
           width: 100%; }
           .profile ul.thumbs li .trip-details span.title {
-            font-weight: bold; }
+            font-weight: bold;
+            padding: 10px; }
       .profile ul.thumbs li img {
         border: 1px solid #f4f5f4;
         border-radius: 5px;
@@ -764,7 +766,7 @@ h2 + p {
 .list {
   font-family: "Lato", sans-serif;
   font-style: normal;
-  background-color: #3E414E;
+  background-color: #3d3d3d;
   padding: 1.5em 0;
   margin-bottom: 3em; }
   .list .list__item {
@@ -844,6 +846,7 @@ input[type="radio"] {
   width: 100%; }
 
 .slideContents {
+  min-height: 250px;
   padding-top: 1em;
   position: relative;
   -webkit-user-select: none;
@@ -854,7 +857,7 @@ input[type="radio"] {
   padding-bottom: 2em; }
 
 .slideContents {
-  background-color: #3e414e;
+  background-color: #3d3d3d;
   width: 700%;
   -webkit-transition: -webkit-transform .6s;
   transition: transform .6s; }

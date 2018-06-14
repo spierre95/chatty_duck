@@ -277,6 +277,7 @@ main {
         }
     }
     .note {
+        font-size: 1.2em;
         padding-top: 30px;
         padding-bottom: 15px;
     }
@@ -286,6 +287,19 @@ main {
         display: none;
     }
 
+    // landing page .card
+    .row.landing
+    {
+        display: flex;
+        .card {
+            display: flex;
+        }
+        p {
+            &.icon {
+                margin-bottom: 25px;
+            }
+        }
+    }
 
 }
 
@@ -571,7 +585,7 @@ form {
             width: 70%;
             input[type="file"] {
                 float: left;
-                margin-top: 15px;
+                margin-top: 10px;
                 padding: 0;
                 width: 100%;
                 &:focus {
@@ -589,7 +603,7 @@ form {
                 color: $color_black;
                 float: left;
                 margin: 0;
-                padding: 10px 0 10px 10px;
+                padding: 10px 10px 10px 0;
                 &:focus {
                     outline: none;
                 }
@@ -665,27 +679,26 @@ form {
             li {
                 margin-bottom: 10px;
                 position: relative;
-
                     display: block;
                     margin: 0 auto;
                     .trip-details {
-                        color: #fff ;
+                        color: $color_black;
                         height: 100%;
-                        opacity: 0.8;
-                        padding: 50px 30px 30px;
-                        position: absolute;
-                        top: 0; left: 0;
+                        //opacity: 0.8;
+                        //padding: 50px 30px 30px;
+                        //top: 0; left: 0;
                         text-align: center;
                         width: 100%;
                         @include transition(all 0.4s ease-in-out);
                         span {
-                            text-shadow: 2px 2px 2px $color_black;
+                            //text-shadow: 2px 2px 2px $color_black;
                             display: block;
                             margin-top: 5px;
                             margin-bottom: 5px;
                             width: 100%;
                             &.title {
                                 font-weight: bold;
+                                padding: 10px;
                             }
                         }
                     }
@@ -971,7 +984,7 @@ header {
 .list {
   font-family: $font_sansserif;
   font-style: normal;
-  background-color: #3E414E;
+  background-color: $color_black;
   //float: left;
   padding: 1.5em 0;
   margin-bottom: 3em;
@@ -1074,6 +1087,7 @@ input[type="radio"] {
     width: 100%;
 }
 .slideContents {
+    min-height: 250px;
     padding-top: 1em;
     position: relative;
     -webkit-user-select: none;
@@ -1085,7 +1099,7 @@ input[type="radio"] {
     padding-bottom: 2em;
 }
 .slideContents {
-    background-color: $color_purple;
+    background-color: $color_black;
     width: 700%;
     -webkit-transition: -webkit-transform .6s;
     transition: transform .6s;
