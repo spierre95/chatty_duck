@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import AuthService from '../forms/AuthService'
+import moment from 'moment';
 
 
 class Countdown extends Component {
@@ -25,7 +26,7 @@ class Countdown extends Component {
 
     // update every second
     this.interval = setInterval(() => {
-      const date = this.calculateCountdown(this.state.start_date);
+      const date = this.calculateCountdown(moment());
       date ? this.setState(date) : this.stop();
     }, 1000);
 
@@ -36,7 +37,7 @@ class Countdown extends Component {
   }
 
   calculateCountdown(endDate) {
-    let diff = (Date.parse(new Date(this.state.end_date)) - Date.parse(new Date())) / 1000;
+    let diff = (moment(this.state.end_date).unix()) - (moment(this.state.start_date).unix()) / 1000;
     // clear countdown when date is reached
     if (diff <= 0) return false;
 
