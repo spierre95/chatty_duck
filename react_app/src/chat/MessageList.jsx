@@ -28,8 +28,10 @@ class MessageList extends Component{
   componentWillMount() {
     const { match: { params } } = this.props.props.props;
     const that = this;
-    axios.get(`http://localhost:3000/api/v1/chatrooms/${params.trip}`)
+    console.log("params", this.props)
+    axios.post(`http://localhost:3000/api/v1/getusermessages`, { id: params.trip })
     .then(res => {
+      console.log('res', res)
       const messages = res.data.messages;
       that.setState({ messages: messages , chatroom_id: res.data.id });
     });

@@ -6,8 +6,8 @@ module Api::V1
     end
 
     def show
-      @chatroom = Chatroom.find(params[:id])
-      render json: @chatroom
+      @chatroom = Chatroom.includes(:messages).find(params[:id])
+      render json: @chatroom.as_json.merge(messages: @chatroom.messages)
     end
 
     def create
@@ -20,6 +20,19 @@ module Api::V1
         head :ok
       end
     end
+
+
+  def get_user_messages
+    binding.pry
+    @chatroom = Chatroom.find(params[:id])
+    render json: @chatroom.as_json.merge(
+      content: @chatroom.messages.created_at,
+      image_url: @chatroom.messages.user.image_url,
+      content: @chatroom.messages.content,
+      user: @chatroom.messages.user.username,
+      chatroom_id: @chatroom.messages.chatroom_id)
+  end
+
 
     def add_to_chatroom
       puts params

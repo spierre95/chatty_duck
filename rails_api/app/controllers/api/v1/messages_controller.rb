@@ -5,6 +5,11 @@ module Api::V1
       render json: @messages
     end
 
+    def show
+      @message = Message.includes(:user).find(params[:id])
+      render json: @message.as_json.merge(user: @message.user)
+    end
+
    def create
 
      @chatroom = Chatroom.find(message_params[:chatroom_id])

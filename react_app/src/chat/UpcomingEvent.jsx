@@ -11,9 +11,9 @@ class UpcomingEvent extends Component {
 render() {
   let filterEvents = this.props.events.filter((event) => {
     let unixTime = moment(event.start_time).unix()
-    console.log("unix", unixTime);
+    // console.log("unix", unixTime);
     if (unixTime < moment().unix()) {
-     console.log("event", event);
+     // console.log("event", event);
     }
   })
 
@@ -24,6 +24,7 @@ render() {
  return(
   <div className="event">
     <p>Concert 7pm - 9pm</p>
+  }
   </div>
     );
   }
