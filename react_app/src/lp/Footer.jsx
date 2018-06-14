@@ -6,7 +6,7 @@ class Footer extends Component {
     footer = (
       <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p className="copyright">© Travel Chat App Inc.</p>
+          <p className="copyright">© Chatty Duck inc.<a className="logo" to="/"><img src="/images/logo.png" alt="logo" /></a></p>
         </div>
       </div>
     );

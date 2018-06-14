@@ -306,6 +306,14 @@ footer {
                 width: 100%;
             }
             padding-bottom: 10px;
+            a {
+                float: right;
+                margin-top: -20px;
+                img {
+                    width: 50px;
+                    height: auto;
+                }
+            }
         }
     }
 }
@@ -359,6 +367,7 @@ footer {
     width: 80%;
     header {
         background-color: #fff;
+        border-bottom: 1px solid #e4e4e4fc;
         height: 120px;
         padding: 10px 20px;
         position: fixed; top: 0; right: 0;
@@ -421,7 +430,7 @@ footer {
         }
     }
     main {
-        background-color: #eee;
+        background-color: #fff;
         flex: 1;
         overflow: scroll;
         padding: 100px 5px 50px 5px;
@@ -434,7 +443,7 @@ footer {
                 padding: 15px;
                 @include transition(all 0.4s ease-in-out);
                 &:hover {
-                    background-color: #fff;
+                    background-color: $color_grey;
                     border-radius: 5px;
                     color: $color_blue_solid;
                     li.thumb i { opacity: 1; }
@@ -630,6 +639,7 @@ form {
 /* ============================== profile page ============================== */
 .profile {
     .container .row { padding-bottom: 25px; }
+    main section .container .row { border-bottom: 1px solid $color_grey; }
     h2 {
         float: left;
         // create button
@@ -770,7 +780,7 @@ header {
             .profile-img {
                 border: 1px solid $color_blue_solid;
                 border-radius: 50%;
-                width: 65px;
+                width: 60px;
                 height: auto;
             }
         }
@@ -962,7 +972,7 @@ header {
   font-family: $font_sansserif;
   font-style: normal;
   background-color: #3E414E;
-  float: left;
+  //float: left;
   padding: 1.5em 0;
   margin-bottom: 3em;
 

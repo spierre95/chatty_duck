@@ -19,6 +19,7 @@ class ModalItinerary extends Component {
   }
 
   isClicked(id, e) {
+    console.log("ID::::", id);
     this.setState({
       day: id,
     });
@@ -40,7 +41,7 @@ class ModalItinerary extends Component {
     });
   }
 
-  getSlideIndicator(dayBase, active) { console.log('ACTIVE:::', active);
+  getSlideIndicator(dayBase, active) {
     let indicator = [];
       for (let i = 0; i < 7; i++) {
           if (i != 0 && i <= active) {
@@ -74,7 +75,7 @@ class ModalItinerary extends Component {
     for (let i = 0; i < 7; i++) {
       if (i != 0) {
         radio.push(
-          <input type="radio" name="slideshow" id={'switch'+(1 + i)} dayBase checked={(this.state.day === (dayBase + i) ? 'checked' : null)} />
+          <input type="radio" name="slideshow" id={'switch'+(1 + i)} checked={(this.state.day === (dayBase + i) ? 'checked' : null)} />
         );
       } else {
         radio.push(
@@ -92,8 +93,6 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const obj = this.state.schedule;
 
-    console.log(this.state.schedule, 'inside getSchedule')
-
 
     Object.keys(obj).forEach(function(day,index) {
       let dayNum = (index + 1)
@@ -101,7 +100,6 @@ class ModalItinerary extends Component {
       let daySchedule = obj[day];
       let sectionChildren = [];
       let maxLength = ((tripLength - dayBase) / 7 >= 1) ? dayBase + 6 : (tripLength - dayBase) + dayBase;
-      //for (let j = (dayBase - 1); j < maxLength; j++) {
       for (let j = 0; j < daySchedule.length; j++) {
         let time = moment.utc(daySchedule[j].start_time).format("HH:mm")
         sectionChildren.push(
@@ -115,9 +113,20 @@ class ModalItinerary extends Component {
             </div>
           </div>
         );
-
       }
-
+      if(Object.keys(sectionChildren).length === 0){
+        sectionChildren = (
+          <div className="list__item">
+            <div className="list__time">00:00</div>
+            <div className="list__border"></div>
+            <div className="list__desc">
+              <h3>There is no schedule now.</h3>
+              <div>You can create an event for your trip top right menu!</div>
+              <div className="border"></div>
+            </div>
+          </div>
+          );
+      }
       section = (
             <section id={'slide'+(dayNum)}>
               <div className="list" id={'day'+ dayNum}>
@@ -126,7 +135,6 @@ class ModalItinerary extends Component {
               </div>
             </section>);
       if (dayBase === 1) {
-        console.log(dayNum)
         if (dayNum >= 1 && dayNum <= 7) {
           output.push(section);
         }
@@ -148,52 +156,51 @@ class ModalItinerary extends Component {
   return output;
   }
 
-componentWillReceiveProps(nextProps){
-if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
-let departure = moment.utc(nextProps.trip.departure).format("YYYY-MM-DD")
-let arrival =  moment.utc(nextProps.trip.arrival).format("YYYY-MM-DD")
-function enumerateDaysBetweenDates(startDate, endDate) {
-    startDate = moment(startDate);
-    endDate = moment(endDate);
+  componentWillReceiveProps(nextProps){
+    if(nextProps.trip !== undefined && Object.keys(nextProps.trip).length !== 0){
+    let departure = moment.utc(nextProps.trip.departure).format("YYYY-MM-DD")
+    let arrival =  moment.utc(nextProps.trip.arrival).format("YYYY-MM-DD")
+    function enumerateDaysBetweenDates(startDate, endDate) {
+        startDate = moment(startDate);
+        endDate = moment(endDate);
 
-    var now = startDate, dates = [];
+        var now = startDate, dates = [];
+
+        while (now.isBefore(endDate) || now.isSame(endDate)) {
+          dates.push(now.format('YYYY-MM-DD'));
+          now.add(1, 'days');
+        }
+          return dates;
+        };
 
 
-    while (now.isBefore(endDate) || now.isSame(endDate)) {
-        dates.push(now.format('YYYY-MM-DD'));
-        now.add(1, 'days');
+    let dates = (enumerateDaysBetweenDates(departure,arrival))
+
+    let schedule = {}
+
+    for (let day of dates ){
+      schedule[day] = []
     }
-    return dates;
-};
 
+    let datesArr = Object.keys(schedule)
 
-let dates = (enumerateDaysBetweenDates(departure,arrival))
+    nextProps.events.forEach((event)=>{
+      for(let day of datesArr){
+        if(event.date === day){
+          schedule[event.date].push(event)
+        }
+      }
+    })
 
-let schedule = {}
+    this.setState({schedule})
 
-for (let day of dates ){
-  schedule[day] = []
-}
-
-let datesArr = Object.keys(schedule)
-
-nextProps.events.forEach((event)=>{
-  for(let day of datesArr){
-    if(event.date === day){
-      schedule[event.date].push(event)
     }
   }
-})
-
-this.setState({schedule})
-
-}
-}
 
 
   shouldComponentUpdate(nextProps, nextState) {
-  return this.state !== nextState
-}
+    return this.state !== nextState
+  }
 
 
   render() {
