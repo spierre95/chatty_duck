@@ -6,8 +6,10 @@ Chatty Duck is a single page web application that helps people travelling in gro
 
 ## Final Product
 
-!["chatroom"]()
-!["trips page"]()
+!["Home"]()
+!["Join Trips"]()
+!["Chatroom"]()
+!["Itinerary"]()
 
 ## Dependencies
 
