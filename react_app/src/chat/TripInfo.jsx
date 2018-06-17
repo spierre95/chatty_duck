@@ -17,7 +17,7 @@ class TripInfo extends Component{
   }
     return(
       <header>
-        <p className="title">Group Name here</p>
+        <p className="title">{this.props.trip.name}</p>
         <ul>
           <li>
             <a href="#" data-toggle="modal" data-target="#itinerary"><i className="fa fa-calendar"></i></a></li>

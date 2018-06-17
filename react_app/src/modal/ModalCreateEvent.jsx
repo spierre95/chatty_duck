@@ -21,7 +21,7 @@ console.log(departure, 'after')
           <p>Add a new event!</p>
           <div className="form-group">
             <label htmlFor="event name">Event Name</label>
-            <input type="text" name="name" className="form-control" id="name" placeholder="Enter trip name" />
+            <input type="text" name="name" className="form-control" id="name" placeholder="Enter event name" />
           </div>
           <div className="form-group">
             <label htmlFor="date">Date</label>

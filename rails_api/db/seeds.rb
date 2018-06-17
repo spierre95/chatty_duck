@@ -6,6 +6,7 @@ Location.destroy_all
 TripsUser.destroy_all
 ChatroomsUser.destroy_all
 
+
 puts "Creating chatrooms"
 3.times do Chatroom.create!({
   name:Faker::GameOfThrones.city,
