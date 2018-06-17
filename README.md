@@ -15,24 +15,24 @@ Chatty Duck is a single page web application that helps people travelling in gro
 
 ### Rails Api
 
-  *rails 5.2.0
-  *redis 4.0
-  *bcrypt
-  *faker
-  *jwt
-  *rack-cors
-  *simple_command
-  *active_model_serializers
+  * rails 5.2.0
+  * redis 4.0
+  * bcrypt
+  * faker
+  * jwt
+  * rack-cors
+  * simple_command
+  * active_model_serializers
 
 ### React App
 
-  *react 16.4.0
-  *react-actioncable-provider
-  *react-dom
-  *react-router-dom
-  *axios
-  *jwt-decode
-  *moment
+  * react 16.4.0
+  * react-actioncable-provider
+  * react-dom
+  * react-router-dom
+  * axios
+  * jwt-decode
+  * moment
 
 ## Getting Started
 
