@@ -7,7 +7,7 @@ Chatty Duck is a single page web application that helps people travelling in gro
 ## Final Product
 
 !["Home"](https://github.com/spierre95/chatty_duck/blob/master/docs/chatty-duck-home.png)
-!["Join Trips"](https://github.com/spierre95/chatty_duck/blob/master/docs/chatty-duck-chat.gif)
+!["Join Trips"](https://github.com/spierre95/chatty_duck/blob/master/docs/chatty-duck-trip.gif)
 !["Chatroom"](https://github.com/spierre95/chatty_duck/blob/master/docs/chatty-duck-chat.gif)
 !["Itinerary"](https://github.com/spierre95/chatty_duck/blob/master/docs/chatty-duck-itinerary.png)
 
