@@ -43,7 +43,7 @@ class ModalItinerary extends Component {
   getSlideIndicator(dayBase, active) {
     let indicator = [];
       for (let i = 0; i < 7; i++) {
-          if (i != 0 && i <= active) {
+          if (i !== 0 && i <= active) {
             indicator.push(
               <li onClick={(e) => this.isClicked(dayBase + i, e)}>
                 <p className="day-flag">Day {dayBase + i}</p>
@@ -72,7 +72,7 @@ class ModalItinerary extends Component {
   getItineraryRadio(dayBase){
     let radio = [];
     for (let i = 0; i < 7; i++) {
-      if (i != 0) {
+      if (i !== 0) {
         radio.push(
           <input type="radio" name="slideshow" id={'switch'+(1 + i)} checked={(this.state.day === (dayBase + i) ? 'checked' : null)} />
         );
@@ -133,22 +133,9 @@ class ModalItinerary extends Component {
                  {sectionChildren}
               </div>
             </section>);
-      if (dayBase === 1) {
-        if (dayNum >= 1 && dayNum <= 7) {
-          output.push(section);
-        }
-      } else if (dayBase === 8) {
-        if (dayNum >= 8 && dayNum <= 14) {
-          output.push(section);
-        }
-      } else if (dayBase === 15) {
-        if (dayNum >= 15 && dayNum <= 21) {
-          output.push(section);
-        }
-      } else if (dayBase === 22) {
-        if (dayNum >= 22 && dayNum <= 28) {
-          output.push(section);
-        }
+      // to get the contents of the selected week
+      if (dayNum >= dayBase && dayNum <= dayBase + 6) {
+        output.push(section);
       }
     });
 
@@ -207,7 +194,8 @@ class ModalItinerary extends Component {
     const tripLength = Object.keys(this.state.schedule).length;
     const arrowPrev = (dayBase !== 1) ? (<p className="arrow prev" onClick={this.getPrevIndicatorSet}><i class="fa fa-chevron-left"></i></p>) : null;
     const arrowNext = (tripLength > dayBase + 6) ? (<p className="arrow next" onClick={this.getNewIndicatorSet}><i class="fa fa-chevron-right"></i></p>) : null;
-    const active = (tripLength < dayBase + 6) ? ((dayBase + 6) - tripLength) : 7 ; // passing this to getSlideIndicator func to add inactive css class.
+    const active = (tripLength < dayBase + 6) ? (tripLength - dayBase) : 7 ; // passing this to getSlideIndicator func to add inactive css class.
+    // changed the above calc after the condition (? mark) to tripLength - dayBase, instead of dayBase + 6) - tripLength)!!!
     let sliderTop = (
       <div id="itinerary-top">
         <ol>
